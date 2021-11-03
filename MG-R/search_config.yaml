@@ -1,7 +1,0 @@
-#-----------------------------
-# Parameters for the search
-#-----------------------------
-
-kmer_length: 19
-bf_size: 1      # in GB; min 1GB
-nr_hashes: 3

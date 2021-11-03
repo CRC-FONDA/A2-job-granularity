@@ -1,9 +1,0 @@
-#-----------------------------
-# Parameters for the search
-#-----------------------------
-
-allowed_errors: 5       # number of errors
-strata_width: 3         # number of errors; corresponds to x in (best+x) mapping
-kmer_length: 19
-bf_size: 1      # in GB; min 1GB
-nr_hashes: 3
