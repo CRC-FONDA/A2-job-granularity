@@ -12,7 +12,7 @@ sp = round(config["strata_width"] / rl * 100)			# percentage of errors from the 
 # create FM-indices for each bin
 rule FM_index:
 	input:
-		bins = expand("../data/MG-2/" + str(bin_nr) + "/bins/{bin}.fasta", bin = bin_list)
+		bins = expand("../data/MG-5/" + str(bin_nr) + "/bins/{bin}.fasta", bin = bin_list)
 	output:
 		expand("fm_indices/{bin}.sa.val", bin = bin_list)
 	params:
@@ -26,7 +26,7 @@ rule FM_index:
 rule search_distributor:
 	input:
 		matches = "hashmap/all.output",
-		all = "../data/MG-2/" + str(bin_nr) + "/reads_e" + str(epr) + "_" + str(rl) + "/all.fastq"
+		all = "../data/MG-5/" + str(bin_nr) + "/reads_e" + str(epr) + "_" + str(rl) + "/all.fastq"
 	output:
 		expand("distributed_reads/{bin}.fastq", bin = bin_list)
 	shell:

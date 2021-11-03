@@ -3,16 +3,13 @@
 # One at a time. 
 #-----------------------------
 
-#wf: "MG-R"
-#wf: "MG-1"
-#wf: "MG-2"
-#wf: "MG-3"
-wf: "MG-4"
+#wf: "MG-4"
+wf: "MG-5"
 
 # location of raptor binaries
 raptor_bin_dir: "/home/evelin/metagenomics/raptor_data_simulation/build/bin"
 # location of simulated data
-data_out_dir: "/home/evelin/metagenomics/A2-metagenome-snakemake/data"
+data_out_dir: "/home/evelin/metagenomics/A2-job-granularity/data"
 
 #-----------------------------
 # Parameters of simulated data.
@@ -41,13 +38,10 @@ haplotype_count: 4
 snp_rate: 0.01
 small_indel_rate: 0.001
 
-# boolean variable to divide similar haplotypes between different bins
-mix_bins: 1     # NOT relevant for MG-4
-
 #-----------------------------
-# Customizing the number of read files in MG-4 and MG-5
+# Customizing the number of read files in MG-4 and MG-5.
 #
-# For the other workflows nr of read files == nr of bins
+# For the other worflows number of read files == number of bins
 #
 # Note that it must hold that (read_count % read_file_count) == 0
 #-----------------------------

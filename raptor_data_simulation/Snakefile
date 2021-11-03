@@ -40,20 +40,11 @@ else:
     # Renaming bin files; the filenames must have a specific format e.g 4.fasta not 04.fasta
     subprocess.call(['bash', './scripts/rename_fasta.sh', wf, str(bin_nr), padding])
     
-    if (wf != "MG-4"):
-        # Renaming read files
-        subprocess.call(['bash', './scripts/rename_fastq.sh', wf, str(bin_nr), str(epr), str(rl), padding])
-
-        # Simulate a situation where different bins contain similar sequences.
-        # Some reads will align to multiple bins.
-        if (config["mix_bins"]==1):
-            subprocess.call(['bash', './scripts/mix_bins.sh', wf, str(bin_nr)])
+    # Create a custom number of read files
+    if (rc % nr_rf != 0):
+        print("ERROR! The number of reads must be divisible by the chosen number of read files!")
     else:
-	# Create a custom number of read files
-        if (rc % nr_rf != 0):
-            print("ERROR! The number of reads must be divisible by the chosen number of read files!")
-        else:
-            subprocess.call(['bash', './scripts/custom_read_files.sh', wf, str(bin_nr), str(epr), str(rl), str(nr_rf)])
+        subprocess.call(['bash', './scripts/custom_read_files.sh', wf, str(bin_nr), str(epr), str(rl), str(nr_rf)])
 
 rule make_all:
 	shell:

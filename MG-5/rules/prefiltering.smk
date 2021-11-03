@@ -10,7 +10,7 @@ nr_er = epr		# number of errors allowed in an approximate local match
 import pathlib
 
 PWD = pathlib.Path().absolute()
-bin_path_list = [str(PWD) + "/../data/MG-2/" + str(bin_nr) + "/bins/" + str(i) + ".fasta" for i in list(range(0,bin_nr))]
+bin_path_list = [str(PWD) + "/../data/MG-5/" + str(bin_nr) + "/bins/" + str(i) + ".fasta" for i in list(range(0,bin_nr))]
 with open('metadata/bin_paths.txt', 'w') as f:
     for item in bin_path_list:
         f.write("%s\n" % item)
@@ -18,7 +18,7 @@ with open('metadata/bin_paths.txt', 'w') as f:
 rule build_prefilter:
 	input:
 		paths = "metadata/bin_paths.txt",
-		bins = expand("../data/MG-2/" + str(bin_nr) + "/bins/{bin}.fasta", bin = bin_list)
+		bins = expand("../data/MG-5/" + str(bin_nr) + "/bins/{bin}.fasta", bin = bin_list)
 	output:
 		"hashmap/filter"
 	shell:
@@ -27,7 +27,7 @@ rule build_prefilter:
 rule search_prefilter:
 	input:
 		filter = "hashmap/filter",
-		reads = "../data/MG-2/" + str(bin_nr) + "/reads_e" + str(epr) + "_" + str(rl) + "/all.fastq"
+		reads = "../data/MG-5/" + str(bin_nr) + "/reads_e" + str(epr) + "_" + str(rl) + "/all.fastq"
 	output:
 		"hashmap/all.output"
 	params:
