@@ -12,15 +12,21 @@ sp = round(config["strata_width"] / rl * 100)			# percentage of errors from the 
 # create FM-indices for each bin
 rule FM_index:
 	input:
-		bins = expand("../data/MG-5/" + str(bin_nr) + "/bins/{bin}.fasta", bin = bin_list)
+		"../data/MG-5/" + str(bin_nr) + "/bins/{bin}.fasta"
 	output:
-		expand("fm_indices/{bin}.sa.val", bin = bin_list)
+		"fm_indices/{bin}.sa.val"
 	params:
-		outdir = "fm_indices/",
+		outdir = "fm_indices/{bin}.",
 		t = 8
 	shell:
-		"dream_yara_indexer --threads {params.t} --output-prefix {params.outdir} {input.bins}"
-
+		"""
+		dream_yara_indexer --threads {params.t} --output-prefix {params.outdir} {input}
+		
+		for file in fm_indices/{wildcards.bin}.0.*
+		do  
+			mv "$file" "${{file/.0/}}"
+		done
+		"""
 
 # call bash script that acts as read mapping distributor
 rule search_distributor:

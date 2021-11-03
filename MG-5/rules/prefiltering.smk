@@ -24,13 +24,23 @@ rule build_prefilter:
 	shell:
 		"./../../low-memory-prefilter/build/bin/hashmap build --kmer {k} --output {output} {input.paths}"
 
+# search prefilter separately for each read file
 rule search_prefilter:
 	input:
 		filter = "hashmap/filter",
-		reads = "../data/MG-5/" + str(bin_nr) + "/reads_e" + str(epr) + "_" + str(rl) + "/all.fastq"
+		reads = "../data/MG-5/" + str(bin_nr) + "/reads_e" + str(epr) + "_" + str(rl) + "/{reads}.fastq"
 	output:
-		"hashmap/all.output"
+		"hashmap/{reads}.output"
 	params:
 		t = 8
 	shell:
 		"./../../low-memory-prefilter/build/bin/hashmap search --threads {params.t} --error {nr_er} --hashmap {input.filter} --output {output} {input.reads}"
+
+# the hash map filtering results can later be concatenated to all.output
+rule merge_prefilter:
+	input:
+		expand("hashmap/{reads}.output", reads = read_list)
+	output:
+		"hashmap/all.output"
+	shell:
+		"cat {input} > {output}"
