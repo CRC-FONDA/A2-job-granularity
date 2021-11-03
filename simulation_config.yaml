@@ -45,7 +45,7 @@ small_indel_rate: 0.001
 mix_bins: 1     # NOT relevant for MG-4
 
 #-----------------------------
-# Customizing the number of read files in MG-4
+# Customizing the number of read files in MG-4 and MG-5
 #
 # For the other workflows nr of read files == nr of bins
 #

@@ -1,0 +1,20 @@
+# Data simulation parameters are set in ../simulation_config.yaml
+configfile: "../simulation_config.yaml"
+
+# Parameters for data simulation 
+bin_nr = config["number_of_bins"]
+epr = config["errors_per_read"]
+rl = config["read_length"]
+
+# Creating list of wildcards
+bin_list = [str(i) for i in list(range(0,bin_nr))]
+
+rule make_all:
+	input:
+		"mapped_reads/all_consolidated.sam"
+	shell:
+		"echo 'Done'"
+
+include: "rules/prefiltering.smk"
+include: "rules/mapping.smk"
+include: "rules/consolidating.smk"
