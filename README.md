@@ -44,6 +44,8 @@ Steps of workflow:
 2. Create an FM-index for each of the bins of the reference (multithreaded; one job per bin)
 3. Map each read to the FM-index determined by IBF pre-filtering (multithreaded; number of jobs == number of read files) 
 
+![job counts for MG-4](https://github.com/eaasna/A2-job-granularity/blob/main/MG-4/job_count.png)
+
 **NOTE:** DREAM-Yara is not available through conda and has to be built from source. Also add location of DREAM-Yara binaries to $PATH.
 
 DREAM-Yara source code:
@@ -62,6 +64,8 @@ Steps of workflow:
 4. Create an FM-index for each of the bins of the reference (multithreaded; 1 job per bin)
 5. Read the distributed reads and map to the FM-index determined by hashmap pre-filtering (currently 1 job per bin)
 6. If a read was mapped to multiple bins the strata mapping results have to be consolidated between bins. For match consolidation the mapping results are gathered into one file and filtered based on the best+x cutoff set by the user in the configuration file. (1 thread; 1 job)
+
+![job counts for MG-5](https://github.com/eaasna/A2-job-granularity/blob/main/MG-5/job_count.png)
 
 **NOTE:** The hashmap and match-consolidator have to be built from source and the location of the binaries should be added to $PATH.
 
