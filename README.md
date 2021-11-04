@@ -2,6 +2,8 @@
 
 This repository contains metagenomic workflows where the number of jobs for certain steps can be customized by the user by dividing the simulated sequencing reads between files. The number of jobs for the read mapping (MG-4) and prefiltering (MG-5) steps are equal to the number of read files chosen in `simulation_config.yaml`. 
 
+**NOTE:** that the total number of reads has to be divisible by the chosen number of read files.  
+
 The example graphs below show workflow executions where:
 - number of bins = 8
 - number of read files = 4
@@ -47,8 +49,6 @@ Steps of workflow:
 DREAM-Yara source code:
 https://github.com/temehi/dream_yara
 
-
-**NOTE:** that the total number of reads has to be divisible by the chosen number of read files.  
 
 ### MG-5
 ![directed acyclic graph for MG-5](https://github.com/eaasna/A2-job-granularity/blob/main/MG-5/dag.png)
