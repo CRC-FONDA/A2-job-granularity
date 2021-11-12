@@ -15,7 +15,10 @@ rule samtools_merge:
 	conda:
 		"../../envs/samtools.yaml"
 	shell:
-		"samtools merge {input} -o {output}"
+		"""
+		ulimit -n 2048
+		samtools merge {input} -o {output}
+		"""
 
 rule samtools_collate:
 	input:
