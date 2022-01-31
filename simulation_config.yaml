@@ -3,13 +3,23 @@
 # One at a time. 
 #-----------------------------
 
-#wf: "MG-4"
-wf: "MG-5"
+wf: "MG-4"
+#wf: "MG-5"
 
 # location of raptor binaries
 raptor_bin_dir: "/home/evelin/metagenomics/raptor_data_simulation/build/bin"
 # location of simulated data
 data_out_dir: "/home/evelin/metagenomics/A2-job-granularity/data"
+
+
+#-----------------------------
+# Specifying the number of jobs:
+#-----------------------------
+number_of_bins: 3             # number of dream_FM_index jobs (MG-4)
+                              # number of FM_index and yara_mapper jobs (MG-5)
+
+read_file_count: 22           # number of dream_mapper jobs (MG-4)
+                              # number of search_prefilter jobs (MG-5)
 
 #-----------------------------
 # Parameters of simulated data.
@@ -22,10 +32,9 @@ data_out_dir: "/home/evelin/metagenomics/A2-job-granularity/data"
 #-----------------------------
 
 ref_size: 102400        # size of reference in bytes? 4*2^20 = 4MiB
-number_of_bins: 8
-errors_per_read: 5       # number of errors; this is the basis for error rate in an approximate match
+errors_per_read: 5      # number of errors; this is the basis for error rate in an approximate match
 read_length: 150
-read_count: 1024        # size of query (count)
+reads_per_genome: 100   # number of reads simulated from each reference sequence 
 
 #-----------------------------
 # Mason variator parameters.
@@ -37,14 +46,3 @@ read_count: 1024        # size of query (count)
 haplotype_count: 4
 snp_rate: 0.01
 small_indel_rate: 0.001
-
-#-----------------------------
-# Customizing the number of read files in MG-4 and MG-5.
-#
-# For the other worflows number of read files == number of bins
-#
-# Note that it must hold that (read_count % read_file_count) == 0
-#-----------------------------
-
-read_file_count: 4
-

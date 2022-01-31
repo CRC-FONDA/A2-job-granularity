@@ -13,19 +13,23 @@ size = config["ref_size"]
 bin_nr = config["number_of_bins"]
 epr = config["errors_per_read"]
 rl = config["read_length"]
-rc = config["read_count"]
 
 # Parameters for mason variator
 ht = config["haplotype_count"]
 sr = config["snp_rate"]
 ir = config["small_indel_rate"]
 
-# Parameters for MG-4
+# Number of FM-index instances
 nr_rf = config["read_file_count"]
 
 # Helper variables
 digits = len(str(bin_nr))
 padding = "".zfill(digits)
+
+# Calculate total number of reads from user input 
+# rc = config["read_count"]
+rpg = config["reads_per_genome"]
+rc = rpg * ht * bin_nr * nr_rf
 
 # Checking if data was already simulated
 import os.path
