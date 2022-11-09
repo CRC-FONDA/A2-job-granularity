@@ -1,0 +1,18 @@
+configfile: "config.yaml"
+
+num_threads = config["threads"]
+
+# collect all fasta filenames in the genomes
+import os
+fasta_file_endings = [".fa", ".fna", ".fasta"]
+is_fasta_file = lambda f: any(f.endswith(end) for end in fasta_file_endings)
+genome_fasta_files = filter(lambda f: is_fasta_file(f), os.listdir("data/genomes"))
+genome_fasta_files = list(genome_fasta_files)[:5]
+
+rule all:
+    input:
+        "data/mapped_reads/all.bam"
+
+include: "modules/prefilter.smk"
+include: "modules/readmapping.smk"
+include: "modules/postprocessing.smk"

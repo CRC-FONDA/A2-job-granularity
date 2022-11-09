@@ -1,0 +1,9 @@
+data/distributed_queries
+data/indices
+data/mapped_reads
+data/prefilter
+data/genomes/*
+!data/genomes/place_genome_fasta_files_here.txt
+data/queries.fastq
+logs/*
+tools
