@@ -33,7 +33,7 @@ rule chopper_count:
     benchmark:
         "benchmarks/prefilter/chopper_count.txt"
     shell:
-        "./tools/build/bin/chopper count "
+        "./tools/raptor/build/bin/chopper count "
         "--input-file {input} "
         "--output-prefix {params.out_prefix} "
         "--kmer-size {params.k} "
@@ -58,7 +58,7 @@ rule chopper_layout:
     benchmark:
         "benchmarks/prefilter/chopper_layout.txt"
     shell:
-        "./tools/build/bin/chopper layout "
+        "./tools/raptor/build/bin/chopper layout "
         "--tmax {params.tmax} "
         "--num-hash-functions {params.h} "
         "--false-positive-rate {params.fpr} "
@@ -85,7 +85,7 @@ rule raptor_build:
     benchmark:
         "benchmarks/prefilter/raptor_build.txt"
     shell:
-        "./tools/build/bin/raptor build "
+        "./tools/raptor/build/bin/raptor build "
         "--kmer {params.k} "
         "--window {params.k} "
         "--hash {params.h} "
@@ -114,7 +114,7 @@ rule raptor_search:
     benchmark:
         "benchmarks/prefilter/raptor_search.txt"
     shell:
-        "./tools/build/bin/raptor search "
+        "./tools/raptor/build/bin/raptor search "
         "--index {input.index} "
         "--query {input.read_queries} "
         "--output {output} "

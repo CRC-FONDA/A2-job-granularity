@@ -9,7 +9,7 @@ rule bwa_mem2_index:
     benchmark:
         "benchmarks/readmapping/bwa_mem2_index/{genome_fasta_file}.txt"
     conda:
-        "envs/bwa-mem2.yaml"
+        "../envs/bwa-mem2.yaml"
     shell:
         # the touch output is as a marker for snakemake that the rule is completed
         "bwa-mem2 index "
@@ -56,7 +56,7 @@ rule bwa_mem2_mem:
     benchmark:
         "benchmarks/readmapping/bwa_mem2_mem/{genome_fasta_file}.txt"
     conda:
-        "envs/bwa-mem2.yaml"
+        "../envs/bwa-mem2.yaml"
     shell:
         "bwa-mem2 mem "
         "-t {threads} "

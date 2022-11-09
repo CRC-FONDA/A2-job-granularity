@@ -9,7 +9,7 @@ rule samtools_view:
     benchmark:
         "benchmarks/postprocessing/samtools_view/{genome_fasta_file}.txt"
     conda:
-        "envs/samtools.yaml"
+        "../envs/samtools.yaml"
     shell:
         "samtools view -b {input} -o {output} 2> {log}"
 
@@ -24,7 +24,7 @@ rule samtools_sort:
     benchmark:
         "benchmarks/postprocessing/samtools_sort/{genome_fasta_file}.txt"
     conda:
-        "envs/samtools.yaml"
+        "../envs/samtools.yaml"
     shell:
         "samtools sort {input} -o {output} 2> {log}"
 
@@ -41,6 +41,6 @@ rule samtools_merge:
     benchmark:
         "benchmarks/postprocessing/samtools_merge.txt"
     conda:
-        "envs/samtools.yaml"
+        "../envs/samtools.yaml"
     shell:
         "samtools merge --threads {threads} {output} {input} 2> {log}"
