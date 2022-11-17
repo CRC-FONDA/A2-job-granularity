@@ -1,13 +1,13 @@
 # convert .sam to .bam
 rule samtools_view:
     input: 
-        "data/mapped_reads/{genome_fasta_file}.sam"
+        "data/mapped_reads/bin_{bin_id}.sam"
     output:
-        temp("data/mapped_reads/{genome_fasta_file}.bam")
+        temp("data/mapped_reads/bin_{bin_id}.bam")
     log:
-        "logs/postprocessing/samtools_view/{genome_fasta_file}.log"
+        "logs/postprocessing/samtools_view/bin_{bin_id}.log"
     benchmark:
-        "benchmarks/postprocessing/samtools_view/{genome_fasta_file}.txt"
+        "benchmarks/postprocessing/samtools_view/bin_{bin_id}.txt"
     conda:
         "../envs/samtools.yaml"
     shell:
@@ -16,13 +16,13 @@ rule samtools_view:
 # sort .bam files by leftmost coordinates
 rule samtools_sort:
     input:
-        "data/mapped_reads/{genome_fasta_file}.bam"
+        "data/mapped_reads/bin_{bin_id}.bam"
     output:
-        temp("data/mapped_reads/{genome_fasta_file}_sorted.bam")
+        temp("data/mapped_reads/bin_{bin_id}_sorted.bam")
     log:
-        "logs/postprocessing/samtools_sort/{genome_fasta_file}.log"
+        "logs/postprocessing/samtools_sort/bin_{bin_id}.log"
     benchmark:
-        "benchmarks/postprocessing/samtools_sort/{genome_fasta_file}.txt"
+        "benchmarks/postprocessing/samtools_sort/bin_{bin_id}.txt"
     conda:
         "../envs/samtools.yaml"
     shell:
@@ -31,7 +31,7 @@ rule samtools_sort:
 # merge all .bam files
 rule samtools_merge:
     input:
-        expand("data/mapped_reads/{genome_fasta_file}_sorted.bam", genome_fasta_file=genome_fasta_files)
+        expand("data/mapped_reads/bin_{bin_id}_sorted.bam", bin_id=range(num_bins))
     output:
         "data/mapped_reads/all.bam"
     threads:

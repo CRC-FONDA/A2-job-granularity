@@ -1,3 +1,15 @@
+# collect all filenames of the reference genomes into a file that is the input for chopper count
+# every genome in every file then is a bin for the filter (HIBF)
+rule write_bin_list:
+    input:
+        genome_bin_files
+    output:
+        "data/genome_bins/list.tsv"
+    run:
+        bin_file_str = '\n'.join(input)
+        with open("data/genome_bins/list.tsv", "w+") as f:
+            f.write(bin_file_str)
+
 prefilter_config = config["prefilter"]
 chopper_config = prefilter_config["chopper"]
 raptor_config = prefilter_config["raptor"]
@@ -5,22 +17,11 @@ raptor_config = prefilter_config["raptor"]
 chopper_count_output_prefix = "data/prefilter/genomes"
 chopper_count_output_file = chopper_count_output_prefix + ".count"
 
-# collect all filenames of the reference genomes into a file that is the input for chopper count
-# every genome in every file then is a bin for the filter (HIBF)
-rule collect_filenames:
-    input:
-        "data/genomes"
-    output:
-        "data/genomes/list.tsv"
-    shell:
-        "find {input} -type f "
-        "| grep -E '.+\.(fa|fna|fasta)' "
-        "> {output}"
-
 # count kmers in the reference genomes
 rule chopper_count:
     input:
-        "data/genomes/list.tsv"
+        file_list="data/genome_bins/list.tsv",
+        dummies=genome_bin_files
     output:
         chopper_count_output_file
     params:
@@ -34,7 +35,7 @@ rule chopper_count:
         "benchmarks/prefilter/chopper_count.txt"
     shell:
         "./tools/raptor/build/bin/chopper count "
-        "--input-file {input} "
+        "--input-file {input.file_list} "
         "--output-prefix {params.out_prefix} "
         "--kmer-size {params.k} "
         "--threads {threads} "
@@ -71,7 +72,8 @@ rule chopper_layout:
 # build the query prefilter
 rule raptor_build:
     input:
-        "data/prefilter/hibf.layout"
+        layout="data/prefilter/hibf.layout",
+        dummies=genome_bin_files
     output:
         "data/prefilter/hibf.index"
     params:
@@ -90,7 +92,7 @@ rule raptor_build:
         "--window {params.k} "
         "--hash {params.h} "
         "--fpr {params.fpr} "
-        "--hibf {input} "
+        "--hibf {input.layout} "
         "--output {output} "
         "--threads {threads} "
         "2> {log}"
@@ -133,7 +135,7 @@ rule query_distributor:
         raptor="data/prefilter/search.out",
         read_queries="data/queries.fastq"
     output:
-        temp(expand("data/distributed_queries/{genome_fasta_file}.fastq", genome_fasta_file=genome_fasta_files))
+        temp(distributed_read_files)
     log:
         "logs/prefilter/query_distributor.log"
     benchmark:
@@ -142,5 +144,5 @@ rule query_distributor:
         "tools/query-distributor/target/release/query-distributor "
         "--raptor-search-output {input.raptor} "
         "--queries {input.read_queries} "
-        "--output-folder data/distributed_queries/ "
+        "--output-folder data/distributed_reads/ "
         "2> {log}"
