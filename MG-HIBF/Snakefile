@@ -19,7 +19,8 @@ distributed_read_files = expand("data/distributed_reads/bin_{bin_id}.fastq", bin
 
 rule all:
     input:
-        "data/mapped_reads/all.bam"
+        expand("data/mapped_reads/bin_{bin_id}.sam", bin_id=bin_ids)
+        # "data/mapped_reads/all.bam"
 
 rule create_bin_file:
     input:
@@ -33,4 +34,4 @@ num_threads = config["threads"]
 
 include: "modules/prefilter.smk"
 include: "modules/readmapping.smk"
-include: "modules/postprocessing.smk"
+# include: "modules/postprocessing.smk"
