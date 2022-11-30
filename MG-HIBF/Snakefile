@@ -14,6 +14,9 @@ with open("data/genomes/bins.tsv", "r") as f:
         bins[bin_id].append(filename)
         num_bins = max(num_bins, bin_id + 1)
 
+if list(range(num_bins)) != list(bins.keys()):
+    raise RuntimeError("Error bins.tsv")
+
 bin_ids = range(num_bins)
 
 genome_bin_files = expand("data/genome_bins/bin_{bin_id}.fasta", bin_id=bin_ids)

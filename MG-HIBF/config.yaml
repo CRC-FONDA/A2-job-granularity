@@ -5,8 +5,8 @@ prefilter:
     num_hash_functions: 3
     false_positive_rate: 0.05
     chopper:
-        tmax: 192
+        tmax: 192 #how big is the internal bin/structur IBF of the HIBF // how many bins
     raptor:
         num_errors: 0
-        pmax: 0.4
-        tau: 0.99
+        pmax: 0.4 
+        tau: 0.99 
