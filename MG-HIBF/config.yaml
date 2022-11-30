@@ -1,9 +1,9 @@
-threads: 32
+threads: 32 
 
 prefilter:
-    kmer_size: 20
-    num_hash_functions: 3
-    false_positive_rate: 0.05
+    kmer_size: 20 
+    num_hash_functions: 3 
+    false_positive_rate: 0.05 
     chopper:
         tmax: 192 #how big is the internal bin/structur IBF of the HIBF // how many bins
     raptor:
