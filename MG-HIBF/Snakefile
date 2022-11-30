@@ -14,13 +14,22 @@ with open("data/genomes/bins.tsv", "r") as f:
         bins[bin_id].append(filename)
         num_bins = max(num_bins, bin_id + 1)
 
-genome_bin_files = expand("data/genome_bins/bin_{bin_id}.fasta", bin_id=range(num_bins))
-distributed_read_files = expand("data/distributed_reads/bin_{bin_id}.fastq", bin_id=range(num_bins))
+bin_ids = range(num_bins)
+
+genome_bin_files = expand("data/genome_bins/bin_{bin_id}.fasta", bin_id=bin_ids)
+distributed_read_files = expand("data/distributed_reads/bin_{bin_id}.fastq", bin_id=bin_ids)
 
 rule all:
     input:
         expand("data/mapped_reads/bin_{bin_id}.sam", bin_id=bin_ids)
         # "data/mapped_reads/all.bam"
+
+# TODO: something like this
+# rule cplex_model:
+#     input:
+#         "all the genomes"
+#     output:
+#         "bins.tsv"
 
 rule create_bin_file:
     input:

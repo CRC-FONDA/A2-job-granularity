@@ -19,6 +19,7 @@ v.fna	2
 
 ## TODOs
 
-- allow grouping genome files arbitrarily
-- allow building an FM-index for multiple files
+- find input data (4,20,200 GB) + reads
+- make nicer DAG image
+    - subworkflow, virtual binning, less bins
 - figure out all the stuff about the cluster execution
