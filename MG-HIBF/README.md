@@ -2,10 +2,8 @@
 
 ## Usage (Simple readmapping):
 
-- Place all .fasta files of the reference genomes in the data/genomes folder
-- Place the query reads in the file data/queries.fastq
-- run the setup.sh to install tools not available via conda (new gcc and cargo needed)
-- assume the existence of a file `data/genomes/bins.tsv` that groups all read files into bins, like this:
+- Run the setup.sh to install tools not available via conda (new gcc and cargo needed)
+- Place a file that defines the reference genome files with bin ids into `data/bins.tsv`. For example:
 
 ```
 x.fna	0
@@ -15,11 +13,6 @@ w.fna	1
 v.fna	2
 ```
 
+- Place the query reads in the file data/queries.fastq
+
 - use with snakemake flag --use-conda
-
-## TODOs
-
-- find input data (4,20,200 GB) + reads
-- make nicer DAG image
-    - subworkflow, virtual binning, less bins
-- figure out all the stuff about the cluster execution
