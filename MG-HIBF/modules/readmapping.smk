@@ -39,4 +39,4 @@ rule bwa_mem2_mem:
         "{input.index_prefix} "
         "{input.reads} "
         "> {output} "
-        "2 > {log}"
+        "2> {log}"
