@@ -12,7 +12,12 @@ z.fna	1
 w.fna	1
 v.fna	2
 ```
+- The script `create_simple_bin_file.py` can help in creating the bin file. Example usage:
 
-- Place the query reads in the file data/queries.fastq
+```
+python create_simple_bin_file.py /data/username/genomes/ <NUM_FILES_PER_BIN>
+```
+
+- Then, place the query reads in the file data/queries.fastq
 
 - use with snakemake flag --use-conda
