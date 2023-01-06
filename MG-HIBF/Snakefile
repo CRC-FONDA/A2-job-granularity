@@ -34,6 +34,7 @@ rule all:
 #     output:
 #         "bins.tsv"
 
+#create one fasta file out of the fasta files in the bin
 rule create_bin_file:
     input:
         lambda wildcards: bins[int(wildcards.bin_id)]

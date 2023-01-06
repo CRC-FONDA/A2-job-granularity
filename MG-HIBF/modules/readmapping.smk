@@ -1,4 +1,5 @@
-# build an index for every genome bin
+# build an (fm-)index for every genome bin
+#TO-DO, ressources: with variable from bins.tsv (variable = name of node)
 rule bwa_mem2_index:
     input:
         "data/genome_bins/bin_{bin_id}.fasta"
