@@ -8,9 +8,13 @@
 
 ## GCC
 https://gcc.gnu.org/install/
+for gcc it's more complicate
 
 ## Cargo
 https://www.rust-lang.org/tools/install
+for Rust you can just invoke 
+
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 
 ```
