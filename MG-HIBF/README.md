@@ -2,8 +2,16 @@
 
 ## Usage (Simple readmapping):
 
-- Run the setup.sh to install tools not available via conda (new gcc and cargo needed)
+- Run the setup_tools.sh to install tools not available via conda (new gcc and cargo needed)
 - Place a file that defines the reference genome files with bin ids into `data/bins.tsv`. For example:
+- in bins.tsv, num of bins == num of nodes
+
+## GCC
+https://gcc.gnu.org/install/
+
+## Cargo
+https://www.rust-lang.org/tools/install
+
 
 ```
 x.fna	0
