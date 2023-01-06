@@ -14,8 +14,8 @@ prefilter_config = config["prefilter"]
 chopper_config = prefilter_config["chopper"]
 raptor_config = prefilter_config["raptor"]
 
-chopper_count_output_prefix = "data/prefilter/genomes"
-chopper_count_output_file = chopper_count_output_prefix + ".count"
+#chopper_count_output_prefix = "data/prefilter/genomes"
+#chopper_count_output_file = chopper_count_output_prefix + ".count"
 
 # count kmers in the reference genomes
 rule chopper_count:
@@ -23,31 +23,10 @@ rule chopper_count:
         file_list="data/genome_bins/list.tsv",
         dummies=genome_bin_files
     output:
-        chopper_count_output_file
+        "data/prefilter/hibf.layout"
     params:
         k=prefilter_config["kmer_size"],
         out_prefix=chopper_count_output_prefix
-    threads:
-        num_threads
-    log:
-        "logs/prefilter/chopper_count.log"
-    benchmark:
-        "benchmarks/prefilter/chopper_count.txt"
-    shell:
-        "./tools/raptor/build/bin/chopper count "
-        "--input-file {input.file_list} "
-        "--output-prefix {params.out_prefix} "
-        "--kmer-size {params.k} "
-        "--threads {threads} "
-        "2> {log}"
-
-# use kmer counts to construct the filter layout
-rule chopper_layout:
-    input:
-        chopper_count_output_file
-    output:
-        "data/prefilter/hibf.layout"
-    params:
         tmax=chopper_config["tmax"],
         h=prefilter_config["num_hash_functions"],
         fpr=prefilter_config["false_positive_rate"],
@@ -55,19 +34,48 @@ rule chopper_layout:
     threads:
         num_threads
     log:
-        "logs/prefilter/chopper_layout.log"
+        "logs/prefilter/raptor_layout.log"
     benchmark:
-        "benchmarks/prefilter/chopper_layout.txt"
+        "benchmarks/prefilter/raptor_layout.txt"
     shell:
-        "./tools/raptor/build/bin/chopper layout "
+        "./tools/raptor/build/bin/raptor layout "
+        "--input-file {input.file_list} "
+        "--kmer-size {params.k} "
         "--tmax {params.tmax} "
         "--num-hash-functions {params.h} "
         "--false-positive-rate {params.fpr} "
-        "--input-prefix {params.in_prefix} "
         "--output-filename {output} "
         "--rearrange-user-bins "
         "--threads {threads} "
         "2> {log}"
+
+# # use kmer counts to construct the filter layout
+# rule chopper_layout:
+#     input:
+#         chopper_count_output_file
+#     output:
+#         "data/prefilter/hibf.layout"
+#     params:
+#         tmax=chopper_config["tmax"],
+#         h=prefilter_config["num_hash_functions"],
+#         fpr=prefilter_config["false_positive_rate"],
+#         in_prefix=chopper_count_output_prefix
+#     threads:
+#         num_threads
+#     log:
+#         "logs/prefilter/chopper_layout.log"
+#     benchmark:
+#         "benchmarks/prefilter/chopper_layout.txt"
+#     shell:
+#         "./tools/raptor/build/bin/chopper layout "
+#         "--tmax {params.tmax} "
+#         "--num-hash-functions {params.h} "
+#         "--false-positive-rate {params.fpr} "
+#         "--input-prefix {params.in_prefix} "
+#         "--output-filename {output} "
+#         "--rearrange-user-bins "
+#         "--threads {threads} "
+#         "2> {log}"
 
 # build the query prefilter
 rule raptor_build:
