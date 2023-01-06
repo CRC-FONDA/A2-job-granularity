@@ -26,11 +26,9 @@ rule chopper_count:
         "data/prefilter/hibf.layout"
     params:
         k=prefilter_config["kmer_size"],
-        out_prefix=chopper_count_output_prefix,
         tmax=chopper_config["tmax"],
         h=prefilter_config["num_hash_functions"],
         fpr=prefilter_config["false_positive_rate"],
-        in_prefix=chopper_count_output_prefix
     threads:
         num_threads
     log:
