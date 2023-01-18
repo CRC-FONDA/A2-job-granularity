@@ -49,6 +49,6 @@ num_threads = config["threads"]
 include: "modules/prefilter.smk"
 include: "modules/readmapping.smk"
 # include: "modules/postprocessing.smk"
-end = time.ctime(seconds)
 
+end = time.ctime(seconds)
 print(end-start)
