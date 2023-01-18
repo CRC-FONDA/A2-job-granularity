@@ -51,4 +51,5 @@ include: "modules/readmapping.smk"
 # include: "modules/postprocessing.smk"
 
 end = time.ctime()
-print(end-start)
+total = end - start
+print("--- %s seconds ---" % total)
