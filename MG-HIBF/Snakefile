@@ -3,7 +3,7 @@ import time
 import csv
 from collections import defaultdict
 
-start = time.ctime(seconds)
+start = time.ctime()
 num_bins = 0 # will be read implicitly from the bins file
 bins = defaultdict(lambda: [])
 with open("data/bins.tsv", "r") as f:
@@ -50,5 +50,5 @@ include: "modules/prefilter.smk"
 include: "modules/readmapping.smk"
 # include: "modules/postprocessing.smk"
 
-end = time.ctime(seconds)
+end = time.ctime()
 print(end-start)
