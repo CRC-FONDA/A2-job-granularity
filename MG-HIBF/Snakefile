@@ -1,8 +1,9 @@
 configfile: "config.yaml"
-
+import time
 import csv
 from collections import defaultdict
 
+start = time.ctime(seconds)
 num_bins = 0 # will be read implicitly from the bins file
 bins = defaultdict(lambda: [])
 with open("data/bins.tsv", "r") as f:
@@ -48,3 +49,6 @@ num_threads = config["threads"]
 include: "modules/prefilter.smk"
 include: "modules/readmapping.smk"
 # include: "modules/postprocessing.smk"
+end = time.ctime(seconds)
+
+print(end-start)
