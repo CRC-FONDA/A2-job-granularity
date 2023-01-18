@@ -14,9 +14,6 @@ prefilter_config = config["prefilter"]
 chopper_config = prefilter_config["chopper"]
 raptor_config = prefilter_config["raptor"]
 
-#chopper_count_output_prefix = "data/prefilter/genomes"
-#chopper_count_output_file = chopper_count_output_prefix + ".count"
-
 # count kmers in the reference genomes
 rule chopper_count:
     input:
