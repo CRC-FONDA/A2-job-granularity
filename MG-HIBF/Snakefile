@@ -5,7 +5,6 @@ from collections import defaultdict
 
 num_bins = 0 # will be read implicitly from the bins file
 bins = defaultdict(lambda: [])
-nodes = dict()
 
 with open("data/bins.tsv", "r") as f:
     reader = csv.reader(f, delimiter='\t')
@@ -13,7 +12,6 @@ with open("data/bins.tsv", "r") as f:
     for row in reader:
         filename = row[0]
         bin_id = int(row[1])
-        nodes[bin_id] = row[2]
         bins[bin_id].append(filename)
         num_bins = max(num_bins, bin_id + 1)
 
@@ -22,6 +20,11 @@ if list(range(num_bins)) != list(bins.keys()):
     raise RuntimeError("Error bins.tsv")
 
 bin_ids = range(num_bins)
+
+nodelist = ["cmp247","cmp248","cmp201","cmp202","cmp203","cmp204","cmp205","cmp213","cmp214","cmp215","cmp216","cmp217","cmp218","cmp219","cmp220","cmp230"]
+nodedict = {}
+for i in bin_ids:
+    nodedict[i] = random.choice(nodelist)
 
 genome_bin_files = expand("data/genome_bins/bin_{bin_id}.fasta", bin_id=bin_ids)
 distributed_read_files = expand("data/distributed_reads/bin_{bin_id}.fastq", bin_id=bin_ids)
