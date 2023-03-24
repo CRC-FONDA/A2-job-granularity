@@ -145,6 +145,8 @@ rule query_distributor:
         read_queries="data/queries.fastq"
     output:
         temp(distributed_read_files)
+    threads:
+        num_threads
     log:
         "logs/prefilter/query_distributor.log"
     benchmark:
