@@ -5,7 +5,7 @@ from collections import defaultdict
 
 num_bins = 0 # will be read implicitly from the bins file
 bins = defaultdict(lambda: [])
-nodes = defaultdict(lambda: [])
+nodes = {}
 
 with open("data/bins.tsv", "r") as f:
     reader = csv.reader(f, delimiter='\t')
@@ -13,11 +13,11 @@ with open("data/bins.tsv", "r") as f:
     for row in reader:
         filename = row[0]
         bin_id = int(row[1])
-        nodename = row[2]
+        nodes[bin_id] = row[2]
         bins[bin_id].append(filename)
         nodes[bin_id].append(nodename)
         num_bins = max(num_bins, bin_id + 1)
-        nodes[bin_id].append(nodename)
+
 
 if list(range(num_bins)) != list(bins.keys()):
     raise RuntimeError("Error bins.tsv")
