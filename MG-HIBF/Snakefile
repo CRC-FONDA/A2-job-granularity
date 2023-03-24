@@ -22,7 +22,7 @@ if list(range(num_bins)) != list(bins.keys()):
 
 bin_ids = range(num_bins)
 
-nodelist = ["cmp247","cmp248","cmp201","cmp202","cmp203","cmp204","cmp205","cmp213","cmp214","cmp215","cmp216","cmp217","cmp218","cmp219","cmp220","cmp230"]
+nodelist = ["cmp247","cmp248","cmp201","cmp202","cmp203","cmp204","cmp205","cmp213","cmp214","cmp215","cmp216","cmp217","cmp218","cmp219","cmp220"]
 nodes = {}
 for i in bin_ids:
     nodes[i] = random.choice(nodelist)
@@ -48,6 +48,8 @@ rule create_bin_file:
         lambda wildcards: bins[int(wildcards.bin_id)]
     output:
         temp("data/genome_bins/bin_{bin_id}.fasta")
+    resources:
+        nodelist = nodes[bin_id]
     shell:
         "cat {input} > {output}"
 
