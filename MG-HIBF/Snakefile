@@ -3,17 +3,20 @@ import time
 import csv
 from collections import defaultdict
 
-start = time.time()
 num_bins = 0 # will be read implicitly from the bins file
 bins = defaultdict(lambda: [])
+nodelist = defaultdict(lambda: [])
+
 with open("data/bins.tsv", "r") as f:
     reader = csv.reader(f, delimiter='\t')
 
     for row in reader:
         filename = row[0]
         bin_id = int(row[1])
+        nodename = row[2]
         bins[bin_id].append(filename)
         num_bins = max(num_bins, bin_id + 1)
+        nodelist[bin_id].append(nodename)
 
 if list(range(num_bins)) != list(bins.keys()):
     raise RuntimeError("Error bins.tsv")
@@ -49,7 +52,3 @@ num_threads = config["threads"]
 include: "modules/prefilter.smk"
 include: "modules/readmapping.smk"
 # include: "modules/postprocessing.smk"
-
-end = time.time()
-total = end - start
-print("--- %s seconds ---" % total)

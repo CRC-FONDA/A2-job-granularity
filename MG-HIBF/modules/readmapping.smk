@@ -8,7 +8,9 @@ rule bwa_mem2_index:
     log:
         "logs/readmapping/bwa_mem2_index/bin_{bin_id}.log"
     benchmark:
-        "benchmarks/readmapping/bwa_mem2_index/bin_{bin_id}.txt"
+        repeat("bwa-mem2-index-bin_{bin_id}.tsv", 2)
+    resources:
+        nodelist = 
     conda:
         "../envs/bwa-mem2.yaml"
     shell:
