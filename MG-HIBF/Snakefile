@@ -23,9 +23,9 @@ if list(range(num_bins)) != list(bins.keys()):
 bin_ids = range(num_bins)
 
 nodelist = ["cmp247","cmp248","cmp201","cmp202","cmp203","cmp204","cmp205","cmp213","cmp214","cmp215","cmp216","cmp217","cmp218","cmp219","cmp220","cmp230"]
-nodedict = {}
+nodes = {}
 for i in bin_ids:
-    nodedict[i] = random.choice(nodelist)
+    nodes[i] = random.choice(nodelist)
 
 genome_bin_files = expand("data/genome_bins/bin_{bin_id}.fasta", bin_id=bin_ids)
 distributed_read_files = expand("data/distributed_reads/bin_{bin_id}.fastq", bin_id=bin_ids)
