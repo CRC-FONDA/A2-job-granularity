@@ -1,7 +1,6 @@
 import os
 import sys
 import csv
-import random
 from pathlib import Path
 
 

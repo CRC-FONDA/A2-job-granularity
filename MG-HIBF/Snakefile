@@ -1,6 +1,7 @@
 configfile: "config.yaml"
-import time
+
 import csv
+import random
 from collections import defaultdict
 
 num_bins = 0 # will be read implicitly from the bins file
