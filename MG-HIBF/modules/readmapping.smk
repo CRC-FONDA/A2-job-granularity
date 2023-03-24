@@ -4,7 +4,7 @@ rule bwa_mem2_index:
     input:
         "data/genome_bins/bin_{bin_id}.fasta"
     output:
-        "data/indices/bin_{bin_id}_index",
+        "data/indices/bin_{bin_id}_index"
     log:
         "logs/readmapping/bwa_mem2_index/bin_{bin_id}.log"
     benchmark:
