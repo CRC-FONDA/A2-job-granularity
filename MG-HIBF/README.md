@@ -18,11 +18,11 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 
 ```
-x.fna	0
-y.fna	0
-z.fna	1
-w.fna	1
-v.fna	2
+x.fna	0   cmp201
+y.fna	0   cmp201
+z.fna	1   cmp247
+w.fna	1   cmp247
+v.fna	2   cmp230
 ```
 - The script `create_simple_bin_file.py` can help in creating the bin file. Example usage:
 
