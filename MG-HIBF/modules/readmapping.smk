@@ -34,6 +34,8 @@ rule bwa_mem2_mem:
         "logs/readmapping/bwa_mem2_mem/bin_{bin_id}.log"
     benchmark:
         "benchmarks/readmapping/bwa_mem2_mem/bin_{bin_id}.txt"
+    resources:
+        nodelist = nodes[bin_id]
     conda:
         "../envs/bwa-mem2.yaml"
     shell:

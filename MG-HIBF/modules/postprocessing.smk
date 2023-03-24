@@ -8,6 +8,8 @@ rule samtools_view:
         "logs/postprocessing/samtools_view/bin_{bin_id}.log"
     benchmark:
         "benchmarks/postprocessing/samtools_view/bin_{bin_id}.txt"
+    resources:
+        nodelist = nodes[bin_id]
     conda:
         "../envs/samtools.yaml"
     shell:
@@ -21,6 +23,8 @@ rule samtools_sort:
         temp("data/mapped_reads/bin_{bin_id}_sorted.bam")
     log:
         "logs/postprocessing/samtools_sort/bin_{bin_id}.log"
+    resources:
+        nodelist = nodes[bin_id]
     benchmark:
         "benchmarks/postprocessing/samtools_sort/bin_{bin_id}.txt"
     conda:
@@ -40,6 +44,8 @@ rule samtools_merge:
         "logs/postprocessing/samtools_merge.log"
     benchmark:
         "benchmarks/postprocessing/samtools_merge.txt"
+    resources:
+        nodelist = nodes[bin_id]
     conda:
         "../envs/samtools.yaml"
     shell:
