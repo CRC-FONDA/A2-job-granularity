@@ -3,7 +3,10 @@ configfile: "config.yaml"
 import csv
 import random
 from collections import defaultdict
-
+"""
+buidling the bins
+--> bin_id, filename
+"""
 num_bins = 0 # will be read implicitly from the bins file
 bins = defaultdict(lambda: [])
 
@@ -16,16 +19,28 @@ with open("data/bins.tsv", "r") as f:
         bins[bin_id].append(filename)
         num_bins = max(num_bins, bin_id + 1)
 
-
 if list(range(num_bins)) != list(bins.keys()):
     raise RuntimeError("Error bins.tsv")
 
 bin_ids = range(num_bins)
 
-nodelist = ["cmp247","cmp248","cmp201","cmp202","cmp203","cmp204","cmp205","cmp213","cmp214","cmp215","cmp216","cmp217","cmp218","cmp219","cmp220"]
+
+"""
+buidling the nodelist and matching it to the bins
+get nodelist before!!!
+--> bin_id, nodename
+"""
+list_of_nodes = []
 nodes = {}
+
+with open("nodelist.csv", "r") as f:
+    reader = csv.reader(f, delimiter=',')
+
+    for row in reader:
+        list_of_nodes.append(row[0])
+
 for i in bin_ids:
-    nodes[i] = random.choice(nodelist)
+    nodes[i] = random.choice(list_of_nodes)
 
 genome_bin_files = expand("data/genome_bins/bin_{bin_id}.fasta", bin_id=bin_ids)
 distributed_read_files = expand("data/distributed_reads/bin_{bin_id}.fastq", bin_id=bin_ids)
@@ -48,8 +63,6 @@ rule create_bin_file:
         lambda wildcards: bins[int(wildcards.bin_id)]
     output:
         temp("data/genome_bins/bin_{bin_id}.fasta")
-    resources:
-        nodelist = nodes[bin_id]
     shell:
         "cat {input} > {output}"
 
