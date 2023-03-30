@@ -77,7 +77,7 @@ rule all:
         #expand("data/mapped_reads/bin_{bin_id}.sam", bin_id=bin_ids)
         # "data/mapped_reads/all.bam"
     resources:
-        nodelist = lambda wildcards: nodes[int(wildcards.bin_id)]
+        nodelist = random.choice(list_of_nodes)
 
 # TODO: something like this
 # rule cplex_model:
