@@ -8,6 +8,7 @@ sinfo --long --Node | grep "small" | grep "mixed" | awk '{print $0}' >> nodelist
 
 df = pd.read_csv('nodelist.csv')
 
-
-
-
+conda activate base
+mamba create -c conda-forge -c bioconda -n snakemake snakemake
+conda activate snakemake
+snakemake --help
