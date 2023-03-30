@@ -10,7 +10,7 @@ rule bwa_mem2_index:
     benchmark:
         repeat("bwa-mem2-index-bin_{bin_id}.tsv", 2)
     resources:
-        nodelist = nodes[int(wildcards.bin_id)]
+        nodelist = lambda wildcards: nodes[int(wildcards.bin_id)]
     conda:
         "../envs/bwa-mem2.yaml"
     shell:
@@ -35,7 +35,7 @@ rule bwa_mem2_mem:
     benchmark:
         "benchmarks/readmapping/bwa_mem2_mem/bin_{bin_id}.txt"
     resources:
-        nodelist = nodes[wildcards.bin_id]
+        nodelist = lambda wildcards: nodes[int(wildcards.bin_id)]
     conda:
         "../envs/bwa-mem2.yaml"
     shell:
