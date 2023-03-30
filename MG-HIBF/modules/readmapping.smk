@@ -24,7 +24,6 @@ rule bwa_mem2_index:
 # readmapping with filtered input reads
 rule bwa_mem2_mem:
     input:
-        nodes,
         index_prefix="data/indices/bin_{bin_id}_index",
         reads="data/distributed_reads/bin_{bin_id}.fastq"
     output:
