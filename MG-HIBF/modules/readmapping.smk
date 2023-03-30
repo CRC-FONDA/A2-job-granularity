@@ -2,6 +2,7 @@
 #TODO, ressources: with variable from bins.tsv (variable = name of node)
 rule bwa_mem2_index:
     input:
+        nodes,
         "data/genome_bins/bin_{bin_id}.fasta"
     output:
         "data/indices/bin_{bin_id}_index"
@@ -24,7 +25,7 @@ rule bwa_mem2_index:
 # readmapping with filtered input reads
 rule bwa_mem2_mem:
     input:
-        nodes
+        nodes,
         index_prefix="data/indices/bin_{bin_id}_index",
         reads="data/distributed_reads/bin_{bin_id}.fastq"
     output:
