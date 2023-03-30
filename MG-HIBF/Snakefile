@@ -3,6 +3,7 @@ configfile: "config.yaml"
 import csv
 import random
 from collections import defaultdict
+
 """
 buidling the bins
 --> bin_id, filename
@@ -27,9 +28,10 @@ bin_ids = range(num_bins)
 
 """
 buidling the nodelist and matching it to the bins
-get nodelist before!!!
 --> bin_id, nodename
 """
+cmd = ["bash", "-c", "sinfo --long --Node | grep -P mix | grep -P small | awk '{print $1}' >> nodelist.csv"]
+subprocess.run(cmd)
 list_of_nodes = []
 nodes = {}
 
@@ -44,6 +46,30 @@ for i in bin_ids:
 
 genome_bin_files = expand("data/genome_bins/bin_{bin_id}.fasta", bin_id=bin_ids)
 distributed_read_files = expand("data/distributed_reads/bin_{bin_id}.fastq", bin_id=bin_ids)
+
+"""
+###you now have as items###
+- num_bins :: int
+number of total bins 
+
+- bins :: dict{bin_id : list}
+dict of all bins (0..n) with the location(s) in the list
+
+- bin_ids :: list
+a list of all bin_id's
+
+- list_of_nodes :: list
+a list of all the available nodes
+
+- nodes :: dict{bin_id : nodename}
+dict where the bin_id is located to a nodename
+
+- genome_bin_files :: list
+list of alle the genom files in the bins
+
+- distributed_read_files :: list
+list of alle the distributet read files in the bins
+"""
 
 rule all:
     input:
@@ -63,6 +89,8 @@ rule create_bin_file:
         lambda wildcards: bins[int(wildcards.bin_id)]
     output:
         temp("data/genome_bins/bin_{bin_id}.fasta")
+    resources:
+        nodelist = nodes[int(bin_id)]
     shell:
         "cat {input} > {output}"
 
