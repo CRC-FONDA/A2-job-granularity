@@ -71,13 +71,13 @@ list of alle the genom files in the bins
 list of alle the distributet read files in the bins
 """
 
-# rule all:
-#     input:
-#         expand("data/indices/bin{bin_id}_index", bin_id=bin_ids)
-#         #expand("data/mapped_reads/bin_{bin_id}.sam", bin_id=bin_ids)
-#         # "data/mapped_reads/all.bam"
-#     resources:
-#         nodelist = random.choice(list_of_nodes)
+rule all:
+    input:
+        expand("data/indices/bin{bin_id}_index", bin_id=bin_ids)
+        #expand("data/mapped_reads/bin_{bin_id}.sam", bin_id=bin_ids)
+        # "data/mapped_reads/all.bam"
+    resources:
+        nodelist = random.choice(list_of_nodes)
 
 # TODO: something like this
 # rule cplex_model:
