@@ -9,7 +9,7 @@ rule samtools_view:
     benchmark:
         "benchmarks/postprocessing/samtools_view/bin_{bin_id}.txt"
     resources:
-        nodelist = nodes[bin_id]
+        nodelist = nodes[wildcards.bin_id]
     conda:
         "../envs/samtools.yaml"
     shell:
@@ -24,7 +24,7 @@ rule samtools_sort:
     log:
         "logs/postprocessing/samtools_sort/bin_{bin_id}.log"
     resources:
-        nodelist = nodes[bin_id]
+        nodelist = nodes[wildcards.bin_id]
     benchmark:
         "benchmarks/postprocessing/samtools_sort/bin_{bin_id}.txt"
     conda:
@@ -45,7 +45,7 @@ rule samtools_merge:
     benchmark:
         "benchmarks/postprocessing/samtools_merge.txt"
     resources:
-        nodelist = nodes[bin_id]
+        nodelist = nodes[wildcards.bin_id]
     conda:
         "../envs/samtools.yaml"
     shell:

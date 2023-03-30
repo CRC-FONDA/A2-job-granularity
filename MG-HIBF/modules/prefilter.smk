@@ -33,7 +33,7 @@ rule chopper_count:
     benchmark:
         "benchmarks/prefilter/raptor_layout.txt"
     resources:
-        nodelist = nodes[bin_id]
+        nodelist = nodes[wildcards.bin_id]
     shell:
         "./tools/raptor/build/bin/raptor layout "
         "--input-file {input.file_list} "
@@ -92,7 +92,7 @@ rule raptor_build:
     benchmark:
         "benchmarks/prefilter/raptor_build.txt"
     resources:
-        nodelist = nodes[bin_id]
+        nodelist = nodes[wildcards.bin_id]
     shell:
         "./tools/raptor/build/bin/raptor build "
         "--kmer {params.k} "
@@ -123,7 +123,7 @@ rule raptor_search:
     benchmark:
         "benchmarks/prefilter/raptor_search.txt"
     resources:
-        nodelist = nodes[bin_id]
+        nodelist = nodes[wildcards.bin_id]
     shell:
         "./tools/raptor/build/bin/raptor search "
         "--index {input.index} "
@@ -152,7 +152,7 @@ rule query_distributor:
     benchmark:
         "benchmarks/prefilter/query_distributor.txt"
     resources:
-        nodelist = nodes[bin_id]
+        nodelist = nodes[wildcards.bin_id]
     shell:
         "tools/query-distributor/target/release/query-distributor "
         "--raptor-search-output {input.raptor} "
