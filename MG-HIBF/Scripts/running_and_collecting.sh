@@ -21,6 +21,6 @@ move_bin='mv bins.tsv data/bins.tsv'
 mkdir collect
 move_log='mv slurm-* collect/'
 cp_log='cp <bwa mem log> collect/'
-collecting='python collect/'
+collecting='python <python-program> collect/'
 
 rm -r collect/
