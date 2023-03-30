@@ -2,7 +2,6 @@
 #TODO, ressources: with variable from bins.tsv (variable = name of node)
 rule bwa_mem2_index:
     input:
-        nodes,
         "data/genome_bins/bin_{bin_id}.fasta"
     output:
         "data/indices/bin_{bin_id}_index"
