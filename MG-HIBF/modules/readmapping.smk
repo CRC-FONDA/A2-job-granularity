@@ -11,7 +11,7 @@ rule bwa_mem2_index:
     benchmark:
         repeat("bwa-mem2-index-bin_{bin_id}.tsv", 2)
     resources:
-        nodelist = nodes[bin_id]
+        nodelist = nodes[int(bin_id)]
     conda:
         "../envs/bwa-mem2.yaml"
     shell:
