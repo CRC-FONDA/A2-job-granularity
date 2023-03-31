@@ -73,11 +73,14 @@ list of alle the distributet read files in the bins
 
 rule all:
     input:
-        expand("data/indices/bin{bin_id}_index", bin_id=bin_ids)
+        temp("data/genome_bins/bin_{bin_id}.fasta")
+        #expand("data/indices/bin{bin_id}_index", bin_id=bin_ids)
         #expand("data/mapped_reads/bin_{bin_id}.sam", bin_id=bin_ids)
         # "data/mapped_reads/all.bam"
-    output:
-        expand("data/mapped_reads/bin_{bin_id}.sam", bin_id=bin_ids)
+    # output:
+    #     expand("data/mapped_reads/bin_{bin_id}.sam", bin_id=bin_ids)
+    shell:
+        echo "Hallo"
     resources:
         nodelist = random.choice(list_of_nodes)
 
@@ -103,4 +106,4 @@ num_threads = config["threads"]
 
 include: "modules/prefilter.smk"
 include: "modules/readmapping.smk"
-# include: "modules/postprocessing.smk"
+#include: "modules/postprocessing.smk"
