@@ -10,4 +10,3 @@ logs
 benchmarks
 tools
 .snakemake
-*test*
