@@ -1,0 +1,20 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 100
+Job stats:
+job         count    min threads    max threads
+--------  -------  -------------  -------------
+make_all        1              1              1
+total           1              1              1
+
+Select jobs to execute...
+
+[Mon Sep 12 14:22:35 2022]
+rule make_all:
+    jobid: 0
+    reason: Rules with neither input nor output files are always executed.
+    resources: mem_mb=1000, disk_mb=1000, tmpdir=/tmp
+
+RuleException in rule make_all in line 53 of /home/manuez42/fonda/A2-job-granularity/raptor_data_simulation/Snakefile:
+AttributeError: 'Resources' object has no attribute 'nodelist', when formatting the following:
+sbatch -t 120 --nodelist={resources.nodelist}  --mem=3g --cpus-per-task={params.t}

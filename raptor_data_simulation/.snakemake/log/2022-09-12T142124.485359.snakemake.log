@@ -1,0 +1,6 @@
+KeyboardInterruptin line 51 of /home/manuez42/fonda/A2-job-granularity/raptor_data_simulation/Snakefile.
+  File "/home/manuez42/fonda/A2-job-granularity/raptor_data_simulation/Snakefile", line 51, in <module>
+  File "/home/manuez42/miniconda3/envs/snakemake/lib/python3.10/subprocess.py", line 347, in call
+  File "/home/manuez42/miniconda3/envs/snakemake/lib/python3.10/subprocess.py", line 1207, in wait
+  File "/home/manuez42/miniconda3/envs/snakemake/lib/python3.10/subprocess.py", line 1941, in _wait
+  File "/home/manuez42/miniconda3/envs/snakemake/lib/python3.10/subprocess.py", line 1899, in _try_wait

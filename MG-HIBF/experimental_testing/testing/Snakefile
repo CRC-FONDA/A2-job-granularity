@@ -1,0 +1,58 @@
+configfile: "config.yaml"
+
+import csv
+from collections import defaultdict
+
+num_bins = 0 # will be read implicitly from the bins file
+bins = defaultdict(lambda: [])
+with open("data/bins.tsv", "r") as f:
+    reader = csv.reader(f, delimiter='\t')
+
+    for row in reader:
+        filename = row[0]
+        bin_id = int(row[1])
+        bins[bin_id].append(filename)
+        num_bins = max(num_bins, bin_id + 1)
+
+if list(range(num_bins)) != list(bins.keys()):
+    raise RuntimeError("Error bins.tsv")
+
+bin_ids = range(num_bins)
+
+genome_bin_files = expand("data/genome_bins/bin_{bin_id}.fasta", bin_id=bin_ids)
+distributed_read_files = expand("data/distributed_reads/bin_{bin_id}.fastq", bin_id=bin_ids)
+
+rule all:
+	input:
+		expand("data/indices/bin_{bin_id}_index", bin_id=bin_ids)
+	#expand("data/mapped_reads/bin_{bin_id}.sam", bin_id=bin_ids)
+        # "data/mapped_reads/all.bam"
+	resources:
+		#nodelist="cmp[247]"
+
+# TODO: something like this
+# rule cplex_model:
+#     input:
+#         "all the genomes"
+#     output:
+#         "bins.tsv"
+
+rule create_bin_file:
+	input:
+		lambda wildcards: bins[int(wildcards.bin_id)]
+	output:
+		#temp("data/genome_bins/bin_{bin_id}.fasta")
+		"data/genome_bins/bin_{bin_id}.fasta"
+	resources:
+		#nodelist = lambda wildcards:"cmp[247]" if int(wildcards.bin_id)<2 else "cmp[248]"
+		nodelist= "cmp[248]"
+		
+	#partition: "micro"
+	shell:
+		"cat {input} > {output}"
+
+num_threads = config["threads"]
+
+include: "modules/prefilter.smk"
+include: "modules/readmapping.smk"
+# include: "modules/postprocessing.smk"
