@@ -33,7 +33,7 @@ buidling the nodelist and matching it to the bins
 cmd = ["bash", "-c", "sinfo --long --Node | grep -P mix | grep -P small | awk '{print $1}' >> nodelist.csv"]
 subprocess.run(cmd)
 list_of_nodes = []
-nodes = {}
+nodes = []
 
 with open("nodelist.csv", "r") as f:
     reader = csv.reader(f, delimiter=',')
@@ -46,6 +46,10 @@ for i in bin_ids:
 
 genome_bin_files = expand("data/genome_bins/bin_{bin_id}.fasta", bin_id=bin_ids)
 distributed_read_files = expand("data/distributed_reads/bin_{bin_id}.fastq", bin_id=bin_ids)
+
+wildcards_constraints:
+    bin_ids = "\d+"
+
 
 """
 ###you now have as items###
