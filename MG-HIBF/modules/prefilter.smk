@@ -6,7 +6,7 @@ rule write_bin_list:
     output:
         "data/genome_bins/list.tsv"
     resources:
-        nodelist = lambda wildcards: nodes[int(wildcards.bin_id)]
+        nodelist = random.choice(list_of_nodes)
     run:
         bin_file_str = '\n'.join(input)
         with open("data/genome_bins/list.tsv", "w+") as f:
@@ -35,7 +35,7 @@ rule chopper_count:
     benchmark:
         "benchmarks/prefilter/raptor_layout.txt"
     resources:
-        nodelist = lambda wildcards: nodes[int(wildcards.bin_id)]
+        nodelist = random.choice(list_of_nodes)
     shell:
         "./tools/raptor/build/bin/raptor layout "
         "--input-file {input.file_list} "
@@ -94,7 +94,7 @@ rule raptor_build:
     benchmark:
         "benchmarks/prefilter/raptor_build.txt"
     resources:
-        nodelist = lambda wildcards: nodes[int(wildcards.bin_id)]
+        nodelist = random.choice(list_of_nodes)
     shell:
         "./tools/raptor/build/bin/raptor build "
         "--kmer {params.k} "
@@ -125,7 +125,7 @@ rule raptor_search:
     benchmark:
         "benchmarks/prefilter/raptor_search.txt"
     resources:
-        nodelist = lambda wildcards: nodes[int(wildcards.bin_id)]
+        nodelist = random.choice(list_of_nodes)
     shell:
         "./tools/raptor/build/bin/raptor search "
         "--index {input.index} "
