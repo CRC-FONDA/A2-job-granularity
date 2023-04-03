@@ -154,7 +154,7 @@ rule query_distributor:
     benchmark:
         "benchmarks/prefilter/query_distributor.txt"
     resources:
-        nodelist = lambda wildcards: nodes[int(wildcards.bin_id)]
+        nodelist = random.choice(list_of_nodes)
     shell:
         "tools/query-distributor/target/release/query-distributor "
         "--raptor-search-output {input.raptor} "
