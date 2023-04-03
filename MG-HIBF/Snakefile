@@ -47,8 +47,6 @@ for i in bin_ids:
 genome_bin_files = expand("data/genome_bins/bin_{bin_id}.fasta", bin_id=bin_ids)
 distributed_read_files = expand("data/distributed_reads/bin_{bin_id}.fastq", bin_id=bin_ids)
 
-wildcard_constraints:
-    bin_ids = "\d+"
 
 
 """
@@ -77,8 +75,8 @@ list of alle the distributet read files in the bins
 
 rule all:
     input:
-        expand("data/indices/bin{bin_id}_index", bin_id=bin_ids)
-        #expand("data/mapped_reads/bin_{bin_id}.sam", bin_id=bin_ids)
+        #expand("data/indices/bin{bin_id}_index", bin_id=bin_ids)
+        expand("data/mapped_reads/bin_{bin_id}.sam", bin_id=bin_ids)
         # "data/mapped_reads/all.bam"
     # output:
     #     expand("data/mapped_reads/bin_{bin_id}.sam", bin_id=bin_ids)
