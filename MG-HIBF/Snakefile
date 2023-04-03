@@ -48,7 +48,7 @@ genome_bin_files = expand("data/genome_bins/bin_{bin_id}.fasta", bin_id=bin_ids)
 distributed_read_files = expand("data/distributed_reads/bin_{bin_id}.fastq", bin_id=bin_ids)
 
 wildcards_constraints:
-    bin_ids = "[0-9]*"
+    bin_ids = "\d+"
 
 
 """
