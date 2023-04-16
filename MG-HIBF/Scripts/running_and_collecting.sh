@@ -1,5 +1,3 @@
-#!/usr/bin/bash
-
 ### Path to files ###
 files1='/buffer/ag_abi/manuel/fonda/genomes/archaea_1,4G/'
 files2='/buffer/ag_abi/manuel/fonda/genomes/bacteria_125G/'
