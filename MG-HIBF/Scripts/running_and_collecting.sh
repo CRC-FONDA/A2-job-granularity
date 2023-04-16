@@ -30,7 +30,6 @@ collecting (){
 }
 
 cd ..
-conda activate snakemake
 
 ### humans ###
 run $files6 3
