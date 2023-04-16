@@ -1,5 +1,3 @@
-#!/usr/bin/bash
-
 ### Path to files ###
 files1='/buffer/ag_abi/manuel/fonda/genomes/archaea_1,4G/'
 files2='/buffer/ag_abi/manuel/fonda/genomes/bacteria_125G/'
@@ -25,7 +23,7 @@ collecting (){
     mv bwa-mem2-index* collect/
     mv data/bins.tsv collect/
     mv nodes.csv collect/
-    python Scripts/building_result $path_to_collect $1
+    python Scripts/building_result.py $path_to_collect $1
     rm -r collect
 }
 
