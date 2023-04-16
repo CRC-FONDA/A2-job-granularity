@@ -46,9 +46,9 @@ for i in bin_ids:
 
 
 with open("nodes.csv", "w+") as f:
-    writer = csv.writer(f, delimiter='\t')
-    for i, fasta_path in enumerate(fasta_paths):
-        writer.writerow( [fasta_path, int(i/bin_size)] )
+    writer = csv.writer(f, delimiter=',')
+    for b, node in nodes:
+        writer.writerow( [b, node] )
 
 genome_bin_files = expand("data/genome_bins/bin_{bin_id}.fasta", bin_id=bin_ids)
 distributed_read_files = expand("data/distributed_reads/bin_{bin_id}.fastq", bin_id=bin_ids)
