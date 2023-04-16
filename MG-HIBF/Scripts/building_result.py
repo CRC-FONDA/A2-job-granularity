@@ -53,8 +53,8 @@ for slurm_out in slurm_filenames:
     df.at[bin_id,'mem_mb'] = mem_mb
     df.at[bin_id,'disk_mb'] = disk_mb
 
-            
 
+df.to_csv('../', index=False, column=False, archive_name='test.csv')
 
 
 
