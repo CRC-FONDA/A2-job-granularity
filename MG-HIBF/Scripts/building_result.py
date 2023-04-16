@@ -7,29 +7,36 @@ import random as r
 import subprocess
 import sys
 
-
+data_Size = sys.argv[2]
 folder_list = os.listdir(Path(sys.argv[1]))
 slurm_filenames = filter(lambda f: f.endswith(".out"), folder_list)
 
 ##filling the dataframe
 df = pd.read_csv('../collect/nodes.csv', names=['bin_id', 'Nodes'], header=None)
+df = df.set_index('bin_id')
+df = df['Data Size'] = ""
+df = df['Total-time'] = ""
+df = df['CPU-time'] = ""
+df = df['max-rss'] = ""
+df = df['I/O In (read MB)'] = ""
+df = df['I/O out (write MB)'] = ""
+df = df['mem_mb'] = ""
+df = df['disk_mb'] = ""
 
-df['Data Size'] = ""
-df['Total-time'] = ""
-df['CPU-time'] = ""
-df['max-rss'] = ""
-df['I/O In (read MB)'] = ""
-df['I/O out (write MB)'] = ""
-df['mem_mb'] = ""
-df['disk_mb'] = ""
+add = "../collect/"
 
 for slurm_out in slurm_filenames:
-    with open(slurm_out, "r") as f:
+    with open(add+slurm_out, "r") as f:
         for line in f:
             line.strip()
             if (line.startswith('benchmark')):
                 tmp1 = line.split()
-                bwa_csv = pd.read_csv(tmp1[1])
+                bwa_csv = pd.read_csv(add+tmp1[1], sep='\t', header=0)
+                total_time = min(bwa_csv.iat[0,0],bwa_csv.iat[1,0])
+                cpu_time = min(bwa_csv.iat[0,9],bwa_csv.iat[1,9])
+                max_rss = min(bwa_csv.iat[0,2],bwa_csv.iat[1,2])
+                io_in = min(bwa_csv.iat[0,6],bwa_csv.iat[1,6])
+                io_out = min(bwa_csv.iat[0,7],bwa_csv.iat[1,7])
             elif (line.startswith('jobid:')):
                 line.strip('jobid: ')
                 bin_id = line
@@ -37,7 +44,15 @@ for slurm_out in slurm_filenames:
                 tmp2 = line.split()
                 mem_mb = tmp2[1].strip('mem_mb=')
                 disk_mb = tmp2[3].strip('disk_mb=')
-                node = tmp2[4].strip('nodelist=')
+    df.at[bin_id,'Data Size'] = data_Size
+    df.at[bin_id,'Total-time'] = total_time
+    df.at[bin_id,'CPU-time'] = cpu_time
+    df.at[bin_id,'max-rss'] = max_rss
+    df.at[bin_id,'I/O In (read MB)'] = io_in
+    df.at[bin_id,'I/O out (write MB)'] = io_out
+    df.at[bin_id,'mem_mb'] = mem_mb
+    df.at[bin_id,'disk_mb'] = disk_mb
+
             
 
 
