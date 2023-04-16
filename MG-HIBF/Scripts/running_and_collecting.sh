@@ -1,5 +1,4 @@
 #!/usr/bin/bash
-conda activate snakemake
 
 ### Path to files ###
 files1='/buffer/ag_abi/manuel/fonda/genomes/archaea_1,4G/'
@@ -14,7 +13,6 @@ path_to_collect='~/fonda/A2-job-granularity/MG-HIBF/collect/'
 
 ### running
 run(){
-    cd data 
     python create_simple_bin_file.py $1 $2
     mv bins.tsv data/bins.tsv
     snakemake --use-conda -s Snakefile --cluster 'sbatch -t 120 --nodelist={resources.nodelist}' -j 100 --latency-wait 600
@@ -27,11 +25,14 @@ collecting (){
     mv bwa-mem2-index* collect/
     mv data/bins.tsv collect/
     mv nodes.csv collect/
-    python Scripts/building_result $path_to_collect
+    python Scripts/building_result $path_to_collect $1
     rm -r collect
 }
 
+cd ..
+conda activate snakemake
+
 ### humans ###
-run files6 3
-collecting
+run $files6 3
+collecting '9G'
 
