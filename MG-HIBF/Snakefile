@@ -37,15 +37,19 @@ nodes = {}
 
 with open("nodelist.csv", "r") as f:
     reader = csv.reader(f, delimiter=',')
-
     for row in reader:
         list_of_nodes.append(row[0])
 
 for i in bin_ids:
     nodes[i] = random.choice(list_of_nodes)
 
+
+with open("nodes.csv", "w+") as f:
+    writer = csv.writer(f, delimiter='\,')
+    for b, node in nodes:
+        writer.writerow( [b, node] )
+
 genome_bin_files = expand("data/genome_bins/bin_{bin_id}.fasta", bin_id=bin_ids)
-print(len(bin_ids))
 distributed_read_files = expand("data/distributed_reads/bin_{bin_id}.fastq", bin_id=bin_ids)
 
 

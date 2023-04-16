@@ -13,8 +13,8 @@ fasta_filenames = filter(lambda f: is_fasta_file(f), os.listdir(folder_name))
 to_path = lambda filename: folder_name / filename
 fasta_paths = map(to_path, fasta_filenames)
 
-
-bin_size = int(sys.argv[2]) if len(sys.argv) > 2 else 1
+# need's to be at least 2 files per bin, because of the concate rule
+bin_size = int(sys.argv[2]) if len(sys.argv) > 3 else 2
 
 with open("bins.tsv", "w+") as f:
     writer = csv.writer(f, delimiter='\t')
