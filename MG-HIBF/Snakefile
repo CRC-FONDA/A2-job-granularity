@@ -47,7 +47,7 @@ for i in bin_ids:
 
 with open("nodes.csv", "w+") as f:
     writer = csv.writer(f, delimiter=',')
-    for b, node in nodes:
+    for b, node in nodes.items():
         writer.writerow( [b, node] )
 
 genome_bin_files = expand("data/genome_bins/bin_{bin_id}.fasta", bin_id=bin_ids)
