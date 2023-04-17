@@ -24,32 +24,22 @@ files7='/buffer/ag_abi/manuel/fonda/genomes/viral_500M/files/'
 
 path_to_collect='~/fonda/A2-job-granularity/MG-HIBF/collect/'
 
-### running
-function run(){
+function run_and_collect(){
+    ## $1 is filepath
+    ## $2 is files per bin
     python create_simple_bin_file.py $1 $2
     mv bins.tsv data/bins.tsv
     snakemake --use-conda -s Snakefile --cluster 'sbatch -t 120 --nodelist={resources.nodelist}' -j 100 --latency-wait 600
-}
-
-##collecting
-function collecting (){
+    ## $3 path to collect
+    ## $4 DataSize in GB 
+    ## $5 is Name
     mkdir collect
     mv slurm* collect/
     mv bwa-mem2-index* collect/
     mv nodes.csv collect/
-    python Scripts/building_result.py $1 $2 $3
+    python Scripts/building_result.py $3 $4 $5
     mv result*.csv results/
     rm -r collect
-}
-
-function run_and_collect(){
-    ## $1 is filepath
-    ## $2 is files per bin
-    run $1 $2
-    ## $3 path to collect
-    ## $4 DataSize in GB 
-    ## $5 is Name
-    collecting $3 $4 $5
 }
 
 ### conda activate snakemake must be activatet before ###
