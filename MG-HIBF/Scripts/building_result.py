@@ -8,11 +8,12 @@ import subprocess
 import sys
 
 data_Size = sys.argv[2]
-folder_list = os.listdir(Path(sys.argv[1]))
+path_to_c = Path(sys.argv[1])
+folder_list = os.listdir(path_to_c)
 slurm_filenames = filter(lambda f: f.endswith(".out"), folder_list)
 
 ##filling the dataframe
-df = pd.read_csv('../collect/nodes.csv', names=['bin_id', 'Nodes'], header=None)
+df = pd.read_csv(path_to_c+'nodes.csv', names=['bin_id', 'Nodes'], header=None)
 df = df.set_index('bin_id')
 df = df['Data Size'] = ""
 df = df['Total-time'] = ""
@@ -23,15 +24,14 @@ df = df['I/O out (write MB)'] = ""
 df = df['mem_mb'] = ""
 df = df['disk_mb'] = ""
 
-add = "../collect/"
 
 for slurm_out in slurm_filenames:
-    with open(add+slurm_out, "r") as f:
+    with open(slurm_out, "r") as f:
         for line in f:
             line.strip()
             if (line.startswith('benchmark')):
                 tmp1 = line.split()
-                bwa_csv = pd.read_csv(add+tmp1[1], sep='\t', header=0)
+                bwa_csv = pd.read_csv(path_to_c+tmp1[1], sep='\t', header=0)
                 total_time = min(bwa_csv.iat[0,0],bwa_csv.iat[1,0])
                 cpu_time = min(bwa_csv.iat[0,9],bwa_csv.iat[1,9])
                 max_rss = min(bwa_csv.iat[0,2],bwa_csv.iat[1,2])
