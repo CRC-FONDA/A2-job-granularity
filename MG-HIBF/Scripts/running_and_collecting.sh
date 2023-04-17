@@ -7,7 +7,7 @@ files3='/buffer/ag_abi/manuel/fonda/genomes/bacteria_30G/'
 files4='/buffer/ag_abi/manuel/fonda/genomes/bacteria_58G/'
 files5='/buffer/ag_abi/manuel/fonda/genomes/bacteria_88G/'
 files6='/buffer/ag_abi/manuel/fonda/genomes/human_9G/'
-files7='/buffer/ag_abi/manuel/fonda/genomes/viral_500M/'
+files7=/buffer/ag_abi/manuel/fonda/genomes/viral_500M/
 
 path_to_collect=~/fonda/A2-job-granularity/MG-HIBF/collect/
 
@@ -32,5 +32,5 @@ collecting (){
 cd ..
 
 ### humans ###
-run $files6 3
+run $files7 20
 collecting '9G'
