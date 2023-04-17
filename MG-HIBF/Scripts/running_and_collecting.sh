@@ -15,7 +15,7 @@ path_to_collect='~/fonda/A2-job-granularity/MG-HIBF/collect/'
 function run(){
     python create_simple_bin_file.py $1 $2
     mv bins.tsv data/bins.tsv
-    snakemake --use-conda -s Snakefile --cluster 'sbatch -t 120 --nodelist={resources.nodelist}' -j 100 --latency-wait 600
+    snakemake --use-conda -s Snakefile --cluster --unlock 'sbatch -t 120 --nodelist={resources.nodelist}' -j 100 --latency-wait 600
 }
 
 ##collecting
