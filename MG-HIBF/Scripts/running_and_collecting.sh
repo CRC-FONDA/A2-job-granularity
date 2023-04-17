@@ -29,17 +29,12 @@ function collecting (){
 }
 
 cd ..
+mkdir results
 
 ### humans ###
-python create_simple_bin_file.py $files7 10
-mv bins.tsv data/bins.tsv
-snakemake --use-conda -s Snakefile --cluster 'sbatch -t 120 --nodelist={resources.nodelist}' -j 100 --latency-wait 600
+run $files6 3
+collecting 9
+mv test.csv results/9G_bin_0.csv
 
-mkdir collect
-mv slurm* collect/
-mv bwa-mem2-index* collect/
-mv nodes.csv collect/
-python Scripts/building_result.py $path_to_collect 500
 
-#run $files7 20
-#collecting '9G'
+

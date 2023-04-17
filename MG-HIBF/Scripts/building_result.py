@@ -3,11 +3,9 @@ import numpy as np
 import os
 from pathlib import Path
 import pandas as pd
-import random as r
-import subprocess
 import sys
 
-data_Size = sys.argv[2]
+data_Size = int(sys.argv[2])
 path_to_c = Path(sys.argv[1])
 folder_list = os.listdir(path_to_c)
 slurm_filenames = filter(lambda f: f.endswith(".out"), folder_list)
@@ -15,7 +13,7 @@ slurm_filenames = filter(lambda f: f.endswith(".out"), folder_list)
 ##filling the dataframe
 df = pd.read_csv(path_to_c+'nodes.csv', names=['bin_id', 'Nodes'], header=None)
 df = df.set_index('bin_id')
-df = df['Data Size'] = ""
+df = df['Data Size in G'] = ""
 df = df['Total-time'] = ""
 df = df['CPU-time'] = ""
 df = df['max-rss'] = ""
@@ -39,12 +37,13 @@ for slurm_out in slurm_filenames:
                 io_out = min(bwa_csv.iat[0,7],bwa_csv.iat[1,7])
             elif (line.startswith('jobid:')):
                 line.strip('jobid: ')
-                bin_id = line
+                bin_id = int(line)
+                max_bin = max(bin_id+1, max_bin)
             elif (line.startswith('resources:')):
                 tmp2 = line.split()
                 mem_mb = tmp2[1].strip('mem_mb=')
                 disk_mb = tmp2[3].strip('disk_mb=')
-    df.at[bin_id,'Data Size'] = data_Size
+    df.at[bin_id,'Data Size in G'] = data_Size/max_bin
     df.at[bin_id,'Total-time'] = total_time
     df.at[bin_id,'CPU-time'] = cpu_time
     df.at[bin_id,'max-rss'] = max_rss
@@ -55,6 +54,7 @@ for slurm_out in slurm_filenames:
 
 
 df.to_csv('../', index=False, column=False, archive_name='test.csv')
+
 
 
 
