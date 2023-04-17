@@ -57,33 +57,33 @@ cd ..
 mkdir results
 
 ### archaea ###
-run_and_collect $file1 100 $path_to_collect 1.4 $name1
-run_and_collect $file1 50 $path_to_collect 1.4 $name1
-run_and_collect $file1 300 $path_to_collect 1.4 $name1
+run_and_collect $files1 100 $path_to_collect 1.4 $name1
+run_and_collect $files1 50 $path_to_collect 1.4 $name1
+run_and_collect $files1 300 $path_to_collect 1.4 $name1
 
 ### bacteria ###
-run_and_collect $file2 500 $path_to_collect 125 $name2
-run_and_collect $file2 300 $path_to_collect 125 $name2
-run_and_collect $file2 200 $path_to_collect 125 $name2
+run_and_collect $files2 500 $path_to_collect 125 $name2
+run_and_collect $files2 300 $path_to_collect 125 $name2
+run_and_collect $files2 200 $path_to_collect 125 $name2
 
-run_and_collect $file3 500 $path_to_collect 30 $name3
-run_and_collect $file3 300 $path_to_collect 30 $name3
-run_and_collect $file3 200 $path_to_collect 30 $name3
+run_and_collect $files3 500 $path_to_collect 30 $name3
+run_and_collect $files3 300 $path_to_collect 30 $name3
+run_and_collect $files3 200 $path_to_collect 30 $name3
 
-run_and_collect $file4 500 $path_to_collect 58 $name4
-run_and_collect $file4 300 $path_to_collect 58 $name4
-run_and_collect $file4 200 $path_to_collect 58 $name4
+run_and_collect $files4 500 $path_to_collect 58 $name4
+run_and_collect $files4 300 $path_to_collect 58 $name4
+run_and_collect $files4 200 $path_to_collect 58 $name4
 
-run_and_collect $file5 500 $path_to_collect 88 $name5
-run_and_collect $file5 300 $path_to_collect 88 $name5
-run_and_collect $file5 200 $path_to_collect 88 $name5
+run_and_collect $files5 500 $path_to_collect 88 $name5
+run_and_collect $files5 300 $path_to_collect 88 $name5
+run_and_collect $files5 200 $path_to_collect 88 $name5
 
 ### humans ###
-run_and_collect $file6 3 $path_to_collect 9 $name6
-run_and_collect $file6 3 $path_to_collect 9 $name6
-run_and_collect $file6 3 $path_to_collect 9 $name6
+run_and_collect $files6 3 $path_to_collect 9 $name6
+run_and_collect $files6 3 $path_to_collect 9 $name6
+run_and_collect $files6 3 $path_to_collect 9 $name6
 
 ### viral ###
-run_and_collect $file7 1000 $path_to_collect 0.5 $name7
-run_and_collect $file7 2000 $path_to_collect 0.5 $name7
-run_and_collect $file7 3000 $path_to_collect 0.5 $name7
+run_and_collect $files7 1000 $path_to_collect 0.5 $name7
+run_and_collect $files7 2000 $path_to_collect 0.5 $name7
+run_and_collect $files7 3000 $path_to_collect 0.5 $name7
