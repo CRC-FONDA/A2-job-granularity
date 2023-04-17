@@ -33,7 +33,7 @@ cd ..
 ### humans ###
 python create_simple_bin_file.py $files7 10
 mv bins.tsv data/bins.tsv
-snakemake --use-conda -s Snakefile --cluster --unlock 'sbatch -t 120 --nodelist={resources.nodelist}' -j 100 --latency-wait 600
+snakemake --use-conda -s Snakefile --cluster 'sbatch -t 120 --nodelist={resources.nodelist}' -j 100 --latency-wait 600
 
 mkdir collect
 mv slurm* collect/
