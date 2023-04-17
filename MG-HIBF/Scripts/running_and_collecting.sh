@@ -23,7 +23,6 @@ function collecting (){
     mkdir collect
     mv slurm* collect/
     mv bwa-mem2-index* collect/
-    mv data/bins.tsv collect/
     mv nodes.csv collect/
     python Scripts/building_result.py $path_to_collect $1
     rm -r collect
@@ -39,7 +38,6 @@ snakemake --use-conda -s Snakefile --cluster 'sbatch -t 120 --nodelist={resource
 mkdir collect
 mv slurm* collect/
 mv bwa-mem2-index* collect/
-mv data/bins.tsv collect/
 mv nodes.csv collect/
 python Scripts/building_result.py $path_to_collect 500
 
