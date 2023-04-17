@@ -9,7 +9,7 @@ files5='/buffer/ag_abi/manuel/fonda/genomes/bacteria_88G/'
 files6='/buffer/ag_abi/manuel/fonda/genomes/human_9G/'
 files7='/buffer/ag_abi/manuel/fonda/genomes/viral_500M/'
 
-path_to_collect='~/fonda/A2-job-granularity/MG-HIBF/collect/'
+path_to_collect=~/fonda/A2-job-granularity/MG-HIBF/collect/
 
 ### running
 run(){
