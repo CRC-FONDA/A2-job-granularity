@@ -30,6 +30,7 @@ function run_and_collect(){
     python create_simple_bin_file.py $1 $2
     mv bins.tsv data/bins.tsv
     snakemake --use-conda -s Snakefile --cluster 'sbatch -t 120 --nodelist={resources.nodelist}' -j 100 --latency-wait 600
+    
     ## $3 path to collect
     ## $4 DataSize in GB 
     ## $5 is Name
@@ -42,7 +43,7 @@ function run_and_collect(){
     rm -r collect
 }
 
-### conda activate snakemake must be activatet before ###
+### conda activate snakemake must be activated before ###
 cd ..
 mkdir results
 
