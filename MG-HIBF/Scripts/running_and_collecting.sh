@@ -1,12 +1,25 @@
 #!/usr/bin/bash
 
 ### Path to files ###
+name1='archaea_1,4G'
 files1='/buffer/ag_abi/manuel/fonda/genomes/archaea_1,4G/files/'
+
+name2='bacteria_125G'
 files2='/buffer/ag_abi/manuel/fonda/genomes/bacteria_125G/files/'
+
+name3='bacteria_30G'
 files3='/buffer/ag_abi/manuel/fonda/genomes/bacteria_30G/files/'
+
+name4='bacteria_58G'
 files4='/buffer/ag_abi/manuel/fonda/genomes/bacteria_58G/files/'
+
+name5='bacteria_88G'
 files5='/buffer/ag_abi/manuel/fonda/genomes/bacteria_88G/files/'
+
+name6='human_9G'
 files6='/buffer/ag_abi/manuel/fonda/genomes/human_9G/files/'
+
+name7='viral_500M'
 files7='/buffer/ag_abi/manuel/fonda/genomes/viral_500M/files/'
 
 path_to_collect='~/fonda/A2-job-granularity/MG-HIBF/collect/'
@@ -24,17 +37,53 @@ function collecting (){
     mv slurm* collect/
     mv bwa-mem2-index* collect/
     mv nodes.csv collect/
-    python Scripts/building_result.py $path_to_collect $1
+    python Scripts/building_result.py $1 $2 $3
+    mv result*.csv results/
     rm -r collect
 }
 
+function run_and_collect(){
+    ## $1 is filepath
+    ## $2 is files per bin
+    run $1 $2
+    ## $3 path to collect
+    ## $4 DataSize in GB 
+    ## $5 is Name
+    collecting $3 $4 $5
+}
+
+### conda activate snakemake must be activatet before ###
 cd ..
 mkdir results
 
+### archaea ###
+run_and_collect $file1 100 $path_to_collect 1.4 $name1
+run_and_collect $file1 50 $path_to_collect 1.4 $name1
+run_and_collect $file1 300 $path_to_collect 1.4 $name1
+
+### bacteria ###
+run_and_collect $file2 500 $path_to_collect 125 $name2
+run_and_collect $file2 300 $path_to_collect 125 $name2
+run_and_collect $file2 200 $path_to_collect 125 $name2
+
+run_and_collect $file3 500 $path_to_collect 30 $name3
+run_and_collect $file3 300 $path_to_collect 30 $name3
+run_and_collect $file3 200 $path_to_collect 30 $name3
+
+run_and_collect $file4 500 $path_to_collect 58 $name4
+run_and_collect $file4 300 $path_to_collect 58 $name4
+run_and_collect $file4 200 $path_to_collect 58 $name4
+
+run_and_collect $file5 500 $path_to_collect 88 $name5
+run_and_collect $file5 300 $path_to_collect 88 $name5
+run_and_collect $file5 200 $path_to_collect 88 $name5
+
 ### humans ###
-run $files6 3
-collecting 9
-mv test.csv results/9G_bin_0.csv
+run_and_collect $file6 3 $path_to_collect 9 $name6
+run_and_collect $file6 3 $path_to_collect 9 $name6
+run_and_collect $file6 3 $path_to_collect 9 $name6
 
-
-
+### viral ###
+run_and_collect $file7 1000 $path_to_collect 0.5 $name7
+run_and_collect $file7 2000 $path_to_collect 0.5 $name7
+run_and_collect $file7 3000 $path_to_collect 0.5 $name7
