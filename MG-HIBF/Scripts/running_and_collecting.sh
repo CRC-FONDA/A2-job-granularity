@@ -42,7 +42,7 @@ mv bwa-mem2-index* collect/
 mv data/bins.tsv collect/
 mv nodes.csv collect/
 python Scripts/building_result.py $path_to_collect 500
-rm -r collect
+
 
 
 #run $files7 20
