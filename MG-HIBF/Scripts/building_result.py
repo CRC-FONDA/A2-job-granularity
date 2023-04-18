@@ -1,5 +1,7 @@
+#!/usr/bin/env python
+
 import csv
-#import numpy as np
+import numpy as np
 import os
 from pathlib import Path
 import pandas as pd
