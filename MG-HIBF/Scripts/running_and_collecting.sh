@@ -49,7 +49,6 @@ run_and_collect(){
 ### conda activate snakemake must be activated before ###
 cd ..
 mkdir results
-python create_simple_bin_file.py $files7 300
 # ### archaea ###
 # run_and_collect $files1 100 $path_to_collect 1.4 $name1
 # run_and_collect $files1 50 $path_to_collect 1.4 $name1
@@ -80,4 +79,4 @@ python create_simple_bin_file.py $files7 300
 ### viral ###
 #run_and_collect $files7 1000 $path_to_collect 0.5 $name7
 #run_and_collect $files7 2000 $path_to_collect 0.5 $name7
-#run_and_collect $files7 300 $path_to_collect "0.5" $name7
+run_and_collect $files7 300 $path_to_collect "0.5" $name7
