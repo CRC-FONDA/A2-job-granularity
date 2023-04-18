@@ -19,14 +19,14 @@ fasta_paths = map(to_path, fasta_filenames)
 
 bin_size = files_per_bin
 ### check bin_size for viability (bin too big? too small? number of files per bin?)
-if files_per_bin < 2:
-    bin_size = 3
-if files_per_bin > 2000:
-    bin_size = 1500
+# if files_per_bin < 2:
+#     bin_size = 3
+# if files_per_bin > 2000:
+#     bin_size = 1500
 
 
-while (len(list(fasta_paths))/bin_size > 2000):
-    bin_size = bin_size + 100
+# while (len(list(fasta_paths))/bin_size > 2000):
+#     bin_size = bin_size + 100
 
 
 with open("bins.tsv", "w+") as f:
