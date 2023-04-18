@@ -80,4 +80,4 @@ mkdir results
 ### viral ###
 #run_and_collect $files7 1000 $path_to_collect 0.5 $name7
 #run_and_collect $files7 2000 $path_to_collect 0.5 $name7
-run_and_collect "$files7" "300" "$path_to_collect" "0.5" "$name7"
+run_and_collect $files7 "300" $path_to_collect "0.5" $name7
