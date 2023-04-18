@@ -43,6 +43,7 @@ function run_and_collect(){
     python Scripts/building_result.py $3 $4 $5
     mv result*.csv results/
     rm -r collect
+    rm -r /data/indicies
 }
 
 ### conda activate snakemake must be activated before ###
@@ -77,6 +78,6 @@ mkdir results
 # run_and_collect $files6 3 $path_to_collect 9 $name6
 
 ### viral ###
-run_and_collect $files7 1000 $path_to_collect 0.5 $name7
-run_and_collect $files7 2000 $path_to_collect 0.5 $name7
+#run_and_collect $files7 1000 $path_to_collect 0.5 $name7
+#run_and_collect $files7 2000 $path_to_collect 0.5 $name7
 run_and_collect $files7 3000 $path_to_collect 0.5 $name7
