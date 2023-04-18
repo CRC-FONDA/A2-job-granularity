@@ -7,7 +7,7 @@ import sys
 
 
 path_to_c = Path(sys.argv[1])
-data_size = int(sys.argv[2])
+data_size = float(sys.argv[2])
 name = str(sys.argv[3])
 folder_list = os.listdir(path_to_c)
 slurm_filenames = filter(lambda f: f.endswith(".out"), folder_list)
@@ -55,7 +55,7 @@ for slurm_out in slurm_filenames:
     df.at[bin_id,'disk_mb'] = disk_mb
 
 
-name = "result_" + name + "_" + str(data_size) + "_bins_" + str(max_bin)
+name = "result_" + name + "_" + str(data_size) + "G_bins_" + str(max_bin)
 df.to_csv('../', index=False, column=False, archive_name=name)
 
 

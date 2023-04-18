@@ -24,66 +24,57 @@ files7='/buffer/ag_abi/manuel/fonda/genomes/viral_500M/files/'
 
 path_to_collect='~/fonda/A2-job-granularity/MG-HIBF/collect/'
 
-### running
-function run(){
+function run_and_collect(){
+    ## $1 is filepath
+    ## $2 is files per bin
     python create_simple_bin_file.py $1 $2
     mv bins.tsv data/bins.tsv
     snakemake --use-conda -s Snakefile --cluster 'sbatch -t 120 --nodelist={resources.nodelist}' -j 100 --latency-wait 600
-}
-
-##collecting
-function collecting (){
+    
+    ## $3 path to collect
+    ## $4 DataSize in GB 
+    ## $5 is Name
     mkdir collect
     mv slurm* collect/
     mv bwa-mem2-index* collect/
     mv nodes.csv collect/
-    python Scripts/building_result.py $1 $2 $3
+    python Scripts/building_result.py $3 $4 $5
     mv result*.csv results/
     rm -r collect
 }
 
-function run_and_collect(){
-    ## $1 is filepath
-    ## $2 is files per bin
-    run $1 $2
-    ## $3 path to collect
-    ## $4 DataSize in GB 
-    ## $5 is Name
-    collecting $3 $4 $5
-}
-
-### conda activate snakemake must be activatet before ###
+### conda activate snakemake must be activated before ###
 cd ..
 mkdir results
 
-### archaea ###
-run_and_collect $file1 100 $path_to_collect 1.4 $name1
-run_and_collect $file1 50 $path_to_collect 1.4 $name1
-run_and_collect $file1 300 $path_to_collect 1.4 $name1
+# ### archaea ###
+# run_and_collect $files1 100 $path_to_collect 1.4 $name1
+# run_and_collect $files1 50 $path_to_collect 1.4 $name1
+# run_and_collect $files1 300 $path_to_collect 1.4 $name1
 
-### bacteria ###
-run_and_collect $file2 500 $path_to_collect 125 $name2
-run_and_collect $file2 300 $path_to_collect 125 $name2
-run_and_collect $file2 200 $path_to_collect 125 $name2
+# ### bacteria ###
+# run_and_collect $files2 500 $path_to_collect 125 $name2
+# run_and_collect $files2 300 $path_to_collect 125 $name2
+# run_and_collect $files2 200 $path_to_collect 125 $name2
 
-run_and_collect $file3 500 $path_to_collect 30 $name3
-run_and_collect $file3 300 $path_to_collect 30 $name3
-run_and_collect $file3 200 $path_to_collect 30 $name3
+# run_and_collect $files3 500 $path_to_collect 30 $name3
+# run_and_collect $files3 300 $path_to_collect 30 $name3
+# run_and_collect $files3 200 $path_to_collect 30 $name3
 
-run_and_collect $file4 500 $path_to_collect 58 $name4
-run_and_collect $file4 300 $path_to_collect 58 $name4
-run_and_collect $file4 200 $path_to_collect 58 $name4
+# run_and_collect $files4 500 $path_to_collect 58 $name4
+# run_and_collect $files4 300 $path_to_collect 58 $name4
+# run_and_collect $files4 200 $path_to_collect 58 $name4
 
-run_and_collect $file5 500 $path_to_collect 88 $name5
-run_and_collect $file5 300 $path_to_collect 88 $name5
-run_and_collect $file5 200 $path_to_collect 88 $name5
+# run_and_collect $files5 500 $path_to_collect 88 $name5
+# run_and_collect $files5 300 $path_to_collect 88 $name5
+# run_and_collect $files5 200 $path_to_collect 88 $name5
 
-### humans ###
-run_and_collect $file6 3 $path_to_collect 9 $name6
-run_and_collect $file6 3 $path_to_collect 9 $name6
-run_and_collect $file6 3 $path_to_collect 9 $name6
+# ### humans ###
+# run_and_collect $files6 3 $path_to_collect 9 $name6
+# run_and_collect $files6 3 $path_to_collect 9 $name6
+# run_and_collect $files6 3 $path_to_collect 9 $name6
 
 ### viral ###
-run_and_collect $file7 1000 $path_to_collect 0.5 $name7
-run_and_collect $file7 2000 $path_to_collect 0.5 $name7
-run_and_collect $file7 3000 $path_to_collect 0.5 $name7
+run_and_collect $files7 1000 $path_to_collect 0.5 $name7
+run_and_collect $files7 2000 $path_to_collect 0.5 $name7
+run_and_collect $files7 3000 $path_to_collect 0.5 $name7
