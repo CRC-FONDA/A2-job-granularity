@@ -1,4 +1,6 @@
 #!/usr/bin/bash
+export PATH="~/miniconda3/bin:$PATH"
+export PATH="/home/manuez42/miniconda3/bin:$PATH"
 
 ### Path to files ###
 name1='archaea_1,4G'
