@@ -24,24 +24,24 @@ files6='/buffer/ag_abi/manuel/fonda/genomes/human_9G/files/'
 name7='viral_500M'
 files7='/buffer/ag_abi/manuel/fonda/genomes/viral_500M/files/'
 
-path_to_collect='~/fonda/A2-job-granularity/MG-HIBF/collect/'
+path_to_collect='../collect/'
 
 run_and_collect(){
     ## $1 is filepath
     ## $2 is files per bin
     python create_simple_bin_file.py $1 $2
-    #mv bins.tsv data/bins.tsv
+    mv bins.tsv data/bins.tsv
     #snakemake --use-conda -s Snakefile --cluster 'sbatch -t 120 --nodelist={resources.nodelist}' -j 100 --latency-wait 600
     
     ## $3 path to collect
     ## $4 DataSize in GB 
     ## $5 is Name
-    #mkdir collect
-    #mv slurm* collect/
-    #mv bwa-mem2-index* collect/
-    #mv nodes.csv collect/
-    #python Scripts/building_result.py $3 $4 $5
-    #mv result*.csv results/
+    mkdir collect
+    mv slurm* collect/
+    mv bwa-mem2-index* collect/
+    mv nodes.csv collect/
+    python Scripts/building_result.py $3 $4 $5
+    mv result*.csv results/
     #rm -r collect
     #rm -r /data/indicies
 }
@@ -49,7 +49,6 @@ run_and_collect(){
 ### conda activate snakemake must be activated before ###
 cd ..
 mkdir results
-python create_simple_bin_file.py $files7 300
 # ### archaea ###
 # run_and_collect $files1 100 $path_to_collect 1.4 $name1
 # run_and_collect $files1 50 $path_to_collect 1.4 $name1
@@ -80,4 +79,4 @@ python create_simple_bin_file.py $files7 300
 ### viral ###
 #run_and_collect $files7 1000 $path_to_collect 0.5 $name7
 #run_and_collect $files7 2000 $path_to_collect 0.5 $name7
-#run_and_collect $files7 300 $path_to_collect "0.5" $name7
+run_and_collect $files7 300 $path_to_collect "0.5" $name7
