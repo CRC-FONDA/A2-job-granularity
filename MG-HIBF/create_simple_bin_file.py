@@ -24,7 +24,6 @@ bin_size = files_per_bin
 # if files_per_bin > 2000:
 #     bin_size = 1500
 
-
 # while (len(list(fasta_paths))/bin_size > 2000):
 #     bin_size = bin_size + 100
 

@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 
 import csv
-import numpy as np
+#import numpy as np
 import os
 from pathlib import Path
-import pandas as pd
+#import pandas as pd
 import sys
-
 
 path_to_c = Path(sys.argv[1])
 data_size = float(sys.argv[2])
