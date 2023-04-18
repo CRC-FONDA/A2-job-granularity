@@ -40,7 +40,7 @@ function run_and_collect(){
     mv slurm* collect/
     mv bwa-mem2-index* collect/
     mv nodes.csv collect/
-    python Scripts/building_result.py $3 $4 $5
+    conda run -n snakemake python -c Scripts/building_result.py $3 $4 $5
     mv result*.csv results/
     rm -r collect
     rm -r /data/indicies
