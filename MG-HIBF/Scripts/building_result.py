@@ -15,6 +15,7 @@ slurm_filenames = filter(lambda f: f.endswith(".out"), folder_list)
 
 to_path = lambda filename: path_to_c / filename
 slurm_paths = map(to_path, slurm_filenames)
+slurm_paths = list(slurm_paths)
 
 ##filling the dataframe
 df = pd.read_csv(path_to_c/"nodelist.csv", names=['bin_id', 'Nodes'], header=None)
@@ -32,6 +33,7 @@ max_bin = 0
 
 for slurm_out in slurm_paths:
     with open(slurm_out, "r") as f:
+        bin_id = 0
         for line in f:
             line.strip()
             if (line.startswith('benchmark')):
@@ -58,7 +60,7 @@ for slurm_out in slurm_paths:
     df.at[bin_id,"mem_mb"] = mem_mb
     df.at[bin_id,"disk_mb"] = disk_mb
 
-df.at["Data Size in G"] = np.full((len(slurm_paths)), data_size / max_bin )
+df["Data Size in G"] = np.full((len(slurm_paths)), data_size / max_bin )
 name = "result_" + name + "_" + str(data_size) + "G_bins_" + str(max_bin)
 df.to_csv('../', index=False, column=False, archive_name=name)
 
