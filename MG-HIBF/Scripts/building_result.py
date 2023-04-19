@@ -13,6 +13,9 @@ name = str(sys.argv[3])
 folder_list = os.listdir(path_to_c)
 slurm_filenames = filter(lambda f: f.endswith(".out"), folder_list)
 
+to_path = lambda filename: folder_name / filename
+slurm_paths = map(to_path, fasta_filenames)
+
 ##filling the dataframe
 df = pd.read_csv(path_to_c/"nodelist.csv", names=['bin_id', 'Nodes'], header=None)
 df = df.set_index('bin_id')
@@ -26,7 +29,7 @@ df['mem_mb'] = ""
 df['disk_mb'] = ""
 
 
-for slurm_out in slurm_filenames:
+for slurm_out in slurm_paths:
     with open(slurm_out, "r") as f:
         for line in f:
             line.strip()
