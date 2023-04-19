@@ -14,7 +14,7 @@ folder_list = os.listdir(path_to_c)
 slurm_filenames = filter(lambda f: f.endswith(".out"), folder_list)
 
 to_path = lambda filename: folder_name / filename
-slurm_paths = map(to_path, fasta_filenames)
+slurm_paths = map(to_path, slurm_filenames)
 
 ##filling the dataframe
 df = pd.read_csv(path_to_c/"nodelist.csv", names=['bin_id', 'Nodes'], header=None)
