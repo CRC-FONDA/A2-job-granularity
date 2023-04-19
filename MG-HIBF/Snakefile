@@ -30,12 +30,12 @@ bin_ids = range(num_bins)
 buidling the nodelist and matching it to the bins
 --> bin_id, nodename
 """
-cmd = ["bash", "-c", "sinfo --long --Node | grep -P mix | grep -P small | awk '{print $1}' >> nodelist.csv"]
+cmd = ["bash", "-c", "sinfo --long --Node | grep -P mix | grep -P small | awk '{print $1}' >> nodes.csv"]
 subprocess.run(cmd)
 list_of_nodes = []
 nodes = {}
 
-with open("nodelist.csv", "r") as f:
+with open("nodes.csv", "r") as f:
     reader = csv.reader(f, delimiter=',')
 
     for row in reader:
@@ -45,7 +45,7 @@ for i in bin_ids:
     nodes[i] = random.choice(list_of_nodes)
 
 
-with open("nodes.csv", "w+") as f:
+with open("nodes_to_bins.csv", "w+") as f:
     writer = csv.writer(f, delimiter=',')
     for b, node in nodes.items():
         writer.writerow( [b, node] )

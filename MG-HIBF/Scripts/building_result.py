@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
 import csv
-#import numpy as np
+import numpy as np
 import os
 from pathlib import Path
-#import pandas as pd
+import pandas as pd
 import sys
 
 path_to_c = Path(sys.argv[1])
@@ -14,7 +14,7 @@ folder_list = os.listdir(path_to_c)
 slurm_filenames = filter(lambda f: f.endswith(".out"), folder_list)
 
 ##filling the dataframe
-df = pd.read_csv(path_to_c/nodes.csv, names=['bin_id', 'Nodes'], header=None)
+df = pd.read_csv(path_to_c/nodelist.csv, names=['bin_id', 'Nodes'], header=None)
 df = df.set_index('bin_id')
 df = df['Data Size in G'] = ""
 df = df['Total-time'] = ""
