@@ -16,14 +16,14 @@ slurm_filenames = filter(lambda f: f.endswith(".out"), folder_list)
 ##filling the dataframe
 df = pd.read_csv(path_to_c/"nodelist.csv", names=['bin_id', 'Nodes'], header=None)
 df = df.set_index('bin_id')
-df = df['Data Size in G'] = ""
-df = df['Total-time'] = ""
-df = df['CPU-time'] = ""
-df = df['max-rss'] = ""
-df = df['I/O In (read MB)'] = ""
-df = df['I/O out (write MB)'] = ""
-df = df['mem_mb'] = ""
-df = df['disk_mb'] = ""
+df["Data Size in G"] = ""
+df['Total-time'] = ""
+df['CPU-time'] = ""
+df['max-rss'] = ""
+df['I/O In (read MB)'] = ""
+df['I/O out (write MB)'] = ""
+df['mem_mb'] = ""
+df['disk_mb'] = ""
 
 
 for slurm_out in slurm_filenames:
