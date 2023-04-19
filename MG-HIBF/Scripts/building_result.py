@@ -13,7 +13,7 @@ name = str(sys.argv[3])
 folder_list = os.listdir(path_to_c)
 slurm_filenames = filter(lambda f: f.endswith(".out"), folder_list)
 
-to_path = lambda filename: folder_name / filename
+to_path = lambda filename: path_to_c / filename
 slurm_paths = map(to_path, slurm_filenames)
 
 ##filling the dataframe
