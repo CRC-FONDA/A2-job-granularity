@@ -4,25 +4,25 @@ export PATH="/home/manuez42/miniconda3/bin:$PATH"
 
 ### Path to files ###
 name1='archaea_1,4G'
-files1='/buffer/ag_abi/manuel/fonda/genomes/archaea_1,4G/files/'
+files1='/data/scratch/manuez42/genomes/archaea_1,4G/files/'
 
 name2='bacteria_125G'
-files2='/buffer/ag_abi/manuel/fonda/genomes/bacteria_125G/files/'
+files2='/data/scratch/manuez42/genomes/bacteria_125G/files/'
 
 name3='bacteria_30G'
-files3='/buffer/ag_abi/manuel/fonda/genomes/bacteria_30G/files/'
+files3='/data/scratch/manuez42/genomes/bacteria_30G/files/'
 
 name4='bacteria_58G'
-files4='/buffer/ag_abi/manuel/fonda/genomes/bacteria_58G/files/'
+files4='/data/scratch/manuez42/genomes/bacteria_58G/files/'
 
 name5='bacteria_88G'
-files5='/buffer/ag_abi/manuel/fonda/genomes/bacteria_88G/files/'
+files5='/data/scratch/manuez42/genomes/bacteria_88G/files/'
 
 name6='human_9G'
-files6='/buffer/ag_abi/manuel/fonda/genomes/human_9G/files/'
+files6='/data/scratch/manuez42/genomes/human_9G/files/'
 
 name7='viral_500M'
-files7='/buffer/ag_abi/manuel/fonda/genomes/viral_500M/files/'
+files7='/data/scratch/manuez42/genomes/viral_500M/files/'
 
 path_to_collect='../collect/'
 
