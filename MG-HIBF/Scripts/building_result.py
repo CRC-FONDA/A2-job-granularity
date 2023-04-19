@@ -29,6 +29,7 @@ df["mem_mb"] = ""
 df["disk_mb"] = ""
 
 max_bin = 0
+
 for slurm_out in slurm_paths:
     with open(slurm_out, "r") as f:
         for line in f:
@@ -57,7 +58,7 @@ for slurm_out in slurm_paths:
     df.at[bin_id,"mem_mb"] = mem_mb
     df.at[bin_id,"disk_mb"] = disk_mb
 
-df.at["Data Size in G"] = np.full((len(slurm_paths)), data_size/max_bin )
+df.at["Data Size in G"] = np.full((len(slurm_paths)), data_size / max_bin )
 name = "result_" + name + "_" + str(data_size) + "G_bins_" + str(max_bin)
 df.to_csv('../', index=False, column=False, archive_name=name)
 
