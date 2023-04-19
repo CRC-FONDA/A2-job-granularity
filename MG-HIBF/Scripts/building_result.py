@@ -16,7 +16,7 @@ slurm_filenames = filter(lambda f: f.endswith(".out"), folder_list)
 ##filling the dataframe
 df = pd.read_csv(path_to_c/"nodelist.csv", names=['bin_id', 'Nodes'], header=None)
 df = df.set_index('bin_id')
-df['Data Size in G'] = ""
+df["Data Size in G"] = ""
 df['Total-time'] = ""
 df['CPU-time'] = ""
 df['max-rss'] = ""
