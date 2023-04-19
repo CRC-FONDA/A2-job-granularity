@@ -20,15 +20,15 @@ slurm_paths = map(to_path, slurm_filenames)
 df = pd.read_csv(path_to_c/"nodelist.csv", names=['bin_id', 'Nodes'], header=None)
 df = df.set_index('bin_id')
 df["Data Size in G"] = ""
-df['Total-time'] = ""
-df['CPU-time'] = ""
-df['max-rss'] = ""
-df['I/O In (read MB)'] = ""
-df['I/O out (write MB)'] = ""
-df['mem_mb'] = ""
-df['disk_mb'] = ""
+df["Total-time"] = ""
+df["CPU-time"] = ""
+df["max-rss"] = ""
+df["I/O In (read MB)"] = ""
+df["I/O out (write MB)"] = ""
+df["mem_mb"] = ""
+df["disk_mb"] = ""
 
-
+max_bin = 0
 for slurm_out in slurm_paths:
     with open(slurm_out, "r") as f:
         for line in f:
@@ -48,17 +48,16 @@ for slurm_out in slurm_paths:
             elif (line.startswith('resources:')):
                 tmp2 = line.split()
                 mem_mb = tmp2[1].strip('mem_mb=')
-                disk_mb = tmp2[3].strip('disk_mb=')
-    df.at[bin_id,'Data Size in G'] = data_size/max_bin
-    df.at[bin_id,'Total-time'] = total_time
-    df.at[bin_id,'CPU-time'] = cpu_time
-    df.at[bin_id,'max-rss'] = max_rss
-    df.at[bin_id,'I/O In (read MB)'] = io_in
-    df.at[bin_id,'I/O out (write MB)'] = io_out
-    df.at[bin_id,'mem_mb'] = mem_mb
-    df.at[bin_id,'disk_mb'] = disk_mb
+                disk_mb = tmp2[3].strip('disk_mb=') 
+    df.at[bin_id,"Total-time"] = total_time
+    df.at[bin_id,"CPU-time"] = cpu_time
+    df.at[bin_id,"max-rss"] = max_rss
+    df.at[bin_id,"I/O In (read MB)"] = io_in
+    df.at[bin_id,"I/O out (write MB)"] = io_out
+    df.at[bin_id,"mem_mb"] = mem_mb
+    df.at[bin_id,"disk_mb"] = disk_mb
 
-
+df.at["Data Size in G"] = np.full((len(slurm_paths)), data_size/max_bin )
 name = "result_" + name + "_" + str(data_size) + "G_bins_" + str(max_bin)
 df.to_csv('../', index=False, column=False, archive_name=name)
 
