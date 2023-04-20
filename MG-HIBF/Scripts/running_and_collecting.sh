@@ -41,7 +41,7 @@ run_and_collect(){
     mv bwa-mem2-index* collect/
     mv nodes.csv collect/
     python Scripts/building_result.py $3 $4 $5
-    mv result*.csv results/
+    mv result*.csv final/
     rm -r collect
     rm -r data/indicies
     rm -r data/mapped_reads
@@ -49,7 +49,8 @@ run_and_collect(){
 
 ### conda activate snakemake must be activated before ###
 cd ..
-mkdir results
+mkdir final
+conda activate
 conda activate snakemake
 
 ### archaea ###
