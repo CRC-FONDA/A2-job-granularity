@@ -30,31 +30,31 @@ for slurm_out in slurm_paths:
     with open(slurm_out, "r") as f:
         bin_id = 0
         for line in f:
+            line.strip().strip('\t')
             print(line)
-            line.strip()
-    #         if (line.startswith('benchmark')):
-    #             tmp1 = line.split()
-    #             bwa_csv = pd.read_csv(path_to_c/tmp1[1], sep='\t', header=0)
-    #             total_time = min(bwa_csv.iat[0,0],bwa_csv.iat[1,0])
-    #             cpu_time = min(bwa_csv.iat[0,9],bwa_csv.iat[1,9])
-    #             max_rss = min(bwa_csv.iat[0,2],bwa_csv.iat[1,2])
-    #             io_in = min(bwa_csv.iat[0,6],bwa_csv.iat[1,6])
-    #             io_out = min(bwa_csv.iat[0,7],bwa_csv.iat[1,7])
-    #         elif (line.startswith('jobid:')):
-    #             line.strip('jobid: ')
-    #             bin_id = int(line)
-    #             max_bin = max(bin_id+1, max_bin)
-    #         elif (line.startswith('resources:')):
-    #             tmp2 = line.split()
-    #             mem_mb = tmp2[1].strip('mem_mb=')
-    #             disk_mb = tmp2[3].strip('disk_mb=') 
-    # df.at[bin_id,"Total-time"] = total_time
-    # df.at[bin_id,"CPU-time"] = cpu_time
-    # df.at[bin_id,"max-rss"] = max_rss
-    # df.at[bin_id,"I/O In (read MB)"] = io_in
-    # df.at[bin_id,"I/O out (write MB)"] = io_out
-    # df.at[bin_id,"mem_mb"] = mem_mb
-    # df.at[bin_id,"disk_mb"] = disk_mb
+            if ('benchmark' in line):
+                tmp1 = line.split()
+                bwa_csv = pd.read_csv(path_to_c/tmp1[1], sep='\t', header=0)
+                total_time = min(bwa_csv.iat[0,0],bwa_csv.iat[1,0])
+                cpu_time = min(bwa_csv.iat[0,9],bwa_csv.iat[1,9])
+                max_rss = min(bwa_csv.iat[0,2],bwa_csv.iat[1,2])
+                io_in = min(bwa_csv.iat[0,6],bwa_csv.iat[1,6])
+                io_out = min(bwa_csv.iat[0,7],bwa_csv.iat[1,7])
+            elif ('jobid:' in line):
+                line.strip('jobid: \t')
+                bin_id = int(line)
+                max_bin = max(bin_id+1, max_bin)
+            elif ('resources:' in line):
+                tmp2 = line.split()
+                mem_mb = tmp2[1].strip('mem_mb=')
+                disk_mb = tmp2[3].strip('disk_mb=') 
+    df.at[bin_id,"Total-time"] = total_time
+    df.at[bin_id,"CPU-time"] = cpu_time
+    df.at[bin_id,"max-rss"] = max_rss
+    df.at[bin_id,"I/O In (read MB)"] = io_in
+    df.at[bin_id,"I/O out (write MB)"] = io_out
+    df.at[bin_id,"mem_mb"] = mem_mb
+    df.at[bin_id,"disk_mb"] = disk_mb
 
 for i in range(0,max_bin):
     df.at[bin_id,"Data Size in G"] = data_size / max_bin
