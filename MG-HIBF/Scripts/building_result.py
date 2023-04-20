@@ -54,7 +54,8 @@ for i in range(0,max_bin):
     df.at[bin_id,"Data Size in G"] = data_size / max_bin
 
 name = "result_" + name + "_" + str(data_size) + "G_bins_" + str(max_bin)
-df.to_csv('../', index=False, archive_name=name)
+name = Path('..'/Path(name))
+df.to_csv(name)
 
 
 
