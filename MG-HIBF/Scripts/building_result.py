@@ -26,6 +26,8 @@ df["I/O out (write MB)"] = ""
 df["mem_mb"] = ""
 df["disk_mb"] = ""
 
+max_bin = 1
+
 for slurm_out in slurm_paths:
     with open(slurm_out, "r") as f:
         bin_id = 0
