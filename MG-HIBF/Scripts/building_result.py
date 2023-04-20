@@ -30,7 +30,6 @@ for slurm_out in slurm_paths:
     with open(slurm_out, "r") as f:
         bin_id = 0
         for line in f:
-            
             line.strip()
             print(line)
     #         if (line.startswith('benchmark')):
