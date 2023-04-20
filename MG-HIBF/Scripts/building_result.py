@@ -30,7 +30,7 @@ for slurm_out in slurm_paths:
     with open(slurm_out, "r") as f:
         bin_id = 0
         for line in f:
-            line.strip().strip('\t')
+            line.strip().strip('\t').strip('\n')
             print(line)
             if ('benchmark' in line):
                 tmp1 = line.split()
