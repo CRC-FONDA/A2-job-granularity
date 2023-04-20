@@ -41,7 +41,7 @@ for slurm_out in slurm_paths:
                 io_in = min(bwa_csv.iat[0,6],bwa_csv.iat[1,6])
                 io_out = min(bwa_csv.iat[0,7],bwa_csv.iat[1,7])
             elif ('jobid:' in line):
-                bin_id = int(line.strip('jobid: \t'))
+                bin_id = int(line.strip('jobid: \t \n'))
                 max_bin = max(bin_id+1, max_bin)
             elif ('resources:' in line):
                 tmp2 = line.split()
