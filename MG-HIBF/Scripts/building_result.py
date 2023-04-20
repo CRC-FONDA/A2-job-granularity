@@ -10,12 +10,9 @@ import sys
 path_to_c = Path(sys.argv[1])
 data_size = float(sys.argv[2])
 name = str(sys.argv[3])
-folder_list = os.listdir(path_to_c)
-slurm_filenames = filter(lambda f: f.endswith(".out"), folder_list)
 
-to_path = lambda filename: path_to_c / filename
-slurm_paths = map(to_path, slurm_filenames)
-slurm_paths = list(slurm_paths)
+slurm_filenames = filter(lambda x: x.endswith(".out"), os.listdir(path_to_c))
+slurm_paths = map((lambda x: path_to_c / x), slurm_filenames)
 
 ##filling the dataframe
 df = pd.read_csv(path_to_c/"nodelist.csv", names=['bin_id', 'Nodes'], header=None)
@@ -29,38 +26,39 @@ df["I/O out (write MB)"] = ""
 df["mem_mb"] = ""
 df["disk_mb"] = ""
 
-max_bin = 0
-
 for slurm_out in slurm_paths:
     with open(slurm_out, "r") as f:
         bin_id = 0
         for line in f:
+            print(line)
             line.strip()
-            if (line.startswith('benchmark')):
-                tmp1 = line.split()
-                bwa_csv = pd.read_csv(path_to_c/tmp1[1], sep='\t', header=0)
-                total_time = min(bwa_csv.iat[0,0],bwa_csv.iat[1,0])
-                cpu_time = min(bwa_csv.iat[0,9],bwa_csv.iat[1,9])
-                max_rss = min(bwa_csv.iat[0,2],bwa_csv.iat[1,2])
-                io_in = min(bwa_csv.iat[0,6],bwa_csv.iat[1,6])
-                io_out = min(bwa_csv.iat[0,7],bwa_csv.iat[1,7])
-            elif (line.startswith('jobid:')):
-                line.strip('jobid: ')
-                bin_id = int(line)
-                max_bin = max(bin_id+1, max_bin)
-            elif (line.startswith('resources:')):
-                tmp2 = line.split()
-                mem_mb = tmp2[1].strip('mem_mb=')
-                disk_mb = tmp2[3].strip('disk_mb=') 
-    df.at[bin_id,"Total-time"] = total_time
-    df.at[bin_id,"CPU-time"] = cpu_time
-    df.at[bin_id,"max-rss"] = max_rss
-    df.at[bin_id,"I/O In (read MB)"] = io_in
-    df.at[bin_id,"I/O out (write MB)"] = io_out
-    df.at[bin_id,"mem_mb"] = mem_mb
-    df.at[bin_id,"disk_mb"] = disk_mb
+    #         if (line.startswith('benchmark')):
+    #             tmp1 = line.split()
+    #             bwa_csv = pd.read_csv(path_to_c/tmp1[1], sep='\t', header=0)
+    #             total_time = min(bwa_csv.iat[0,0],bwa_csv.iat[1,0])
+    #             cpu_time = min(bwa_csv.iat[0,9],bwa_csv.iat[1,9])
+    #             max_rss = min(bwa_csv.iat[0,2],bwa_csv.iat[1,2])
+    #             io_in = min(bwa_csv.iat[0,6],bwa_csv.iat[1,6])
+    #             io_out = min(bwa_csv.iat[0,7],bwa_csv.iat[1,7])
+    #         elif (line.startswith('jobid:')):
+    #             line.strip('jobid: ')
+    #             bin_id = int(line)
+    #             max_bin = max(bin_id+1, max_bin)
+    #         elif (line.startswith('resources:')):
+    #             tmp2 = line.split()
+    #             mem_mb = tmp2[1].strip('mem_mb=')
+    #             disk_mb = tmp2[3].strip('disk_mb=') 
+    # df.at[bin_id,"Total-time"] = total_time
+    # df.at[bin_id,"CPU-time"] = cpu_time
+    # df.at[bin_id,"max-rss"] = max_rss
+    # df.at[bin_id,"I/O In (read MB)"] = io_in
+    # df.at[bin_id,"I/O out (write MB)"] = io_out
+    # df.at[bin_id,"mem_mb"] = mem_mb
+    # df.at[bin_id,"disk_mb"] = disk_mb
 
-df["Data Size in G"] = np.full((len(slurm_paths)), data_size / max_bin )
+for i in range(0,max_bin):
+    df.at[bin_id,"Data Size in G"] = data_size / max_bin
+
 name = "result_" + name + "_" + str(data_size) + "G_bins_" + str(max_bin)
 df.to_csv('../', index=False, column=False, archive_name=name)
 
