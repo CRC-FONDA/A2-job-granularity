@@ -37,7 +37,7 @@ for slurm_out in slurm_paths:
             if ('jobid:' in line):
                 bin_id = int(line.strip('jobid: \t \n'))
                 max_bin = max(bin_id+1, max_bin)
-            elif ('.tsv' in line):
+            elif ('.tsv' in line and 'benchmar' in line):
                 tmp1 = line.split()
                 bwa_csv = pd.read_csv(path_to_c/tmp1[1], sep='\t', header=0)
                 df.at[bin_id,"Total-time"] = min(bwa_csv.iat[0,0],bwa_csv.iat[1,0])
