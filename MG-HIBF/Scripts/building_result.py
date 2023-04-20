@@ -30,8 +30,9 @@ for slurm_out in slurm_paths:
     with open(slurm_out, "r") as f:
         bin_id = 0
         for line in f:
-            print(line)
+            
             line.strip()
+            print(line)
     #         if (line.startswith('benchmark')):
     #             tmp1 = line.split()
     #             bwa_csv = pd.read_csv(path_to_c/tmp1[1], sep='\t', header=0)
