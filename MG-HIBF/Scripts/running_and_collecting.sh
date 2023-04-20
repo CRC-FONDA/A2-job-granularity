@@ -50,12 +50,13 @@ run_and_collect(){
 cd ..
 mkdir results
 conda activate snakemake
-# ### archaea ###
+
+### archaea ###
 run_and_collect $files1 200 $path_to_collect 1.4 $name1
 run_and_collect $files1 40 $path_to_collect 1.4 $name1
 run_and_collect $files1 130 $path_to_collect 1.4 $name1
 
-# ### bacteria ###
+### bacteria ###
 run_and_collect $files2 500 $path_to_collect 125 $name2
 run_and_collect $files2 80 $path_to_collect 125 $name2
 run_and_collect $files2 300 $path_to_collect 125 $name2
@@ -72,7 +73,7 @@ run_and_collect $files5 50 $path_to_collect 88 $name5
 run_and_collect $files5 200 $path_to_collect 88 $name5
 run_and_collect $files5 400 $path_to_collect 88 $name5
 
-# ### humans ###
+### humans ###
 run_and_collect $files6 3 $path_to_collect 9 $name6
 run_and_collect $files6 2 $path_to_collect 9 $name6
 run_and_collect $files6 1 $path_to_collect 9 $name6
