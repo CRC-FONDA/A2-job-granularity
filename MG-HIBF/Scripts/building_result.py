@@ -33,10 +33,10 @@ for slurm_out in slurm_paths:
         bin_id = 0
         for line in f:
             line = line.strip().strip('\n')
-            print(line)
             if ('jobid:' in line):
                 bin_id = int(line.strip('jobid: \t \n'))
                 max_bin = max(bin_id+1, max_bin)
+                print(bin_id)
             elif ('.tsv' in line and 'benchmar' in line):
                 tmp1 = line.split()
                 bwa_csv = pd.read_csv(path_to_c/tmp1[1], sep='\t', header=0)
@@ -45,10 +45,12 @@ for slurm_out in slurm_paths:
                 df.at[bin_id,"max-rss"] = min(bwa_csv.iat[0,2],bwa_csv.iat[1,2])
                 df.at[bin_id,"I/O In (read MB)"] = min(bwa_csv.iat[0,6],bwa_csv.iat[1,6])
                 df.at[bin_id,"I/O out (write MB)"] = min(bwa_csv.iat[0,7],bwa_csv.iat[1,7])
+                print(bwa_csv)
             elif ('resources:' in line):
                 tmp2 = line.split()
                 df.at[bin_id,"mem_mb"] = tmp2[1].strip('mem_mb=')
                 df.at[bin_id,"disk_mb"] = tmp2[3].strip('disk_mb=') 
+                print(line)
 
 for i in range(0,max_bin):
     df.at[bin_id,"Data Size in G"] = data_size / max_bin
