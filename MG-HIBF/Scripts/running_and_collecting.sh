@@ -43,7 +43,8 @@ run_and_collect(){
     python Scripts/building_result.py $3 $4 $5
     mv result*.csv results/
     rm -r collect
-    rm -r /data/indicies
+    rm -r data/indicies
+    rm -r data/mapped_reads
 }
 
 ### conda activate snakemake must be activated before ###

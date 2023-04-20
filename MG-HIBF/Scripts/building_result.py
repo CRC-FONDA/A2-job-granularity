@@ -34,7 +34,7 @@ for slurm_out in slurm_paths:
         for line in f:
             line = line.strip().strip('\n')
             print(line)
-            if ('benchmark' in line):
+            if ('.tsv' in line):
                 tmp1 = line.split()
                 bwa_csv = pd.read_csv(path_to_c/tmp1[1], sep='\t', header=0)
                 total_time = min(bwa_csv.iat[0,0],bwa_csv.iat[1,0])
