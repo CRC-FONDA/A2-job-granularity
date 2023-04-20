@@ -30,7 +30,7 @@ for slurm_out in slurm_paths:
     with open(slurm_out, "r") as f:
         bin_id = 0
         for line in f:
-            line.strip().strip('\t').strip('\n')
+            line = line.strip().strip('\t').strip('\n')
             print(line)
             if ('benchmark' in line):
                 tmp1 = line.split()
@@ -41,8 +41,7 @@ for slurm_out in slurm_paths:
                 io_in = min(bwa_csv.iat[0,6],bwa_csv.iat[1,6])
                 io_out = min(bwa_csv.iat[0,7],bwa_csv.iat[1,7])
             elif ('jobid:' in line):
-                line.strip('jobid: \t')
-                bin_id = int(line)
+                bin_id = int(line.strip('jobid: \t'))
                 max_bin = max(bin_id+1, max_bin)
             elif ('resources:' in line):
                 tmp2 = line.split()
