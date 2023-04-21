@@ -41,7 +41,8 @@ run_and_collect(){
 
     mv slurm* collect/
     mv bwa-mem2-index* collect/
-    mv nodes.csv collect/
+    mv node*.csv collect/
+
     python Scripts/building_result.py $3 $4 $5
     mv result*.csv final/
     
