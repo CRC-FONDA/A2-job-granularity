@@ -45,7 +45,7 @@ for i in bin_ids:
     nodes[i] = random.choice(list_of_nodes)
 
 
-with open("nodes_to_bins.csv", "w+") as f:
+with open("nodelist.csv", "w+") as f:
     writer = csv.writer(f, delimiter=',')
     for b, node in nodes.items():
         writer.writerow( [b, node] )
