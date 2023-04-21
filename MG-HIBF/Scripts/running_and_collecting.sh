@@ -25,7 +25,7 @@ files6='/data/scratch/manuez42/genomes/human_9G/files/'
 name7='viral_500M'
 files7='/data/scratch/manuez42/genomes/viral_500M/files/'
 
-path_to_collect='../collect/'
+path_to_collect='~/fonda/A2-job-granularity/MG-HIBF/collect'
 
 run_and_collect(){
     ## $1 is filepath
@@ -38,6 +38,7 @@ run_and_collect(){
     ## $4 DataSize in GB 
     ## $5 is Name
     mkdir collect
+
     mv slurm* collect/
     mv bwa-mem2-index* collect/
     mv nodes.csv collect/
