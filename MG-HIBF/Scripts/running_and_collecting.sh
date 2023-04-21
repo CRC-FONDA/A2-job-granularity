@@ -31,7 +31,7 @@ run_and_collect(){
     ## $1 is filepath
     ## $2 is files per bin
     python create_simple_bin_file.py $1 $2
-    mv bins.tsv data/bins.tsvcd 
+    mv bins.tsv data/
     snakemake --use-conda -s Snakefile --cluster 'sbatch -t 120 --nodelist={resources.nodelist}' -j 100 --latency-wait 600
     
     ## $3 path to collect
@@ -51,7 +51,7 @@ run_and_collect(){
 ### conda activate snakemake must be activated before ###
 cd ..
 mkdir final
-conda init
+conda init bash
 conda activate
 conda activate snakemake
 
