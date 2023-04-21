@@ -52,7 +52,6 @@ run_and_collect(){
 cd ..
 mkdir final
 conda init bash
-conda activate
 conda activate snakemake
 
 ### archaea ###
