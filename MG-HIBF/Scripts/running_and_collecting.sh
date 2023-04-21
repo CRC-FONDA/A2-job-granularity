@@ -43,20 +43,21 @@ run_and_collect(){
     mv nodes.csv collect/
     python Scripts/building_result.py $3 $4 $5
     mv result*.csv final/
-    rm -r collect
+    
     rm -r data/indicies
     rm -r data/mapped_reads
+    rm -r data/genome_bins
+    rm -r data/distributed_reads
+    rm -r data/bins.tsv
+    rm -r data/prefilter
+    rm -r collect
+    rm -r data/nodelist.csv
+
 }
 
 ### conda activate snakemake must be activated before ###
 cd ..
 mkdir final
-conda init bash
-conda init fish
-conda init tcsh
-conda init xonsh
-conda init zsh
-conda init powershell
 conda activate
 
 source ~/.bashrc
