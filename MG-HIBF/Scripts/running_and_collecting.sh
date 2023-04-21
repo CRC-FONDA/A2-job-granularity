@@ -1,6 +1,7 @@
 #!/usr/bin/bash
 export PATH="~/miniconda3/bin:$PATH"
 export PATH="/home/manuez42/miniconda3/bin:$PATH"
+export PATH="/home/manuez42/miniconda3/envs/snakemake/lib/python3.11/site-packages/:$PATH"
 
 ### Path to files ###
 name1='archaea_1,4G'
@@ -56,32 +57,32 @@ conda activate snakemake
 
 ### archaea ###
 run_and_collect $files1 200 $path_to_collect 1.4 $name1
-run_and_collect $files1 40 $path_to_collect 1.4 $name1
-run_and_collect $files1 130 $path_to_collect 1.4 $name1
+# run_and_collect $files1 40 $path_to_collect 1.4 $name1
+# run_and_collect $files1 130 $path_to_collect 1.4 $name1
 
-### bacteria ###
-run_and_collect $files2 500 $path_to_collect 125 $name2
-run_and_collect $files2 80 $path_to_collect 125 $name2
-run_and_collect $files2 300 $path_to_collect 125 $name2
+# ### bacteria ###
+# run_and_collect $files2 500 $path_to_collect 125 $name2
+# run_and_collect $files2 80 $path_to_collect 125 $name2
+# run_and_collect $files2 300 $path_to_collect 125 $name2
 
-run_and_collect $files3 80 $path_to_collect 30 $name3
-run_and_collect $files3 30 $path_to_collect 30 $name3
-run_and_collect $files3 150 $path_to_collect 30 $name3
+# run_and_collect $files3 80 $path_to_collect 30 $name3
+# run_and_collect $files3 30 $path_to_collect 30 $name3
+# run_and_collect $files3 150 $path_to_collect 30 $name3
 
-run_and_collect $files4 50 $path_to_collect 58 $name4
-run_and_collect $files4 100 $path_to_collect 58 $name4
-run_and_collect $files4 200 $path_to_collect 58 $name4
+# run_and_collect $files4 50 $path_to_collect 58 $name4
+# run_and_collect $files4 100 $path_to_collect 58 $name4
+# run_and_collect $files4 200 $path_to_collect 58 $name4
 
-run_and_collect $files5 50 $path_to_collect 88 $name5
-run_and_collect $files5 200 $path_to_collect 88 $name5
-run_and_collect $files5 400 $path_to_collect 88 $name5
+# run_and_collect $files5 50 $path_to_collect 88 $name5
+# run_and_collect $files5 200 $path_to_collect 88 $name5
+# run_and_collect $files5 400 $path_to_collect 88 $name5
 
-### humans ###
-run_and_collect $files6 3 $path_to_collect 9 $name6
-run_and_collect $files6 2 $path_to_collect 9 $name6
-run_and_collect $files6 1 $path_to_collect 9 $name6
+# ### humans ###
+# run_and_collect $files6 3 $path_to_collect 9 $name6
+# run_and_collect $files6 2 $path_to_collect 9 $name6
+# run_and_collect $files6 1 $path_to_collect 9 $name6
 
-### viral ###
-run_and_collect $files7 100 $path_to_collect 0.5 $name7
-run_and_collect $files7 300 $path_to_collect 0.5 $name7
-run_and_collect $files7 500 $path_to_collect 0.5 $name7
+# ### viral ###
+# #run_and_collect $files7 100 $path_to_collect 0.5 $name7
+# #run_and_collect $files7 300 $path_to_collect 0.5 $name7
+# #run_and_collect $files7 500 $path_to_collect 0.5 $name7
