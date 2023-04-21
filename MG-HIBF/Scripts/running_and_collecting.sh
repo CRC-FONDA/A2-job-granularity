@@ -52,6 +52,15 @@ run_and_collect(){
 cd ..
 mkdir final
 conda init bash
+conda init fish
+conda init tcsh
+conda init xonsh
+conda init zsh
+conda init powershell
+conda activate
+
+source ~/.bashrc
+
 conda activate snakemake
 
 ### archaea ###
