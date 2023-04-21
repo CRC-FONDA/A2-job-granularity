@@ -51,7 +51,7 @@ run_and_collect(){
 ### conda activate snakemake must be activated before ###
 cd ..
 mkdir final
-conda init
+conda init bash
 conda activate
 conda activate snakemake
 
