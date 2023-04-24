@@ -1,7 +1,9 @@
 #!/usr/bin/bash
 export PATH="~/miniconda3/bin:$PATH"
 export PATH="/home/manuez42/miniconda3/bin:$PATH"
-export PATH="/home/manuez42/miniconda3/envs/snakemake/lib/python3.11/site-packages/:$PATH"
+export PATH="/home/manuez42/miniconda3/envs/snakemake/lib/python3.11/site-packages/numpy:$PATH"
+export PATH="/home/manuez42/miniconda3/envs/snakemake/lib/python3.11/site-packages/pandas":$PATH
+
 
 ### Path to files ###
 name1='archaea_1,4G'
