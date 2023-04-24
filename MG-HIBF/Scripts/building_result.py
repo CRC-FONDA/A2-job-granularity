@@ -7,9 +7,7 @@ from pathlib import Path
 import pandas as pd
 import sys
 
-print(os.getcwd())
-print(os.path.abspath(pd.__file__))
-print(sys.path)
+
 path_to_c = Path(sys.argv[1])
 data_size = float(sys.argv[2])
 name = str(sys.argv[3])
