@@ -9,11 +9,7 @@ import pandas as pd
 import sys
 
 print(os.getcwd())
-
-
-
-
-print(os.path.abspath(pandas.__file__))
+print(os.path.abspath(pd.__file__))
 
 path_to_c = Path(sys.argv[1])
 data_size = float(sys.argv[2])
