@@ -3,11 +3,17 @@
 import csv
 import numpy as np
 import os
+import os.path
 from pathlib import Path
 import pandas as pd
 import sys
 
 print(os.getcwd())
+
+
+
+
+print(os.path.abspath(pandas.__file__))
 
 path_to_c = Path(sys.argv[1])
 data_size = float(sys.argv[2])
