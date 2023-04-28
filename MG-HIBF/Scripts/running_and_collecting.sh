@@ -1,4 +1,12 @@
-#!/usr/bin/bash
+#!/usr/bin/bash -i
+
+if [[ ! $- == *i* ]]; then
+    echo "script must be run in interactive mode"
+    echo "Probably something like this:"
+    echo bash -i $0 $@
+    exit 1
+fi
+
 export PATH="~/miniconda3/bin:$PATH"
 export PATH="~/miniconda3/envs/snakemake/lib/python3.11/site-packages/numpy:$PATH"
 export PATH="~/miniconda3/envs/snakemake/lib/python3.11/isite-packages/pandas:$PATH"
