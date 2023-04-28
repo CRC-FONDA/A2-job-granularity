@@ -8,4 +8,5 @@ final
 collect
 bwa-mem2*.tsv
 slurm*.out
-
+node*
+chopper*
