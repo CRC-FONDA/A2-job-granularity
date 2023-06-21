@@ -1,0 +1,13 @@
+logs
+benchmarks
+tools
+.snakemake
+data/*
+result*.csv
+final
+collect
+bwa-mem2*.tsv
+slurm*.out
+node*
+chopper*
+

@@ -3,6 +3,8 @@ configfile: "config.yaml"
 import csv
 import random
 from collections import defaultdict
+import subprocess
+import os
 
 """
 buidling the bins
@@ -30,7 +32,7 @@ bin_ids = range(num_bins)
 buidling the nodelist and matching it to the bins
 --> bin_id, nodename
 """
-cmd = ["bash", "-c", "sinfo --long --Node | grep -P mix | grep -P small | awk '{print $1}' > nodes.csv"]
+cmd = ["bash", "-c", "sinfo --long --Node | grep -P idle | grep -P big | awk '{print $1}' > nodes.csv"]
 subprocess.run(cmd)
 list_of_nodes = []
 nodes = {}
