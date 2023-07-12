@@ -17,7 +17,7 @@ slurm_paths = map((lambda x: path_to_c / x), slurm_filenames)
 bwa_filenames = filter(lambda x: x.startswith("bwa-mem2-index"), os.listdir(path_to_c))
 bwa_paths = map((lambda x: path_to_c / x), bwa_filenames)
 
-pd_datasize = pd.read_csv(path_to_c/"datasizes.tsv", names=['size', 'bin_id'], skiprows=1, sep='\t')
+pd_datasize = pd.read_csv(path_to_c/"datasizes.tsv", names=['size', 'bin_id'], skiprows=1, sep='\t', dtype=str)
 
 ##filling the dataframe
 df = pd.read_csv(path_to_c/"nodelist.csv", names=['bin_id', 'Nodes'], header=None)
