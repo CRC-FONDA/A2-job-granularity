@@ -36,8 +36,11 @@ files4='/data/scratch/manuez42/genomes/bacteria_58G/files/'
 files5='/data/scratch/manuez42/genomes/bacteria_88G/files/'
 files6='/data/scratch/manuez42/genomes/bacteria_125G/files/'
 
+#viral
 steps0=(200 400 600 800 1000 1200 2400 3600 4800 6000 7200 8400 9600 10800 12000)
+#archaea
 steps1=(25 50 75 100 125 150 175 200 225 250 275 300 325 350 375 400 425 450 475 500)
+#human
 steps2=(1 2 3)
 
 #for every bacteria
@@ -115,19 +118,7 @@ run_and_collect(){
 
     echo "$5 done" 
 }
-
-runrunrun(){
-    local my_list=("$1")
-    local name="$2"
-    local time="$3"
-    local 
-
-    for item in "${my_list[@]}"; do
-    
-    done
-}
 ###################################################################################
-
 
 
 

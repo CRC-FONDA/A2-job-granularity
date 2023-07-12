@@ -12,14 +12,14 @@ name = str(sys.argv[2]).lower()
 filenames = filter(lambda x: name in x.lower(), os.listdir(path_to_dir))
 paths = map((lambda x: path_to_dir / x), filenames)
 
-final_name = Path(path_to_dir / ("general_results_" + name))
-
+final_name = Path(path_to_dir / ("general_results_" + name + ".tsv"))
 filenames = filter(lambda x: final_name not in x, paths)
 
-data = pd.read_csv( final_name, sep='\t')
+data = pd.read_csv(final_name, sep='\t')
 
 for _ in paths:
-    f = pd.read_csv(_, )
+    print(_)
+    f = pd.read_csv(_, sep='\t')
     f = f.replace("", np.nan, inplace=True)
     f = f.dropna(how='any').drop("bin_id", axis=1)
     f["Nodes"] = f["Nodes"].str.replace('cmp', "").astype(int)
