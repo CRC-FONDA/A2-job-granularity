@@ -141,20 +141,20 @@ for ((i=0; i<100; i++)); do
 done
 
 ### archaea ###
-run_and_collect $files1 200 $path_to_collect 1.4 $name11 3000
-run_and_collect $files1 200 $path_to_collect 1.4 $name11 3000
-run_and_collect $files1 100 $path_to_collect 1.4 $name12 3000
-run_and_collect $files1 75 $path_to_collect 1.4 $name13 3000
-run_and_collect $files1 50 $path_to_collect 1.4 $name11 3000
-run_and_collect $files1 45 $path_to_collect 1.4 $name13 3000
-run_and_collect $files1 40 $path_to_collect 1.4 $name11 3000
-run_and_collect $files1 35 $path_to_collect 1.4 $name12 3000
-run_and_collect $files1 30 $path_to_collect 1.4 $name13 3000
-run_and_collect $files1 25 $path_to_collect 1.4 $name11 3000
-run_and_collect $files1 20 $path_to_collect 1.4 $name13 3000
-run_and_collect $files1 15 $path_to_collect 1.4 $name11 3000
-run_and_collect $files1 10 $path_to_collect 1.4 $name13 3000
-run_and_collect $files1 5 $path_to_collect 1.4 $name13 3000
+run_and_collect $files1 200 $path_to_collect 1.4 $name11 1500
+run_and_collect $files1 200 $path_to_collect 1.4 $name11 1500
+run_and_collect $files1 100 $path_to_collect 1.4 $name12 1500
+run_and_collect $files1 75 $path_to_collect 1.4 $name13 1500
+run_and_collect $files1 50 $path_to_collect 1.4 $name11 1500
+run_and_collect $files1 45 $path_to_collect 1.4 $name13 1500
+run_and_collect $files1 40 $path_to_collect 1.4 $name11 1500
+run_and_collect $files1 35 $path_to_collect 1.4 $name12 1500
+run_and_collect $files1 30 $path_to_collect 1.4 $name13 1500
+run_and_collect $files1 25 $path_to_collect 1.4 $name11 1500
+run_and_collect $files1 20 $path_to_collect 1.4 $name13 1500
+run_and_collect $files1 15 $path_to_collect 1.4 $name11 1500
+run_and_collect $files1 10 $path_to_collect 1.4 $name13 1500
+run_and_collect $files1 5 $path_to_collect 1.4 $name13 1500
 
 
 # ### bacteria ###

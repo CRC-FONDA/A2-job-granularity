@@ -72,7 +72,7 @@ for i, row in pd_datasize.iterrows():
     datasize = row['size']
     df.at[bin_id, 'Data Size in mb'] = datasize
 
-    
+
 
 
 name = "result_" + name + "_bins_" + str(max_bin) + ".csv"
