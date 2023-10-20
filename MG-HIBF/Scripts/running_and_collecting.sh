@@ -114,7 +114,8 @@ run_and_collect(){
     mv node*.csv $path_to_collect
     mv datasizes.tsv $path_to_collect
     
-    python Scripts/building_result.py $path_to_collect $5
+    ## $6 is unique id
+    python Scripts/building_result.py $path_to_collect $5 $6
    
     mv result* final/
 
@@ -141,7 +142,8 @@ for ((i=0; i<100; i++)); do
         j_time="${time_list[j]}"
 
         for ((k=0; i<10; k++)); do
-            echo "Iteration $i$j$k"
+            unique_id="${i}${j}${k}"
+            echo "Iteration $unique_id"
 
             list_length=${#j_step_list[@]}
             random_index=$((RANDOM % list_length))
@@ -156,7 +158,7 @@ for ((i=0; i<100; i++)); do
     ## $4 is time
     ## $5 is the name
 
-            run_and_collect $j_file $k_steps $k_size $k_time $j_name
+            run_and_collect $j_file $k_steps $k_size $k_time $j_name $unique_id
 
         done
 
@@ -164,4 +166,11 @@ for ((i=0; i<100; i++)); do
 
 done
 
+cd $home
 
+for item in "${name_list[@]}"; do
+    python Scripts/collecting_result.py $path_to_final $item
+    echo "$item"
+done
+
+echo "done"

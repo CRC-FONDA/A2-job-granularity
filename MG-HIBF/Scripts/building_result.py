@@ -23,6 +23,7 @@ def convert_numbers_in_string(string):
 
 path_to_c = Path(sys.argv[1])
 name = str(sys.argv[2])
+id = str(sys.argv[3])
 
 slurm_filenames = filter(lambda x: x.endswith(".out"), os.listdir(path_to_c))
 slurm_paths = map((lambda x: path_to_c / x), slurm_filenames)
@@ -81,6 +82,6 @@ for i, row in pd_datasize.iterrows():
 
 
 
-name = "result_" + name + "_bins_" + str(max_bin) + ".csv"
+name = "result_" + name + "_bins_" + str(max_bin) + "_" + id + ".csv"
 name = Path(name)
 df.to_csv(name, index=False)
