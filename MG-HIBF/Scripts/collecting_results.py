@@ -1,10 +1,11 @@
-import csv
 import numpy as np
 import os
 from pathlib import Path
 import pandas as pd
 import sys
-import subprocess
+
+
+
 
 path_to_dir = Path(sys.argv[1])
 name = str(sys.argv[2]).lower()
