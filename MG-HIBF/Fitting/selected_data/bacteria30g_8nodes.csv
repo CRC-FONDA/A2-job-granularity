@@ -1,0 +1,201 @@
+,Reference Genom,Node Name,prediction method,mse,rmse
+0,bacteria30g_8nodes,213,Polynominal  1,58351.88175339028,241.56134159544294
+1,bacteria30g_8nodes,213,Polynominal  2,56194.24444440749,237.05325233880993
+2,bacteria30g_8nodes,213,Polynominal  3,55893.39526057785,236.4178404024913
+3,bacteria30g_8nodes,213,Polynominal_curve  1,58351.88175339028,241.56134159544294
+4,bacteria30g_8nodes,213,Polynominal_curve  2,56194.24444440749,237.05325233880993
+5,bacteria30g_8nodes,213,Polynominal_curve  3,55893.39526057785,236.4178404024913
+0,bacteria30g_8nodes,213,Log_Polynominal  1,1.325504867571096,1.700363716377517
+1,bacteria30g_8nodes,213,Log_Polynominal  2,1.29419348879698,1.6616755472296267
+2,bacteria30g_8nodes,213,Log_Polynominal  3,1.2925107427504643,1.6595455792038045
+3,bacteria30g_8nodes,213,Log_curve  1,inf,1.153176704898639e+249
+4,bacteria30g_8nodes,213,Log_curve  2,inf,8.333553644288038e+286
+5,bacteria30g_8nodes,213,Log_curve  3,inf,1.0195575193583147e+283
+0,bacteria30g_8nodes,213,Smoothing Spline,20612.505171962348,143.5705581655318
+0,bacteria30g_8nodes,213,Univariatn Spline smoothing approximation 1 with degree  1 ,58351.881753390284,241.56134159544297
+1,bacteria30g_8nodes,213,Univariatn Spline smoothing approximation 1 with degree  2 ,56194.24444440749,237.05325233880993
+2,bacteria30g_8nodes,213,Univariatn Spline smoothing approximation 1 with degree  3 ,55893.395260577854,236.41784040249132
+3,bacteria30g_8nodes,213,Univariatn Spline smoothing approximation 2 with degree  1 ,0.8143249186471933,0.9023995338247872
+4,bacteria30g_8nodes,213,Univariatn Spline smoothing approximation 2 with degree  2 ,0.8143423702477693,0.902409203326168
+5,bacteria30g_8nodes,213,Univariatn Spline smoothing approximation 2 with degree  3 ,0.8143068170296893,0.9023895040555876
+0,bacteria30g_8nodes,213,Generell Spline approximation smoothing s1 with degree  1 ,0.8136405106663063,0.9020202385015018
+1,bacteria30g_8nodes,213,Generell Spline approximation smoothing s1 with degree  2 ,0.8143423702477693,0.902409203326168
+2,bacteria30g_8nodes,213,Generell Spline approximation smoothing s1 with degree  3 ,0.8143207808618231,0.9023972411647895
+3,bacteria30g_8nodes,213,Generell Spline approximation smoothing s2 with degree  1 ,58351.881753390284,241.56134159544297
+4,bacteria30g_8nodes,213,Generell Spline approximation smoothing s2 with degree  2 ,56194.24444440749,237.05325233880993
+5,bacteria30g_8nodes,213,Generell Spline approximation smoothing s2 with degree  3 ,55893.395260577854,236.41784040249132
+0,bacteria30g_8nodes,219,Polynominal  1,85794.85485574043,292.9075875694251
+1,bacteria30g_8nodes,219,Polynominal  2,54991.66659184007,234.50302043223255
+2,bacteria30g_8nodes,219,Polynominal  3,40754.87556401528,201.87836824190768
+3,bacteria30g_8nodes,219,Polynominal_curve  1,85794.85485574043,292.9075875694251
+4,bacteria30g_8nodes,219,Polynominal_curve  2,54991.66659184007,234.50302043223255
+5,bacteria30g_8nodes,219,Polynominal_curve  3,40754.875564015274,201.87836824190768
+0,bacteria30g_8nodes,219,Log_Polynominal  1,1.7202166364045215,2.088638063266618
+1,bacteria30g_8nodes,219,Log_Polynominal  2,1.3082478256224845,1.6792578024779043
+2,bacteria30g_8nodes,219,Log_Polynominal  3,1.3025460424035176,1.672168736501897
+3,bacteria30g_8nodes,219,Log_curve  1,inf,9.600478100959965e+182
+4,bacteria30g_8nodes,219,Log_curve  2,inf,7.432635822379234e+165
+5,bacteria30g_8nodes,219,Log_curve  3,inf,1.2597530658652722e+199
+0,bacteria30g_8nodes,219,Smoothing Spline,15012.269829089682,122.52456826730581
+0,bacteria30g_8nodes,219,Univariatn Spline smoothing approximation 1 with degree  1 ,85794.85485574043,292.9075875694251
+1,bacteria30g_8nodes,219,Univariatn Spline smoothing approximation 1 with degree  2 ,54991.666591840076,234.50302043223255
+2,bacteria30g_8nodes,219,Univariatn Spline smoothing approximation 1 with degree  3 ,40754.875564015274,201.87836824190768
+3,bacteria30g_8nodes,219,Univariatn Spline smoothing approximation 2 with degree  1 ,0.8133551466283061,0.9018620441222184
+4,bacteria30g_8nodes,219,Univariatn Spline smoothing approximation 2 with degree  2 ,0.8126925932106728,0.901494644027724
+5,bacteria30g_8nodes,219,Univariatn Spline smoothing approximation 2 with degree  3 ,0.8126777087269883,0.901486388542272
+0,bacteria30g_8nodes,219,Generell Spline approximation smoothing s1 with degree  1 ,0.8133551466283061,0.9018620441222184
+1,bacteria30g_8nodes,219,Generell Spline approximation smoothing s1 with degree  2 ,0.8126925932106728,0.901494644027724
+2,bacteria30g_8nodes,219,Generell Spline approximation smoothing s1 with degree  3 ,0.8126777087269883,0.901486388542272
+3,bacteria30g_8nodes,219,Generell Spline approximation smoothing s2 with degree  1 ,85794.85485574043,292.9075875694251
+4,bacteria30g_8nodes,219,Generell Spline approximation smoothing s2 with degree  2 ,54991.666591840076,234.50302043223255
+5,bacteria30g_8nodes,219,Generell Spline approximation smoothing s2 with degree  3 ,40754.875564015274,201.87836824190768
+0,bacteria30g_8nodes,222,Polynominal  1,75803.02215537401,275.3234863853319
+1,bacteria30g_8nodes,222,Polynominal  2,46776.97080606584,216.27984373506894
+2,bacteria30g_8nodes,222,Polynominal  3,44287.186591374855,210.4452104263123
+3,bacteria30g_8nodes,222,Polynominal_curve  1,75803.022155374,275.3234863853318
+4,bacteria30g_8nodes,222,Polynominal_curve  2,46776.97080606584,216.27984373506894
+5,bacteria30g_8nodes,222,Polynominal_curve  3,44287.186591374855,210.4452104263123
+0,bacteria30g_8nodes,222,Log_Polynominal  1,1.7440409419440597,2.108109116699333
+1,bacteria30g_8nodes,222,Log_Polynominal  2,1.325089116685028,1.6998612313500392
+2,bacteria30g_8nodes,222,Log_Polynominal  3,1.324997691514584,1.6997506942435137
+3,bacteria30g_8nodes,222,Log_curve  1,inf,2.603250673546431e+185
+4,bacteria30g_8nodes,222,Log_curve  2,inf,3.90741525278775e+181
+5,bacteria30g_8nodes,222,Log_curve  3,inf,6.827492738248364e+187
+0,bacteria30g_8nodes,222,Smoothing Spline,14270.608193030672,119.45965089950109
+0,bacteria30g_8nodes,222,Univariatn Spline smoothing approximation 1 with degree  1 ,75803.02215537401,275.3234863853319
+1,bacteria30g_8nodes,222,Univariatn Spline smoothing approximation 1 with degree  2 ,46776.97080606584,216.27984373506894
+2,bacteria30g_8nodes,222,Univariatn Spline smoothing approximation 1 with degree  3 ,44287.18659137485,210.44521042631226
+3,bacteria30g_8nodes,222,Univariatn Spline smoothing approximation 2 with degree  1 ,0.7941809312625695,0.8911682957009689
+4,bacteria30g_8nodes,222,Univariatn Spline smoothing approximation 2 with degree  2 ,0.7937846643209504,0.8909459379339189
+5,bacteria30g_8nodes,222,Univariatn Spline smoothing approximation 2 with degree  3 ,0.7937190211815947,0.8909090981585016
+0,bacteria30g_8nodes,222,Generell Spline approximation smoothing s1 with degree  1 ,0.7941809312625695,0.8911682957009689
+1,bacteria30g_8nodes,222,Generell Spline approximation smoothing s1 with degree  2 ,0.7937846643209504,0.8909459379339189
+2,bacteria30g_8nodes,222,Generell Spline approximation smoothing s1 with degree  3 ,0.7937190211815947,0.8909090981585016
+3,bacteria30g_8nodes,222,Generell Spline approximation smoothing s2 with degree  1 ,75803.02215537401,275.3234863853319
+4,bacteria30g_8nodes,222,Generell Spline approximation smoothing s2 with degree  2 ,46776.97080606584,216.27984373506894
+5,bacteria30g_8nodes,222,Generell Spline approximation smoothing s2 with degree  3 ,44287.18659137485,210.44521042631226
+0,bacteria30g_8nodes,223,Polynominal  1,183843.59346370373,428.7698607221638
+1,bacteria30g_8nodes,223,Polynominal  2,172690.18262666615,415.56008305257876
+2,bacteria30g_8nodes,223,Polynominal  3,151707.61907453515,389.49662267410633
+3,bacteria30g_8nodes,223,Polynominal_curve  1,183843.59346370373,428.7698607221638
+4,bacteria30g_8nodes,223,Polynominal_curve  2,172690.18262666615,415.56008305257876
+5,bacteria30g_8nodes,223,Polynominal_curve  3,151707.61907453515,389.49662267410633
+0,bacteria30g_8nodes,223,Log_Polynominal  1,1.8049589111156847,2.156452673714344
+1,bacteria30g_8nodes,223,Log_Polynominal  2,1.6756812740219245,2.0513218419176042
+2,bacteria30g_8nodes,223,Log_Polynominal  3,1.5847000632662926,1.970966926221204
+3,bacteria30g_8nodes,223,Log_curve  1,inf,3.904816299092878e+175
+4,bacteria30g_8nodes,223,Log_curve  2,inf,8.332223821325349e+174
+5,bacteria30g_8nodes,223,Log_curve  3,inf,3.7349655686656965e+209
+0,bacteria30g_8nodes,223,Smoothing Spline,60191.6353537125,245.33983645896666
+0,bacteria30g_8nodes,223,Univariatn Spline smoothing approximation 1 with degree  1 ,183843.59346370376,428.7698607221638
+1,bacteria30g_8nodes,223,Univariatn Spline smoothing approximation 1 with degree  2 ,172690.18262666618,415.56008305257876
+2,bacteria30g_8nodes,223,Univariatn Spline smoothing approximation 1 with degree  3 ,151707.61907453518,389.49662267410633
+3,bacteria30g_8nodes,223,Univariatn Spline smoothing approximation 2 with degree  1 ,0.8126393640493996,0.9014651208168842
+4,bacteria30g_8nodes,223,Univariatn Spline smoothing approximation 2 with degree  2 ,0.8120601713410077,0.9011438127962749
+5,bacteria30g_8nodes,223,Univariatn Spline smoothing approximation 2 with degree  3 ,0.8126921788363286,0.9014944142014019
+0,bacteria30g_8nodes,223,Generell Spline approximation smoothing s1 with degree  1 ,0.8126393640493996,0.9014651208168842
+1,bacteria30g_8nodes,223,Generell Spline approximation smoothing s1 with degree  2 ,0.8120601713410077,0.9011438127962749
+2,bacteria30g_8nodes,223,Generell Spline approximation smoothing s1 with degree  3 ,0.8126812379599136,0.9014883459922893
+3,bacteria30g_8nodes,223,Generell Spline approximation smoothing s2 with degree  1 ,183843.59346370376,428.7698607221638
+4,bacteria30g_8nodes,223,Generell Spline approximation smoothing s2 with degree  2 ,172690.18262666618,415.56008305257876
+5,bacteria30g_8nodes,223,Generell Spline approximation smoothing s2 with degree  3 ,151707.61907453518,389.49662267410633
+0,bacteria30g_8nodes,226,Polynominal  1,109111.27620851535,330.3199603543742
+1,bacteria30g_8nodes,226,Polynominal  2,93872.94068761128,306.3869133752473
+2,bacteria30g_8nodes,226,Polynominal  3,68635.05228481487,261.9829236511702
+3,bacteria30g_8nodes,226,Polynominal_curve  1,109111.27620851535,330.3199603543742
+4,bacteria30g_8nodes,226,Polynominal_curve  2,93872.9406876113,306.38691337524733
+5,bacteria30g_8nodes,226,Polynominal_curve  3,68635.05228481487,261.9829236511702
+0,bacteria30g_8nodes,226,Log_Polynominal  1,1.8565915939948403,2.195921466534836
+1,bacteria30g_8nodes,226,Log_Polynominal  2,1.5962630712347718,1.9815128084996336
+2,bacteria30g_8nodes,226,Log_Polynominal  3,1.5516352316985815,1.9402254281722253
+3,bacteria30g_8nodes,226,Log_curve  1,inf,2.1789989360950566e+164
+4,bacteria30g_8nodes,226,Log_curve  2,inf,1.3658350977876034e+168
+5,bacteria30g_8nodes,226,Log_curve  3,inf,7.685482750685727e+193
+0,bacteria30g_8nodes,226,Smoothing Spline,20745.239499606698,144.03207802294148
+0,bacteria30g_8nodes,226,Univariatn Spline smoothing approximation 1 with degree  1 ,109111.27620851538,330.31996035437425
+1,bacteria30g_8nodes,226,Univariatn Spline smoothing approximation 1 with degree  2 ,93872.94068761126,306.3869133752473
+2,bacteria30g_8nodes,226,Univariatn Spline smoothing approximation 1 with degree  3 ,68635.05228481487,261.9829236511702
+3,bacteria30g_8nodes,226,Univariatn Spline smoothing approximation 2 with degree  1 ,0.7973099095628071,0.8929221184195222
+4,bacteria30g_8nodes,226,Univariatn Spline smoothing approximation 2 with degree  2 ,0.798158561261646,0.8933972024030779
+5,bacteria30g_8nodes,226,Univariatn Spline smoothing approximation 2 with degree  3 ,0.797939979497119,0.893274862232851
+0,bacteria30g_8nodes,226,Generell Spline approximation smoothing s1 with degree  1 ,0.7973099095628071,0.8929221184195222
+1,bacteria30g_8nodes,226,Generell Spline approximation smoothing s1 with degree  2 ,0.798158561261646,0.8933972024030779
+2,bacteria30g_8nodes,226,Generell Spline approximation smoothing s1 with degree  3 ,0.797939979497119,0.893274862232851
+3,bacteria30g_8nodes,226,Generell Spline approximation smoothing s2 with degree  1 ,109111.27620851538,330.31996035437425
+4,bacteria30g_8nodes,226,Generell Spline approximation smoothing s2 with degree  2 ,93872.94068761126,306.3869133752473
+5,bacteria30g_8nodes,226,Generell Spline approximation smoothing s2 with degree  3 ,68635.05228481487,261.9829236511702
+0,bacteria30g_8nodes,227,Polynominal  1,54914.69260795628,234.33884144109845
+1,bacteria30g_8nodes,227,Polynominal  2,53842.40739721339,232.03966772345927
+2,bacteria30g_8nodes,227,Polynominal  3,47874.54361808973,218.80252196464676
+3,bacteria30g_8nodes,227,Polynominal_curve  1,54914.69260795628,234.33884144109845
+4,bacteria30g_8nodes,227,Polynominal_curve  2,53842.40739721339,232.03966772345927
+5,bacteria30g_8nodes,227,Polynominal_curve  3,47874.54361808973,218.80252196464676
+0,bacteria30g_8nodes,227,Log_Polynominal  1,1.2730193727766528,1.6344659714557395
+1,bacteria30g_8nodes,227,Log_Polynominal  2,1.2697598210128986,1.6301957131260212
+2,bacteria30g_8nodes,227,Log_Polynominal  3,1.2268248320784143,1.5716699073200449
+3,bacteria30g_8nodes,227,Log_curve  1,inf,4.290212746889175e+177
+4,bacteria30g_8nodes,227,Log_curve  2,inf,8.056964546092828e+220
+5,bacteria30g_8nodes,227,Log_curve  3,inf,1.1153025634964818e+221
+0,bacteria30g_8nodes,227,Smoothing Spline,16076.80067761649,126.79432431152622
+0,bacteria30g_8nodes,227,Univariatn Spline smoothing approximation 1 with degree  1 ,54914.692607956276,234.33884144109845
+1,bacteria30g_8nodes,227,Univariatn Spline smoothing approximation 1 with degree  2 ,53842.407397213414,232.03966772345933
+2,bacteria30g_8nodes,227,Univariatn Spline smoothing approximation 1 with degree  3 ,47874.543618089745,218.8025219646468
+3,bacteria30g_8nodes,227,Univariatn Spline smoothing approximation 2 with degree  1 ,0.799990783880508,0.8944220390176597
+4,bacteria30g_8nodes,227,Univariatn Spline smoothing approximation 2 with degree  2 ,0.7994819820413284,0.8941375632649198
+5,bacteria30g_8nodes,227,Univariatn Spline smoothing approximation 2 with degree  3 ,0.799971829765639,0.8944114432215405
+0,bacteria30g_8nodes,227,Generell Spline approximation smoothing s1 with degree  1 ,0.799990783880508,0.8944220390176597
+1,bacteria30g_8nodes,227,Generell Spline approximation smoothing s1 with degree  2 ,0.7994819820413284,0.8941375632649198
+2,bacteria30g_8nodes,227,Generell Spline approximation smoothing s1 with degree  3 ,0.799971829765639,0.8944114432215405
+3,bacteria30g_8nodes,227,Generell Spline approximation smoothing s2 with degree  1 ,54914.692607956276,234.33884144109845
+4,bacteria30g_8nodes,227,Generell Spline approximation smoothing s2 with degree  2 ,53842.407397213414,232.03966772345933
+5,bacteria30g_8nodes,227,Generell Spline approximation smoothing s2 with degree  3 ,47874.543618089745,218.8025219646468
+0,bacteria30g_8nodes,228,Polynominal  1,213968.0517563774,462.5668078844151
+1,bacteria30g_8nodes,228,Polynominal  2,210386.54218044286,458.67912769216224
+2,bacteria30g_8nodes,228,Polynominal  3,206397.87883744444,454.3103331836559
+3,bacteria30g_8nodes,228,Polynominal_curve  1,213968.0517563774,462.5668078844151
+4,bacteria30g_8nodes,228,Polynominal_curve  2,210386.54218044286,458.67912769216224
+5,bacteria30g_8nodes,228,Polynominal_curve  3,206397.87883744444,454.3103331836559
+0,bacteria30g_8nodes,228,Log_Polynominal  1,1.660624675901665,2.0384208796248706
+1,bacteria30g_8nodes,228,Log_Polynominal  2,1.6358594477455304,2.016870579456249
+2,bacteria30g_8nodes,228,Log_Polynominal  3,1.628252428196186,2.0101658614059508
+3,bacteria30g_8nodes,228,Log_curve  1,inf,1.3570529513795367e+189
+4,bacteria30g_8nodes,228,Log_curve  2,inf,1.2967544723390188e+223
+5,bacteria30g_8nodes,228,Log_curve  3,inf,4.706010828791051e+215
+0,bacteria30g_8nodes,228,Smoothing Spline,43843.67000923646,209.3888010597426
+0,bacteria30g_8nodes,228,Univariatn Spline smoothing approximation 1 with degree  1 ,213968.0517563774,462.5668078844151
+1,bacteria30g_8nodes,228,Univariatn Spline smoothing approximation 1 with degree  2 ,210386.54218044292,458.6791276921623
+2,bacteria30g_8nodes,228,Univariatn Spline smoothing approximation 1 with degree  3 ,206397.87883744447,454.3103331836559
+3,bacteria30g_8nodes,228,Univariatn Spline smoothing approximation 2 with degree  1 ,0.8074781802349301,0.8985978968565028
+4,bacteria30g_8nodes,228,Univariatn Spline smoothing approximation 2 with degree  2 ,0.8075555963130916,0.8986409718642321
+5,bacteria30g_8nodes,228,Univariatn Spline smoothing approximation 2 with degree  3 ,0.8074106041077286,0.8985602951987856
+0,bacteria30g_8nodes,228,Generell Spline approximation smoothing s1 with degree  1 ,0.8074781802349301,0.8985978968565028
+1,bacteria30g_8nodes,228,Generell Spline approximation smoothing s1 with degree  2 ,0.8075555963130916,0.8986409718642321
+2,bacteria30g_8nodes,228,Generell Spline approximation smoothing s1 with degree  3 ,0.8074106041077286,0.8985602951987856
+3,bacteria30g_8nodes,228,Generell Spline approximation smoothing s2 with degree  1 ,213968.0517563774,462.5668078844151
+4,bacteria30g_8nodes,228,Generell Spline approximation smoothing s2 with degree  2 ,210386.54218044292,458.6791276921623
+5,bacteria30g_8nodes,228,Generell Spline approximation smoothing s2 with degree  3 ,206397.87883744447,454.3103331836559
+0,bacteria30g_8nodes,248,Polynominal  1,109762.49972428096,331.3042404260485
+1,bacteria30g_8nodes,248,Polynominal  2,100859.4460331288,317.5837622315234
+2,bacteria30g_8nodes,248,Polynominal  3,100808.70750810075,317.5038700679107
+3,bacteria30g_8nodes,248,Polynominal_curve  1,109762.49972428096,331.3042404260485
+4,bacteria30g_8nodes,248,Polynominal_curve  2,100859.4460331288,317.5837622315234
+5,bacteria30g_8nodes,248,Polynominal_curve  3,100808.70750810075,317.5038700679107
+0,bacteria30g_8nodes,248,Log_Polynominal  1,1.4373154273465503,1.8263323825249478
+1,bacteria30g_8nodes,248,Log_Polynominal  2,1.3235421273949628,1.6979889643635722
+2,bacteria30g_8nodes,248,Log_Polynominal  3,1.30190742160685,1.6713710379009128
+3,bacteria30g_8nodes,248,Log_curve  1,inf,5.593250936841363e+202
+4,bacteria30g_8nodes,248,Log_curve  2,inf,2.1918832504085987e+184
+5,bacteria30g_8nodes,248,Log_curve  3,inf,1.3378806247217572e+185
+0,bacteria30g_8nodes,248,Smoothing Spline,30586.36848611599,174.88958941605412
+0,bacteria30g_8nodes,248,Univariatn Spline smoothing approximation 1 with degree  1 ,109762.49972428096,331.3042404260485
+1,bacteria30g_8nodes,248,Univariatn Spline smoothing approximation 1 with degree  2 ,100859.44603312883,317.58376223152345
+2,bacteria30g_8nodes,248,Univariatn Spline smoothing approximation 1 with degree  3 ,100808.70750810075,317.5038700679107
+3,bacteria30g_8nodes,248,Univariatn Spline smoothing approximation 2 with degree  1 ,0.7979252768559468,0.8932666325660815
+4,bacteria30g_8nodes,248,Univariatn Spline smoothing approximation 2 with degree  2 ,0.7979519186564947,0.8932815450105833
+5,bacteria30g_8nodes,248,Univariatn Spline smoothing approximation 2 with degree  3 ,0.7979433462354668,0.8932767467226866
+0,bacteria30g_8nodes,248,Generell Spline approximation smoothing s1 with degree  1 ,0.7978727906312987,0.8932372532710997
+1,bacteria30g_8nodes,248,Generell Spline approximation smoothing s1 with degree  2 ,0.7979519186564947,0.8932815450105833
+2,bacteria30g_8nodes,248,Generell Spline approximation smoothing s1 with degree  3 ,0.7977932065098813,0.8931927040173813
+3,bacteria30g_8nodes,248,Generell Spline approximation smoothing s2 with degree  1 ,109762.49972428096,331.3042404260485
+4,bacteria30g_8nodes,248,Generell Spline approximation smoothing s2 with degree  2 ,100859.44603312883,317.58376223152345
+5,bacteria30g_8nodes,248,Generell Spline approximation smoothing s2 with degree  3 ,100808.70750810075,317.5038700679107

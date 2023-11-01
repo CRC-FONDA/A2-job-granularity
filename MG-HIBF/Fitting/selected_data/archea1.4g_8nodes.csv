@@ -1,0 +1,201 @@
+,Reference Genom,Node Name,prediction method,mse,rmse
+0,archea1.4g_8nodes,213,Polynominal  1,2300.7299941334804,47.965925344284564
+1,archea1.4g_8nodes,213,Polynominal  2,2222.8611818908885,47.14722878272792
+2,archea1.4g_8nodes,213,Polynominal  3,1908.2448426809365,43.683461889838085
+3,archea1.4g_8nodes,213,Polynominal_curve  1,2300.7299941334804,47.965925344284564
+4,archea1.4g_8nodes,213,Polynominal_curve  2,2222.861181890887,47.14722878272791
+5,archea1.4g_8nodes,213,Polynominal_curve  3,1908.2448426809365,43.683461889838085
+0,archea1.4g_8nodes,213,Log_Polynominal  1,1.1601721208455147,1.4702694487900023
+1,archea1.4g_8nodes,213,Log_Polynominal  2,1.0690920337882963,1.294954767726982
+2,archea1.4g_8nodes,213,Log_Polynominal  3,1.0550124269008336,1.260381219221575
+3,archea1.4g_8nodes,213,Log_curve  1,inf,1.38574882439261e+59
+4,archea1.4g_8nodes,213,Log_curve  2,inf,5.255219968408949e+61
+5,archea1.4g_8nodes,213,Log_curve  3,inf,1.1131292890934525e+61
+0,archea1.4g_8nodes,213,Smoothing Spline,1.2608812677749515,1.1228896952839809
+0,archea1.4g_8nodes,213,Univariatn Spline smoothing approximation 1 with degree  1 ,2300.72999413348,47.965925344284564
+1,archea1.4g_8nodes,213,Univariatn Spline smoothing approximation 1 with degree  2 ,2222.861181890888,47.14722878272792
+2,archea1.4g_8nodes,213,Univariatn Spline smoothing approximation 1 with degree  3 ,1908.2448426809362,43.683461889838085
+3,archea1.4g_8nodes,213,Univariatn Spline smoothing approximation 2 with degree  1 ,0.634963996471366,0.7968462815821921
+4,archea1.4g_8nodes,213,Univariatn Spline smoothing approximation 2 with degree  2 ,0.6350036714185968,0.7968711761750432
+5,archea1.4g_8nodes,213,Univariatn Spline smoothing approximation 2 with degree  3 ,0.6348908394489984,0.7968003761601763
+0,archea1.4g_8nodes,213,Generell Spline approximation smoothing s1 with degree  1 ,0.6348478360246675,0.7967733906354225
+1,archea1.4g_8nodes,213,Generell Spline approximation smoothing s1 with degree  2 ,0.6350036714185968,0.7968711761750432
+2,archea1.4g_8nodes,213,Generell Spline approximation smoothing s1 with degree  3 ,0.6348908394489984,0.7968003761601763
+3,archea1.4g_8nodes,213,Generell Spline approximation smoothing s2 with degree  1 ,2300.72999413348,47.965925344284564
+4,archea1.4g_8nodes,213,Generell Spline approximation smoothing s2 with degree  2 ,2222.861181890888,47.14722878272792
+5,archea1.4g_8nodes,213,Generell Spline approximation smoothing s2 with degree  3 ,1908.2448426809362,43.683461889838085
+0,archea1.4g_8nodes,216,Polynominal  1,318.48293441708216,17.846090171717787
+1,archea1.4g_8nodes,216,Polynominal  2,180.45353451360222,13.433299464897008
+2,archea1.4g_8nodes,216,Polynominal  3,118.3155838506131,10.877296716124512
+3,archea1.4g_8nodes,216,Polynominal_curve  1,318.48293441708216,17.846090171717787
+4,archea1.4g_8nodes,216,Polynominal_curve  2,180.45353451360222,13.433299464897008
+5,archea1.4g_8nodes,216,Polynominal_curve  3,118.3155838506131,10.877296716124512
+0,archea1.4g_8nodes,216,Log_Polynominal  1,1.274959364898693,1.63699685310654
+1,archea1.4g_8nodes,216,Log_Polynominal  2,1.1526805456880862,1.4578291666995356
+2,archea1.4g_8nodes,216,Log_Polynominal  3,1.1196650649653745,1.3996171543116414
+3,archea1.4g_8nodes,216,Log_curve  1,inf,7.309935059903161e+29
+4,archea1.4g_8nodes,216,Log_curve  2,inf,5.17220611312976e+42
+5,archea1.4g_8nodes,216,Log_curve  3,inf,3.186466406208834e+40
+0,archea1.4g_8nodes,216,Smoothing Spline,29.221817527005392,5.405720814748519
+0,archea1.4g_8nodes,216,Univariatn Spline smoothing approximation 1 with degree  1 ,318.4829344170822,17.846090171717787
+1,archea1.4g_8nodes,216,Univariatn Spline smoothing approximation 1 with degree  2 ,180.45353451360205,13.433299464897
+2,archea1.4g_8nodes,216,Univariatn Spline smoothing approximation 1 with degree  3 ,118.315583850613,10.877296716124507
+3,archea1.4g_8nodes,216,Univariatn Spline smoothing approximation 2 with degree  1 ,0.6912746685100105,0.83142929254989
+4,archea1.4g_8nodes,216,Univariatn Spline smoothing approximation 2 with degree  2 ,0.6913262091008245,0.8314602871459493
+5,archea1.4g_8nodes,216,Univariatn Spline smoothing approximation 2 with degree  3 ,0.6914871306059487,0.8315570519248506
+0,archea1.4g_8nodes,216,Generell Spline approximation smoothing s1 with degree  1 ,0.6913655497263733,0.8314839443587431
+1,archea1.4g_8nodes,216,Generell Spline approximation smoothing s1 with degree  2 ,0.6913262091008245,0.8314602871459493
+2,archea1.4g_8nodes,216,Generell Spline approximation smoothing s1 with degree  3 ,0.6914871306059487,0.8315570519248506
+3,archea1.4g_8nodes,216,Generell Spline approximation smoothing s2 with degree  1 ,318.4829344170822,17.846090171717787
+4,archea1.4g_8nodes,216,Generell Spline approximation smoothing s2 with degree  2 ,180.45353451360205,13.433299464897
+5,archea1.4g_8nodes,216,Generell Spline approximation smoothing s2 with degree  3 ,118.315583850613,10.877296716124507
+0,archea1.4g_8nodes,221,Polynominal  1,721.8179875024869,26.86667056973169
+1,archea1.4g_8nodes,221,Polynominal  2,163.6845117838277,12.793924799834791
+2,archea1.4g_8nodes,221,Polynominal  3,163.4168832049762,12.783461315503567
+3,archea1.4g_8nodes,221,Polynominal_curve  1,721.8179875024869,26.86667056973169
+4,archea1.4g_8nodes,221,Polynominal_curve  2,163.6845117838277,12.793924799834791
+5,archea1.4g_8nodes,221,Polynominal_curve  3,163.4168832049762,12.783461315503567
+0,archea1.4g_8nodes,221,Log_Polynominal  1,1.0831995752300811,1.3267069516148842
+1,archea1.4g_8nodes,221,Log_Polynominal  2,1.0793692536509492,1.3183271366747722
+2,archea1.4g_8nodes,221,Log_Polynominal  3,1.0790576947552513,1.3176380996034889
+3,archea1.4g_8nodes,221,Log_curve  1,inf,1.6321164758981973e+34
+4,archea1.4g_8nodes,221,Log_curve  2,inf,1.1488546513784027e+44
+5,archea1.4g_8nodes,221,Log_curve  3,inf,5.3077971246894436e+50
+0,archea1.4g_8nodes,221,Smoothing Spline,14.069166443306004,3.750888753789694
+0,archea1.4g_8nodes,221,Univariatn Spline smoothing approximation 1 with degree  1 ,721.8179875024866,26.866670569731685
+1,archea1.4g_8nodes,221,Univariatn Spline smoothing approximation 1 with degree  2 ,163.68451178382767,12.793924799834791
+2,archea1.4g_8nodes,221,Univariatn Spline smoothing approximation 1 with degree  3 ,163.41688320497622,12.783461315503567
+3,archea1.4g_8nodes,221,Univariatn Spline smoothing approximation 2 with degree  1 ,0.6574628949057195,0.8108408567072329
+4,archea1.4g_8nodes,221,Univariatn Spline smoothing approximation 2 with degree  2 ,0.6569888901856591,0.8105485119261272
+5,archea1.4g_8nodes,221,Univariatn Spline smoothing approximation 2 with degree  3 ,0.6566038078065856,0.8103109327946807
+0,archea1.4g_8nodes,221,Generell Spline approximation smoothing s1 with degree  1 ,0.6574628949057195,0.8108408567072329
+1,archea1.4g_8nodes,221,Generell Spline approximation smoothing s1 with degree  2 ,0.6569888901856591,0.8105485119261272
+2,archea1.4g_8nodes,221,Generell Spline approximation smoothing s1 with degree  3 ,0.6566038078065856,0.8103109327946807
+3,archea1.4g_8nodes,221,Generell Spline approximation smoothing s2 with degree  1 ,721.8179875024866,26.866670569731685
+4,archea1.4g_8nodes,221,Generell Spline approximation smoothing s2 with degree  2 ,163.68451178382767,12.793924799834791
+5,archea1.4g_8nodes,221,Generell Spline approximation smoothing s2 with degree  3 ,163.41688320497622,12.783461315503567
+0,archea1.4g_8nodes,222,Polynominal  1,2565.0609716582494,50.646430986380956
+1,archea1.4g_8nodes,222,Polynominal  2,895.0108545056246,29.916732015807217
+2,archea1.4g_8nodes,222,Polynominal  3,753.4509284878644,27.449060612120487
+3,archea1.4g_8nodes,222,Polynominal_curve  1,2565.0609716582494,50.646430986380956
+4,archea1.4g_8nodes,222,Polynominal_curve  2,895.0108545056246,29.916732015807217
+5,archea1.4g_8nodes,222,Polynominal_curve  3,753.4509284878644,27.449060612120487
+0,archea1.4g_8nodes,222,Log_Polynominal  1,1.336748636458864,1.7138452394766104
+1,archea1.4g_8nodes,222,Log_Polynominal  2,1.1964087379980137,1.5272474463567896
+2,archea1.4g_8nodes,222,Log_Polynominal  3,1.146613997808507,1.447564879239418
+3,archea1.4g_8nodes,222,Log_curve  1,inf,7.592621488009162e+77
+4,archea1.4g_8nodes,222,Log_curve  2,inf,1.404214262645156e+99
+5,archea1.4g_8nodes,222,Log_curve  3,inf,8.264837646846663e+104
+0,archea1.4g_8nodes,222,Smoothing Spline,16.35899513007909,4.044625462274485
+0,archea1.4g_8nodes,222,Univariatn Spline smoothing approximation 1 with degree  1 ,2565.0609716582494,50.646430986380956
+1,archea1.4g_8nodes,222,Univariatn Spline smoothing approximation 1 with degree  2 ,895.0108545056243,29.916732015807213
+2,archea1.4g_8nodes,222,Univariatn Spline smoothing approximation 1 with degree  3 ,753.4509284878643,27.449060612120487
+3,archea1.4g_8nodes,222,Univariatn Spline smoothing approximation 2 with degree  1 ,0.6916981112172158,0.831683901020824
+4,archea1.4g_8nodes,222,Univariatn Spline smoothing approximation 2 with degree  2 ,0.6915781143993259,0.8316117570112426
+5,archea1.4g_8nodes,222,Univariatn Spline smoothing approximation 2 with degree  3 ,0.6914611504297495,0.8315414303747887
+0,archea1.4g_8nodes,222,Generell Spline approximation smoothing s1 with degree  1 ,0.6916981112172158,0.831683901020824
+1,archea1.4g_8nodes,222,Generell Spline approximation smoothing s1 with degree  2 ,0.6913859127369012,0.8314961892497771
+2,archea1.4g_8nodes,222,Generell Spline approximation smoothing s1 with degree  3 ,0.6908998373056262,0.8312038482259488
+3,archea1.4g_8nodes,222,Generell Spline approximation smoothing s2 with degree  1 ,2565.0609716582494,50.646430986380956
+4,archea1.4g_8nodes,222,Generell Spline approximation smoothing s2 with degree  2 ,895.0108545056243,29.916732015807213
+5,archea1.4g_8nodes,222,Generell Spline approximation smoothing s2 with degree  3 ,753.4509284878643,27.449060612120487
+0,archea1.4g_8nodes,225,Polynominal  1,6712.305703582376,81.92866228361339
+1,archea1.4g_8nodes,225,Polynominal  2,6635.689082419196,81.45973902744346
+2,archea1.4g_8nodes,225,Polynominal  3,5397.99099003792,73.4710214304791
+3,archea1.4g_8nodes,225,Polynominal_curve  1,6712.305703582376,81.92866228361339
+4,archea1.4g_8nodes,225,Polynominal_curve  2,6635.689082419196,81.45973902744346
+5,archea1.4g_8nodes,225,Polynominal_curve  3,5397.99099003792,73.4710214304791
+0,archea1.4g_8nodes,225,Log_Polynominal  1,1.9789468540041841,2.2845631095318617
+1,archea1.4g_8nodes,225,Log_Polynominal  2,1.7979320534028689,2.150977553027841
+2,archea1.4g_8nodes,225,Log_Polynominal  3,1.795253303407823,2.1488835925405834
+3,archea1.4g_8nodes,225,Log_curve  1,inf,8.766645260042391e+74
+4,archea1.4g_8nodes,225,Log_curve  2,inf,3.340506727407127e+96
+5,archea1.4g_8nodes,225,Log_curve  3,inf,1.281363138522852e+102
+0,archea1.4g_8nodes,225,Smoothing Spline,2875.4863458982436,53.623561480922206
+0,archea1.4g_8nodes,225,Univariatn Spline smoothing approximation 1 with degree  1 ,6712.305703582373,81.92866228361338
+1,archea1.4g_8nodes,225,Univariatn Spline smoothing approximation 1 with degree  2 ,6635.689082419195,81.45973902744346
+2,archea1.4g_8nodes,225,Univariatn Spline smoothing approximation 1 with degree  3 ,5397.990990037922,73.47102143047911
+3,archea1.4g_8nodes,225,Univariatn Spline smoothing approximation 2 with degree  1 ,0.6755889687180381,0.821942193051335
+4,archea1.4g_8nodes,225,Univariatn Spline smoothing approximation 2 with degree  2 ,0.6755178568361513,0.8218989334681919
+5,archea1.4g_8nodes,225,Univariatn Spline smoothing approximation 2 with degree  3 ,0.6759362699578362,0.8221534345594113
+0,archea1.4g_8nodes,225,Generell Spline approximation smoothing s1 with degree  1 ,0.6755889687180381,0.821942193051335
+1,archea1.4g_8nodes,225,Generell Spline approximation smoothing s1 with degree  2 ,0.6755178568361513,0.8218989334681919
+2,archea1.4g_8nodes,225,Generell Spline approximation smoothing s1 with degree  3 ,0.6755403359695867,0.8219126084746399
+3,archea1.4g_8nodes,225,Generell Spline approximation smoothing s2 with degree  1 ,6712.305703582373,81.92866228361338
+4,archea1.4g_8nodes,225,Generell Spline approximation smoothing s2 with degree  2 ,6635.689082419195,81.45973902744346
+5,archea1.4g_8nodes,225,Generell Spline approximation smoothing s2 with degree  3 ,5397.990990037922,73.47102143047911
+0,archea1.4g_8nodes,244,Polynominal  1,245.35452514916915,15.66379663903899
+1,archea1.4g_8nodes,244,Polynominal  2,187.11667131478376,13.679059591754974
+2,archea1.4g_8nodes,244,Polynominal  3,186.68970009144581,13.663443932312447
+3,archea1.4g_8nodes,244,Polynominal_curve  1,245.35452514916915,15.66379663903899
+4,archea1.4g_8nodes,244,Polynominal_curve  2,187.1166713147837,13.679059591754973
+5,archea1.4g_8nodes,244,Polynominal_curve  3,186.68970009144581,13.663443932312447
+0,archea1.4g_8nodes,244,Log_Polynominal  1,1.3808958964054354,1.764902578770371
+1,archea1.4g_8nodes,244,Log_Polynominal  2,1.2794966777921097,1.642885599306004
+2,archea1.4g_8nodes,244,Log_Polynominal  3,1.2375729403916356,1.5867438809963883
+3,archea1.4g_8nodes,244,Log_curve  1,inf,4.065435757669622e+17
+4,archea1.4g_8nodes,244,Log_curve  2,inf,547958106915831.06
+5,archea1.4g_8nodes,244,Log_curve  3,inf,393384416005475.94
+0,archea1.4g_8nodes,244,Smoothing Spline,2.9772042655052977,1.7254576973966351
+0,archea1.4g_8nodes,244,Univariatn Spline smoothing approximation 1 with degree  1 ,245.35452514916915,15.66379663903899
+1,archea1.4g_8nodes,244,Univariatn Spline smoothing approximation 1 with degree  2 ,187.11667131478373,13.679059591754973
+2,archea1.4g_8nodes,244,Univariatn Spline smoothing approximation 1 with degree  3 ,186.6897000914458,13.663443932312445
+3,archea1.4g_8nodes,244,Univariatn Spline smoothing approximation 2 with degree  1 ,0.6835657923128372,0.8267803773148207
+4,archea1.4g_8nodes,244,Univariatn Spline smoothing approximation 2 with degree  2 ,0.6838703027866375,0.8269645112014405
+5,archea1.4g_8nodes,244,Univariatn Spline smoothing approximation 2 with degree  3 ,0.6837609297978868,0.8268983793658606
+0,archea1.4g_8nodes,244,Generell Spline approximation smoothing s1 with degree  1 ,0.6835657923128372,0.8267803773148207
+1,archea1.4g_8nodes,244,Generell Spline approximation smoothing s1 with degree  2 ,0.6836069027390812,0.8268052386983776
+2,archea1.4g_8nodes,244,Generell Spline approximation smoothing s1 with degree  3 ,0.6838360459693832,0.8269437985554903
+3,archea1.4g_8nodes,244,Generell Spline approximation smoothing s2 with degree  1 ,245.35452514916915,15.66379663903899
+4,archea1.4g_8nodes,244,Generell Spline approximation smoothing s2 with degree  2 ,187.11667131478373,13.679059591754973
+5,archea1.4g_8nodes,244,Generell Spline approximation smoothing s2 with degree  3 ,186.6897000914458,13.663443932312445
+0,archea1.4g_8nodes,247,Polynominal  1,276.28705332511396,16.62188477054013
+1,archea1.4g_8nodes,247,Polynominal  2,265.7031228654117,16.300402536913364
+2,archea1.4g_8nodes,247,Polynominal  3,201.48308607131773,14.194473786347901
+3,archea1.4g_8nodes,247,Polynominal_curve  1,276.28705332511396,16.62188477054013
+4,archea1.4g_8nodes,247,Polynominal_curve  2,265.7031228654117,16.300402536913364
+5,archea1.4g_8nodes,247,Polynominal_curve  3,201.48308607131773,14.194473786347901
+0,archea1.4g_8nodes,247,Log_Polynominal  1,1.3412715804499362,1.7192108776212272
+1,archea1.4g_8nodes,247,Log_Polynominal  2,1.2119130914274026,1.550234806811542
+2,archea1.4g_8nodes,247,Log_Polynominal  3,1.1551502411786103,1.461958237465304
+3,archea1.4g_8nodes,247,Log_curve  1,inf,1.1103802771346829e+40
+4,archea1.4g_8nodes,247,Log_curve  2,inf,4.641884308746249e+35
+5,archea1.4g_8nodes,247,Log_curve  3,inf,4.9475707523916494e+35
+0,archea1.4g_8nodes,247,Smoothing Spline,6.919033042832616,2.630405490192076
+0,archea1.4g_8nodes,247,Univariatn Spline smoothing approximation 1 with degree  1 ,276.28705332511385,16.621884770540127
+1,archea1.4g_8nodes,247,Univariatn Spline smoothing approximation 1 with degree  2 ,265.70312286541173,16.300402536913367
+2,archea1.4g_8nodes,247,Univariatn Spline smoothing approximation 1 with degree  3 ,201.4830860713177,14.194473786347901
+3,archea1.4g_8nodes,247,Univariatn Spline smoothing approximation 2 with degree  1 ,0.6666652485382948,0.816495712504539
+4,archea1.4g_8nodes,247,Univariatn Spline smoothing approximation 2 with degree  2 ,0.6665769771469501,0.8164416556906868
+5,archea1.4g_8nodes,247,Univariatn Spline smoothing approximation 2 with degree  3 ,0.6665850350984692,0.8164465904751328
+0,archea1.4g_8nodes,247,Generell Spline approximation smoothing s1 with degree  1 ,0.6667178971884522,0.8165279524844524
+1,archea1.4g_8nodes,247,Generell Spline approximation smoothing s1 with degree  2 ,0.6665769771469501,0.8164416556906868
+2,archea1.4g_8nodes,247,Generell Spline approximation smoothing s1 with degree  3 ,0.6664567823115699,0.8163680434164299
+3,archea1.4g_8nodes,247,Generell Spline approximation smoothing s2 with degree  1 ,276.28705332511385,16.621884770540127
+4,archea1.4g_8nodes,247,Generell Spline approximation smoothing s2 with degree  2 ,265.70312286541173,16.300402536913367
+5,archea1.4g_8nodes,247,Generell Spline approximation smoothing s2 with degree  3 ,201.4830860713177,14.194473786347901
+0,archea1.4g_8nodes,248,Polynominal  1,1482.0634864045333,38.497577669309706
+1,archea1.4g_8nodes,248,Polynominal  2,1156.096701118212,34.00142204552939
+2,archea1.4g_8nodes,248,Polynominal  3,973.0557708700877,31.193841874159837
+3,archea1.4g_8nodes,248,Polynominal_curve  1,1482.0634864045333,38.497577669309706
+4,archea1.4g_8nodes,248,Polynominal_curve  2,1156.096701118212,34.00142204552939
+5,archea1.4g_8nodes,248,Polynominal_curve  3,973.0557708700877,31.193841874159837
+0,archea1.4g_8nodes,248,Log_Polynominal  1,1.508456800255732,1.898683548393678
+1,archea1.4g_8nodes,248,Log_Polynominal  2,1.405936079465872,1.7926553889454937
+2,archea1.4g_8nodes,248,Log_Polynominal  3,1.3010596338742004,1.6703109071203757
+3,archea1.4g_8nodes,248,Log_curve  1,inf,4.1602345381809786e+55
+4,archea1.4g_8nodes,248,Log_curve  2,inf,2.6008990259470615e+46
+5,archea1.4g_8nodes,248,Log_curve  3,inf,1.8696201914095082e+53
+0,archea1.4g_8nodes,248,Smoothing Spline,421.51116777095143,20.530737146311903
+0,archea1.4g_8nodes,248,Univariatn Spline smoothing approximation 1 with degree  1 ,1482.0634864045333,38.497577669309706
+1,archea1.4g_8nodes,248,Univariatn Spline smoothing approximation 1 with degree  2 ,1156.096701118212,34.00142204552939
+2,archea1.4g_8nodes,248,Univariatn Spline smoothing approximation 1 with degree  3 ,973.0557708700879,31.19384187415984
+3,archea1.4g_8nodes,248,Univariatn Spline smoothing approximation 2 with degree  1 ,0.666542285242654,0.8164204096191214
+4,archea1.4g_8nodes,248,Univariatn Spline smoothing approximation 2 with degree  2 ,0.6667570509171464,0.8165519278754698
+5,archea1.4g_8nodes,248,Univariatn Spline smoothing approximation 2 with degree  3 ,0.6666265565630732,0.8164720182364325
+0,archea1.4g_8nodes,248,Generell Spline approximation smoothing s1 with degree  1 ,0.6668177680690806,0.8165891060191046
+1,archea1.4g_8nodes,248,Generell Spline approximation smoothing s1 with degree  2 ,0.6667570509171464,0.8165519278754698
+2,archea1.4g_8nodes,248,Generell Spline approximation smoothing s1 with degree  3 ,0.666313040117808,0.8162800010522174
+3,archea1.4g_8nodes,248,Generell Spline approximation smoothing s2 with degree  1 ,1482.0634864045333,38.497577669309706
+4,archea1.4g_8nodes,248,Generell Spline approximation smoothing s2 with degree  2 ,1156.096701118212,34.00142204552939
+5,archea1.4g_8nodes,248,Generell Spline approximation smoothing s2 with degree  3 ,973.0557708700879,31.19384187415984
