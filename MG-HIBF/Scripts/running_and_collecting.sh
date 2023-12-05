@@ -11,12 +11,12 @@ fi
 #weird stuff making sure that snakemake, python, tmux and bash work together
 ###################################################################################
 . ~/.bashrc
-export PATH="/data/scratch2/manuez42/mambaforge/bin:$PATH"
-export PATH="/data/scratch2/manuez42/mambaforge/bin/:$PATH"
-export PATH="/data/scratch2/manuez42/mambaforge/envs/snakemake/lib/python3.11/site-packages/numpy:$PATH"
-export PATH="/data/scratch2/manuez42/mambaforge/envs/snakemake/lib/python3.11/site-packages/numpy/:$PATH"
-export PATH="/data/scratch2/mambaforge/envs/snakemake/lib/python3.11/isite-packages/pandas:$PATH"
-export PATH="/data/scratch2/manuez42/mambaforge/envs/snakemake/lib/python3.11/site-packages/pandas/:$PATH"
+export PATH="/data/scratch2/manuez42/miniconda3/bin:$PATH"
+export PATH="/data/scratch2/manuez42/miniconda3/bin/:$PATH"
+export PATH="/data/scratch2/manuez42/miniconda3/envs/snakemake/lib/python3.11/site-packages/numpy:$PATH"
+export PATH="/data/scratch2/manuez42/miniconda3/envs/snakemake/lib/python3.11/site-packages/numpy/:$PATH"
+export PATH="/data/scratch2/manuez42/miniconda3/envs/snakemake/lib/python3.11/isite-packages/pandas:$PATH"
+export PATH="/data/scratch2/manuez42/miniconda3/envs/snakemake/lib/python3.11/site-packages/pandas/:$PATH"
 export PATH="/data/scratch2/manuez42/tools/raptor/build/bin/:$PATH"
 export PATH="/data/scratch2/manuez42/tools/query-distributor/target/release:$PATH"
 
