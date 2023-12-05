@@ -151,7 +151,7 @@ for ((i=0; i<100; i++)); do
 
             k_steps=$(randomX "$(($r_step / 10))" "$r_step")
             k_time=$(randomX "$(($j_time / 6))" "$j_time")
-            k_size=$(randomX "$j_size" "$(($j_size * 3))")
+            k_size=$(randomX "$j_size" "$(("$j_size * 3" | bc -l))")
     ## $1 is filepath
     ## $2 is files per bin
     ## $3 is memory
