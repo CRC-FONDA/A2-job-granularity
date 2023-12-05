@@ -11,14 +11,14 @@ fi
 #weird stuff making sure that snakemake, python, tmux and bash work together
 ###################################################################################
 . ~/.bashrc
-export PATH="/data/scratch/manuez42/mambaforge/bin:$PATH"
-export PATH="/data/scratch/manuez42/mambaforge/bin/:$PATH"
-export PATH="/data/scratch/manuez42/mambaforge/envs/snakemake/lib/python3.11/site-packages/numpy:$PATH"
-export PATH="/data/scratch/manuez42/mambaforge/envs/snakemake/lib/python3.11/site-packages/numpy/:$PATH"
-export PATH="/data/scratch/mambaforge/envs/snakemake/lib/python3.11/isite-packages/pandas:$PATH"
-export PATH="/data/scratch/manuez42/mambaforge/envs/snakemake/lib/python3.11/site-packages/pandas/:$PATH"
-export PATH="/data/scratch/manuez42/tools/raptor/build/bin/:$PATH"
-export PATH="/data/scratch/manuez42/tools/query-distributor/target/release:$PATH"
+export PATH="/data/scratch2/manuez42/mambaforge/bin:$PATH"
+export PATH="/data/scratch2/manuez42/mambaforge/bin/:$PATH"
+export PATH="/data/scratch2/manuez42/mambaforge/envs/snakemake/lib/python3.11/site-packages/numpy:$PATH"
+export PATH="/data/scratch2/manuez42/mambaforge/envs/snakemake/lib/python3.11/site-packages/numpy/:$PATH"
+export PATH="/data/scratch2/mambaforge/envs/snakemake/lib/python3.11/isite-packages/pandas:$PATH"
+export PATH="/data/scratch2/manuez42/mambaforge/envs/snakemake/lib/python3.11/site-packages/pandas/:$PATH"
+export PATH="/data/scratch2/manuez42/tools/raptor/build/bin/:$PATH"
+export PATH="/data/scratch2/manuez42/tools/query-distributor/target/release:$PATH"
 
 conda activate
 source ~/.bashrc
@@ -28,13 +28,13 @@ conda activate snakemake
 
 ### Variables to use###
 ###################################################################################
-files0='/data/scratch/manuez42/genomes/viral_500M/files/'
-files1='/data/scratch/manuez42/genomes/archaea_1,4G/files/'
-files2='/data/scratch/manuez42/genomes/bacteria_011G/files/'
-files3='/data/scratch/manuez42/genomes/bacteria_030G/files/'
-files4='/data/scratch/manuez42/genomes/bacteria_058G/files/'
-files5='/data/scratch/manuez42/genomes/bacteria_088G/files/'
-files6='/data/scratch/manuez42/genomes/bacteria_125G/files/'
+files0='/data/scratch2/manuez42/genomes/viral_500M/files/'
+files1='/data/scratch2/manuez42/genomes/archaea_1,4G/files/'
+files2='/data/scratch2/manuez42/genomes/bacteria_011G/files/'
+files3='/data/scratch2/manuez42/genomes/bacteria_030G/files/'
+files4='/data/scratch2/manuez42/genomes/bacteria_058G/files/'
+files5='/data/scratch2/manuez42/genomes/bacteria_088G/files/'
+files6='/data/scratch2/manuez42/genomes/bacteria_125G/files/'
 
 #viral
 steps0=(200 400 600 800 1000 1200 2400 3600 4800 6000 7200 8400 9600 10800 12000)
@@ -53,9 +53,9 @@ step_list=("$steps0" "$steps1" "$steps2" "$steps2" "$steps2" "$steps2" "$steps2"
 time_list=(1800 1800 2400 3000 3600 4200 4800)
 
 
-path_to_collect='/data/scratch/manuez42/A2-job-granularity/MG-HIBF/collect/'
-path_to_final='/data/scratch/manuez42/A2-job-granularity/MG-HIBF/final/'
-home='/data/scratch/manuez42/A2-job-granularity/MG-HIBF/'
+path_to_collect='/data/scratch2/manuez42/A2-job-granularity/MG-HIBF/collect/'
+path_to_final='/data/scratch2/manuez42/A2-job-granularity/MG-HIBF/final/'
+home='/data/scratch2/manuez42/A2-job-granularity/MG-HIBF/'
 ###################################################################################
 
 
