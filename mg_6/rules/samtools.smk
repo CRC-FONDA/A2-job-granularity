@@ -1,49 +1,63 @@
 
 rule samtools_convert:
 	input:
-		samfiles = "data/mapped_reads/sam_{bin_id}.sam"
+		"data/mapped_reads/sam_{bin_id}.sam"
 	output:
-		bamfiles = "data/mapped_reads/bam_{bin_id}.bam"
+		temp("data/mapped_reads/bam_{bin_id}.bam")
+	log:
+        "logs/samtools_view/bin_{bin_id}.log"
+    benchmark:
+        "benchmarks/samtools_view/bin_{bin_id}.txt"
 	conda:
 		"../../envs/samtools.yaml"
 	shell:
-		"samtools view -bS {input.samfiles} > {output.bamfiles}"
-		"rm {input.samfiles}"
+		"samtools view -bS {input} -o {output} 2> {log}"
+
 
 rule samtools_sort:
 	input: 
-		bamfiles = "data/mapped_reads/bam_{bin_id}.bam"
+		"data/mapped_reads/bam_{bin_id}.bam"
 	output:
-		sortedfiles = "data/mapped_reads/sortedbam_{bin_id}.sorted.bam"
+		temp("data/mapped_reads/sortedbam_{bin_id}.sorted.bam")
+	log:
+        "logs/samtools_sort/bin_{bin_id}.log"
+    benchmark:
+        "benchmarks/samtools_sort/bin_{bin_id}.txt"
 	shell:
-		"samtools sort {input.bamfiles} -o {output.sortedfiles}"
+		"samtools sort {input} -o {output} 2> {log}"
 
 
 rule add_groups:
 	input:
-		sortedfiles = "data/mapped_reads/sortedbam_{bin_id}.sorted.bam"
+		"data/mapped_reads/sortedbam_{bin_id}.sorted.bam"
 	output:
-		with_groups = "data/mapped_reads/with_groups_{bin_id}.sorted.bam"
+		temp("data/mapped_reads/with_groups_{bin_id}.sorted.bam")
 	shell:
 		"java -jar /software/picard.jar AddOrReplaceReadGroups" 
 		"I={input.sortedfiles} O={output.with_groups}"
 		"RGID=4 RGLB=lib1 RGPL=ILLUMINA RGPU=unit1 RGSM=20"
 
+rule samtools_merge:
+    input:
+        "data/mapped_reads/with_groups_{bin_id}.sorted.bam"
+    output:
+        temp("data/mapped_reads/all.bam")
+    threads:
+        config['threads']
+    log:
+        "logs/samtools_merge.log"
+    benchmark:
+        "benchmarks/samtools_merge.txt"
+    conda:
+        "../envs/samtools.yaml"
+    shell:
+        "samtools merge --threads {threads} {output} {input} 2> {log}"
 
 rule samtools_index:
 	input: 
-		with_groups = "data/mapped_reads/with_groups_{bin_id}.sorted.bam"
+		"data/mapped_reads/all.bam"
 	output:
-		indexfiles = "data/mapped_reads/index_{bin_id}.sorted.bam.bai"
+		temp("data/mapped_reads/all.sorted.bam.bai")
 	shell:
-		"samtools index {input.sortedfiles} {output.indexfiles}"
+		"samtools index {input} {output}"
 
-
-rule clean:
-	input:
-		sortedfiles = "data/mapped_reads/sortedbam_{bin_id}.sorted.bam"
-		indexfiles = "data/mapped_reads/index_{bin_id}.sorted.bam.bai"
-		bamfiles = "data/mapped_reads/bam_{bin_id}.bam"
-		samfiles = "data/mapped_reads/sam_{bin_id}.sam"
-	shell:
-		"rm {input.bamfiles} {input.sortedfiles} {input.samfiles}"

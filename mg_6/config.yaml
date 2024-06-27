@@ -1,0 +1,14 @@
+#-----------------------------
+#
+# configdata, for the workflow
+#
+#-----------------------------
+path_to_data: 
+files_per_bin: 
+size: 
+
+reference_genome: 
+database_SNPs: 
+# path_to_nodelist: 
+
+threads:

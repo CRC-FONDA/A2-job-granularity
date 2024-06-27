@@ -1,14 +1,18 @@
 # Data parameters are set in ../simulation_config.yaml
-configfile: "../simulation_config.yaml"
+configfile: "config.yaml"
 
+# creating some wildcards
+bin_size = int(config['files_per_bin'])
+bin_list = list(range(bin_size))
+bin_pathlist = [f"data/bin_{i}" for i in bin_list]
 
 rule make_all:
 	input:
-		"variants/all_.vcf.gz"
+		"data/SNPs_all.vcf.gz"
 	shell:
 		"echo 'Done'"
 
-include: "rules/build_bins.smk"
+include: "rules/preparation.smk"
 include: "rules/bwa_mem2.smk"
 include: "rules/samtools.smk"
 include: "rules/gatk.smk"

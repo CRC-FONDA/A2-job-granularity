@@ -19,7 +19,7 @@ fasta_paths = map(to_path, fasta_filenames)
 
 bin_size = files_per_bin
 
-with open("data/genome_bins/bins.tsv", "w+") as f:
+with open("data/general/bins.tsv", "w+") as f:
     writer = csv.writer(f, delimiter='\t')
     for i, fasta_path in enumerate(fasta_paths):
         writer.writerow( [fasta_path, int(i/bin_size)] )

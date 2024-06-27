@@ -1,11 +1,11 @@
 # mapping
 rule bwa_mem2_index:
     input:
-		"data/genome_bins/bin_{bin_id}.fasta"
+		path_to_ref = config['reference_genome']
     output:
-        "data/indices/bin_{bin_id}_index"
+        "data/readmapping/index"
     log:
-        "logs/readmapping/bwa_mem2_index/bin_{bin_id}.log"
+        "logs/readmapping/bwa_mem2_index.log"
     benchmark:
         repeat("bwa-mem2-index-bin_{bin_id}.tsv", 2)
     conda:
@@ -13,20 +13,33 @@ rule bwa_mem2_index:
     shell:
         # the touch output is as a marker for snakemake that the rule is completed
         "bwa-mem2 index "
+        "-t {config['threads']}"
         "-p {output} "
         "{input} "
         "> {log} 2>&1 "
         "&& touch {output}"
 
+
+rule copying_data_to_nodes:
+    input:
+        expand("{data}", data=bin_list, reads=filepaths_bins[{bins}])
+    output:
+        directory("data/bin_{bins}"),
+        "dara/bin_{bins}/{reads}"
+    shell:
+        "mkdir -p {output[0]} && cp {input} {output[0]}/"
+        " && ln -s {output[0]}/{wildcards.read} {output[1]}"  # Create symbolic link
+    # Collect output files
+
 # readmapping with reads
 rule bwa_mem2_mem:
     input:
-        index_prefix="data/indices/bin_{bin_id}_index",
-        reads="data/distributed_reads/bin_{bin_id}.fastq"
+        index="data/readmapping/index",
+        reads="data/bin_{bins}/"
     output:
-        "data/mapped_reads/sam_{bin_id}.sam"
+        temp("data/mapped_reads/sam_{bin_id}.sam")
     threads:
-        num_threads
+        config['threads']
     log:
         "logs/readmapping/bwa_mem2_mem/bin_{bin_id}.log"
     benchmark:
@@ -36,7 +49,7 @@ rule bwa_mem2_mem:
     shell:
         "bwa-mem2 mem "
         "-t {threads} "
-        "{input.index_prefix}"
+        "{input.index}"
         "{input.reads} "
         "> {output} "
         "2> {log}"
