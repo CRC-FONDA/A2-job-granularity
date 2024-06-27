@@ -1,0 +1,15 @@
+# Data parameters are set in ../simulation_config.yaml
+configfile: "../simulation_config.yaml"
+
+
+rule make_all:
+	input:
+		"variants/all_.vcf.gz"
+	shell:
+		"echo 'Done'"
+
+include: "rules/build_bins.smk"
+include: "rules/bwa_mem2.smk"
+include: "rules/samtools.smk"
+include: "rules/gatk.smk"
+include: "rules/bcftools.smk"
