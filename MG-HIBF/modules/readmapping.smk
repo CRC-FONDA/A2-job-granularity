@@ -45,3 +45,5 @@ rule bwa_mem2_mem:
         "{input.reads} "
         "> {output} "
         "2> {log}"
+
+
