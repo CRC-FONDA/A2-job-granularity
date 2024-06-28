@@ -18,7 +18,7 @@ import os
 import csv
 from pathlib import Path
 
-def create_bins_file(path_to_dir, bin_size):
+def create_bins_file(path_to_dir, size):
     path_to_dir = Path(path_to_dir)
 
     fasta_file_endings = [".fa", ".fna", ".fasta", "fastqc"]
@@ -32,7 +32,7 @@ def create_bins_file(path_to_dir, bin_size):
     with open("data/general/bins.tsv", "w+") as f:
         writer = csv.writer(f, delimiter='\t')
         for i, fasta_path in enumerate(fasta_paths):
-            writer.writerow( [fasta_path , (i//bin_size)] )
+            writer.writerow( [fasta_path , (i//size)] )
 
 
 #-----------------------------
@@ -68,8 +68,7 @@ rule make_all:
 #-----------------------------
 rule create_general_files:
     input:
-        path_to_dir,
-		bin_size
+        path_to_dir, bin_size
     output:
         "data/general/bins.tsv",
         "data/general/nodes.csv"
