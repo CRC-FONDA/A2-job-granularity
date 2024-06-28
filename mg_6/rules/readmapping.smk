@@ -5,7 +5,7 @@
 #-----------------------------
 rule bwa_mem2_index:
     input:
-		config['path_to_ref']
+		ref = config['path_to_ref']
     output:
         "data/readmapping/index"
     log:
@@ -13,13 +13,13 @@ rule bwa_mem2_index:
     conda:
         "../envs/bwa-mem2.yaml"
     threads:
-        config['threads']
+        t = config['threads']
     shell:
         # the touch output is as a marker for snakemake that the rule is completed
         "bwa-mem2 index "
-        "-t {threads}"
+        "-t {threads.t}"
         "-p {output} "
-        "{input} "
+        "{input.ref} "
         "> {log} 2>&1 "
         "&& touch {output}"
 
