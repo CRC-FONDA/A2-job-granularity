@@ -52,7 +52,7 @@ rule Haplotypes:
         " -R {input.reference}"
         " -I {input.bam_all}"
         " -O {output}"
-        " -L {chr}"
+        " -L {wildcards.chr}"
 
 
 #-----------------------------
