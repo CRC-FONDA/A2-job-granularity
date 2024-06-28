@@ -32,7 +32,7 @@ rule copying_data_to_nodes:
         expand("{data}", data=bin_list)
     output:
         directory("data/bin_{bins}"),
-        expand("data/bin_{bins}/{reads}", reads=filepaths_bins[int(bins)])
+        expand("data/bin_{bins}/{reads}", reads=filepaths_bins[bins])
     shell:
         "mkdir -p {output[0]} && cp {input} {output[0]}/"
         " && ln -s {output[0]}/{wildcards.read} {output[1]}"  
