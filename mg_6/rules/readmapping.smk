@@ -5,7 +5,7 @@
 #-----------------------------
 rule bwa_mem2_index:
     input:
-		wildcards.path_to_ref
+		config['path_to_ref']
     output:
         "data/readmapping/index"
     log:
