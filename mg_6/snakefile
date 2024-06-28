@@ -82,7 +82,7 @@ rule filepaths:
     input:
         "data/general/bins.tsv"
     output:
-        directory({bin_pathlist})
+        expand("data/bin_{i}", i=bin_list)
     run:
         with open("data/bins.tsv", "r") as f:
             reader = csv.reader(f, delimiter='\t')
