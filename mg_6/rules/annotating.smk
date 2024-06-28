@@ -4,28 +4,28 @@
 #
 #-----------------------------
 rule list_of_chr:
-	input:
-		"data/mapped_reads/all.bam"
-	output:
-		"data/mapped_reads/chr.csv"
-	shell:
-		"samtools coverage {input} | awk '{print $1}' > {output}"
+    input:
+        "data/mapped_reads/all.bam"
+    output:
+        "data/mapped_reads/chr.csv"
+    shell:
+        "samtools coverage {input} | awk '{print $1}' > {output}"
 
 
 list_of_chromosomes = []
 rule making_list:
-	input:
-		"data/mapped_reads/chr.csv"
-	output:
-		temp("data/mapped_reads/dummy")
-	run:
-		with open({input}, "r") as f:
-			reader = csv.reader(f, delimiter='\,')
+    input:
+        "data/mapped_reads/chr.csv"
+    output:
+        temp("data/mapped_reads/dummy")
+    run:
+        with open({input}, "r") as f:
+            reader = csv.reader(f, delimiter='\,')
 
-			for row in reader:
-				list_of_chromosomes.append row[0]
-	shell:
-		"echo 'dummy' > {output}"
+            for row in reader:
+                list_of_chromosomes.append row[0]
+    shell:
+        "echo 'dummy' > {output}"
 
 #-----------------------------
 #
@@ -35,19 +35,19 @@ rule making_list:
 #-----------------------------
 
 rule Haplotypes:
-	input:
-		dummy = "data/mapped_reads/dummy",
-		list_of_chromosomes,
-		reference = config['reference_genome'],
-		bam_all = "data/mapped_reads/all.bam"
-	output:
-		expand("data/Haplotypes/{chr}.vcf", chr=list_of_chromosomes)
-	shell:
-		"gatk --java-options '-Xmx10G' HaplotypeCaller"
-		" -R {input.reference}"
-		" -I {input.bam_all}"
-		" -O {output}"
-		" -L {chr}"
+    input:
+        dummy = "data/mapped_reads/dummy",
+        list_of_chromosomes,
+        reference = config['reference_genome'],
+        bam_all = "data/mapped_reads/all.bam"
+    output:
+        expand("data/Haplotypes/{chr}.vcf", chr=list_of_chromosomes)
+    shell:
+        "gatk --java-options '-Xmx10G' HaplotypeCaller"
+        " -R {input.reference}"
+        " -I {input.bam_all}"
+        " -O {output}"
+        " -L {chr}"
 
 
 #-----------------------------
@@ -56,20 +56,20 @@ rule Haplotypes:
 #
 #-----------------------------
 rule concate_Haplotypes:
-	input:
-		expand("data/Haplotypes/{chr}.vcf", chr=list_of_chromosomes)
-	output:
-		"data/Haplotypes/merged.vcf"
-	shell:
-		"bcftools concat --threads 10 {input} -o merged.vcf"
+    input:
+        expand("data/Haplotypes/{chr}.vcf", chr=list_of_chromosomes)
+    output:
+        "data/Haplotypes/merged.vcf"
+    shell:
+        "bcftools concat --threads 10 {input} -o merged.vcf"
 
 rule filter_Haplotypes:
-	input:
-		"data/Haplotypes/merged.vcf"
-	output:
-		"data/Haplotypes/filtered.vcf"
-	shell:
-		"bcftools view -v snps {input} -o {output}"
+    input:
+        "data/Haplotypes/merged.vcf"
+    output:
+        "data/Haplotypes/filtered.vcf"
+    shell:
+        "bcftools view -v snps {input} -o {output}"
 
 
 #-----------------------------
@@ -78,19 +78,19 @@ rule filter_Haplotypes:
 #
 #-----------------------------
 rule SNP_Annotation:
-	input:
-		reference = config['reference_genome'],
-		bam_all = "data/mapped_reads/all.bam",
-		SNPs = "data/Haplotypes/filtered.vcf",
-		dbsnp = config['database_SNPs']
-	output:
-		"data/Haplotypes/Annotation.vcf"
-	shell:
-		'gatk --java-options "-Xmx100G -XX:+UseParallelGC -XX:ParallelGCThreads=32"'
-		'VariantAnnotator'
-		' -R {input.reference}'
-		' -I {input.bam_all}'
-		' -V {input.SNPs}'
-		' -O {output}'
-		' -A Coverage'
-		' --dbsnp {input.dbsnp}'
+    input:
+        reference = config['reference_genome'],
+        bam_all = "data/mapped_reads/all.bam",
+        SNPs = "data/Haplotypes/filtered.vcf",
+        dbsnp = config['database_SNPs']
+    output:
+        "data/Haplotypes/Annotation.vcf"
+    shell:
+        'gatk --java-options "-Xmx100G -XX:+UseParallelGC -XX:ParallelGCThreads=32"'
+        'VariantAnnotator'
+        ' -R {input.reference}'
+        ' -I {input.bam_all}'
+        ' -V {input.SNPs}'
+        ' -O {output}'
+        ' -A Coverage'
+        ' --dbsnp {input.dbsnp}'
