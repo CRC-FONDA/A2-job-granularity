@@ -20,13 +20,17 @@ rule making_list:
     output:
         temp("data/mapped_reads/dummy")
     run:
+        import subprocess
+
         with open({input}, "r") as f:
             reader = csv.reader(f, delimiter='\,')
 
             for row in reader:
                 list_of_chromosomes.append row[0]
-    shell: 
-        ("echo 'dummy' > {output}")
+
+        cmd = ["echo 'dummy' > {output}"]
+        process = subprocess.run(cmd)
+
 
 
 #-----------------------------
@@ -39,7 +43,6 @@ rule making_list:
 rule Haplotypes:
     input:
         dummy = "data/mapped_reads/dummy",
-        list_of_chromosomes,
         reference = config['reference_genome'],
         bam_all = "data/mapped_reads/all.bam"
     output:
