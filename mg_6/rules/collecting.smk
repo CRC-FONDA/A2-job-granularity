@@ -54,7 +54,7 @@ rule add_groups:
 #-----------------------------
 rule samtools_merge:
     input:
-        "data/mapped_reads/with_groups_{bin_id}.sorted.bam"
+        expand("data/mapped_reads/with_groups_{bin_id}.sorted.bam")
     output:
         temp("data/mapped_reads/all.bam")
     threads:
