@@ -12,7 +12,7 @@ rule list_of_chr:
         "samtools coverage {input} | awk '{print $1}' > {output}"
 
 
-list_of_chromosomes = []
+
 
 rule making_list:
     input:
@@ -21,6 +21,9 @@ rule making_list:
         "data/mapped_reads/dummy"
     run:
         import subprocess
+        import csv
+
+        list_of_chromosomes = []
 
         with open({input}, "r") as f:
             reader = csv.reader(f, delimiter='\,')
@@ -29,7 +32,7 @@ rule making_list:
                 list_of_chromosomes.append row[0]
 
         cmd = ["echo 'dummy' > {output}"]
-        process = subprocess.run(cmd)
+        subprocess.run(cmd, shell=True)
 
 
 
@@ -46,14 +49,13 @@ rule Haplotypes:
         reference = config['reference_genome'],
         bam_all = "data/mapped_reads/all.bam"
     output:
-        expand("data/Haplotypes/{chr1}.vcf", chr1=list_of_chromosomes)
+        expand("data/Haplotypes/{chr}.vcf", chr=list_of_chromosomes)
     shell:
         "gatk --java-options '-Xmx10G' HaplotypeCaller"
         " -R {input.reference}"
         " -I {input.bam_all}"
         " -O {output}"
         " -L {wildcards.chr}"
-
 
 #-----------------------------
 #
