@@ -43,7 +43,7 @@ rule add_groups:
         temp("data/mapped_reads/with_groups_{i}.sorted.bam")
     shell:
         "java -jar /software/picard.jar AddOrReplaceReadGroups" 
-        "I={input.sortedfiles} O={output.with_groups}"
+        "I={input} O={output}"
         "RGID=4 RGLB=lib1 RGPL=ILLUMINA RGPU=unit1 RGSM=20"
 
 #-----------------------------
