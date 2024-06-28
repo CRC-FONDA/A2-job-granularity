@@ -18,7 +18,7 @@ rule making_list:
     input:
         "data/mapped_reads/chr.csv"
     output:
-        temp("data/mapped_reads/dummy")
+        "data/mapped_reads/dummy"
     run:
         import subprocess
 
