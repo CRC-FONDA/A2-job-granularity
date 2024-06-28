@@ -26,7 +26,7 @@ rule making_list:
         list_of_chromosomes = []
 
         with open({input}, "r") as f:
-            reader = csv.reader(f, delimiter='\,')
+            reader = csv.reader(f, delimiter=',')
 
             for row in reader:
                 list_of_chromosomes.append row[0]
