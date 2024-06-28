@@ -40,6 +40,22 @@ rule making_list:
 #
 #-----------------------------
 
+# rule Haplotypes:
+#     input:
+#         dummy = "data/mapped_reads/dummy",
+#         reference = config['reference_genome'],
+#         bam_all = "data/mapped_reads/all.bam"
+#     output:
+#         expand("data/Haplotypes/{chr}.vcf", chr=list_of_chromosomes)
+#     shell:
+#         "gatk --java-options '-Xmx10G' HaplotypeCaller"
+#         " -R {input.reference}"
+#         " -I {input.bam_all}"
+#         " -O {output}"
+#         " -L {wildcards.chr}"
+
+# Assuming list_of_chromosomes is defined earlier in your Snakefile
+
 rule Haplotypes:
     input:
         dummy = "data/mapped_reads/dummy",
