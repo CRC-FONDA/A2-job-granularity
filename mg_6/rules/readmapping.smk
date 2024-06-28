@@ -1,3 +1,11 @@
+from collections import defaultdict
+
+path_to_dir = config['path_to_data']
+bin_size = int(config['files_per_bin'])
+bin_list = list(range(bin_size))
+bin_pathlist = [f"data/bin_{i}" for i in bin_list]
+filepaths_bins = defaultdict(lambda: [])
+
 #-----------------------------
 #
 # building index for mapping
@@ -53,7 +61,19 @@ rule bwa_mem2_index:
 #             cp $file {output[0]}/
 #         done
 #         """
+rule filepaths:
+    input:
+        "data/general/bins.tsv"
+    output:
+        expand("data/bin_{i}", i=bin_list)
+    run:
+        with open("data/bins.tsv", "r") as f:
+            reader = csv.reader(f, delimiter='\t')
 
+            for row in reader:
+                filename = row[0]
+                bin_id = int(row[1])
+                filepaths_bins[bin_id].append(filename)
 
 rule copying_data_to_nodes:
     input:
