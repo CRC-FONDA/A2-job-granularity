@@ -3,6 +3,7 @@
 # sam to bam and sorting
 #
 #-----------------------------
+
 rule samtools_convert:
 	input:
 		"data/mapped_reads/sam_{bin_id}.sam"
