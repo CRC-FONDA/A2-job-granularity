@@ -1,9 +1,4 @@
-from collections import defaultdict
 
-path_to_dir = config['path_to_data']
-bin_size = int(config['files_per_bin'])
-bin_list = list(range(bin_size))
-bin_pathlist = [f"data/bin_{i}" for i in bin_list]
 filepaths_bins = defaultdict(lambda: [])
 
 #-----------------------------
@@ -61,12 +56,33 @@ rule bwa_mem2_index:
 #             cp $file {output[0]}/
 #         done
 #         """
-rule filepaths:
+# rule filepaths:
+#     input:
+#         "data/general/bins.tsv"
+#     output:
+#         expand("data/bin_{i}", i=bin_list)
+#     run:
+#         with open("data/bins.tsv", "r") as f:
+#             reader = csv.reader(f, delimiter='\t')
+
+#             for row in reader:
+#                 filename = row[0]
+#                 bin_id = int(row[1])
+#                 filepaths_bins[bin_id].append(filename)
+
+
+rule copying_data_to_nodes:
     input:
-        "data/general/bins.tsv"
+        "data/general/bins.tsv",
     output:
         expand("data/bin_{i}", i=bin_list)
     run:
+        import os
+        import csv
+        from collections import defaultdict
+
+        filepaths_bins = defaultdict(lambda: [])
+
         with open("data/bins.tsv", "r") as f:
             reader = csv.reader(f, delimiter='\t')
 
@@ -74,21 +90,19 @@ rule filepaths:
                 filename = row[0]
                 bin_id = int(row[1])
                 filepaths_bins[bin_id].append(filename)
-
-rule copying_data_to_nodes:
-    input:
-        "data/general/bins.tsv",
-        expand("data/bin_{i}", i=bin_list),
-
-    output:
-        expand("data/bin_{i}/{reads}.fastqc", i=bin_list, reads=filepaths_bins[i])
-    shell:
-        """
-        mkdir -p {output[0]}
-        for file in {config['path_to_data']}/*; do
-            cp $file {output[0]}/
-        done
-        """
+        
+        for bin_id in bin_list:
+            bin_dir = f"data/bin_{bin_id}"
+            os.makedirs(bin_dir, exist_ok=True)  # Create directory if it doesn't exist
+            for file in filepaths_bins[bin_id]:
+                os.system(f"cp {file} {bin_dir}/")
+    # shell:
+    #     """
+    #     mkdir -p {output[0]}
+    #     for file in {config['path_to_data']}/*; do
+    #         cp $file {output[0]}/
+    #     done
+    #     """
 
 #-----------------------------
 #
