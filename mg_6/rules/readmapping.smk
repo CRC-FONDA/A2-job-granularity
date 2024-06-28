@@ -1,13 +1,15 @@
-# mapping
+#-----------------------------
+#
+# building index for mapping
+#
+#-----------------------------
 rule bwa_mem2_index:
     input:
-		path_to_ref = config['reference_genome']
+		wildcards.path_to_ref
     output:
         "data/readmapping/index"
     log:
         "logs/readmapping/bwa_mem2_index.log"
-    benchmark:
-        repeat("bwa-mem2-index-bin_{bin_id}.tsv", 2)
     conda:
         "../envs/bwa-mem2.yaml"
     shell:
@@ -19,19 +21,29 @@ rule bwa_mem2_index:
         "> {log} 2>&1 "
         "&& touch {output}"
 
-
+#-----------------------------
+#
+# building the bins
+#
+#-----------------------------
 rule copying_data_to_nodes:
     input:
-        expand("{data}", data=bin_list, reads=filepaths_bins[{bins}])
+        expand("{data}", data={wildcard.bin_list}, reads={wildcards.filepaths_bins[{bins}]})
     output:
         directory("data/bin_{bins}"),
         "dara/bin_{bins}/{reads}"
     shell:
         "mkdir -p {output[0]} && cp {input} {output[0]}/"
-        " && ln -s {output[0]}/{wildcards.read} {output[1]}"  # Create symbolic link
+        " && ln -s {output[0]}/{wildcards.read} {output[1]}"  
+    # Create symbolic link
     # Collect output files
 
-# readmapping with reads
+
+#-----------------------------
+#
+# readmapping
+#
+#-----------------------------
 rule bwa_mem2_mem:
     input:
         index="data/readmapping/index",

@@ -9,6 +9,7 @@ size:
 
 reference_genome: 
 database_SNPs: 
+SNPs:
 # path_to_nodelist: 
 
 threads:

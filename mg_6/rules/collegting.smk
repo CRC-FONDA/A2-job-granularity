@@ -1,4 +1,8 @@
-
+#-----------------------------
+#
+# sam to bam and sorting
+#
+#-----------------------------
 rule samtools_convert:
 	input:
 		"data/mapped_reads/sam_{bin_id}.sam"
@@ -26,7 +30,11 @@ rule samtools_sort:
 	shell:
 		"samtools sort {input} -o {output} 2> {log}"
 
-
+#-----------------------------
+#
+# adding groups for annotation
+#
+#-----------------------------
 rule add_groups:
 	input:
 		"data/mapped_reads/sortedbam_{bin_id}.sorted.bam"
@@ -37,6 +45,12 @@ rule add_groups:
 		"I={input.sortedfiles} O={output.with_groups}"
 		"RGID=4 RGLB=lib1 RGPL=ILLUMINA RGPU=unit1 RGSM=20"
 
+#-----------------------------
+#
+# gather again 
+# & index for faster access
+#
+#-----------------------------
 rule samtools_merge:
     input:
         "data/mapped_reads/with_groups_{bin_id}.sorted.bam"

@@ -5,6 +5,11 @@ import os
 import csv
 from pathlib import Path
 
+# creating some wildcards
+bin_size = int(config['files_per_bin'])
+bin_list = list(range(bin_size))
+bin_pathlist = [f"data/bin_{i}" for i in bin_list]
+path_to_dir = config['path_to_data']
 
 def create_bins_file(path_to_dir, bin_size):
     path_to_dir = Path(path_to_dir)
@@ -25,7 +30,7 @@ def create_bins_file(path_to_dir, bin_size):
 
 rule create_general_files:
     input:
-        path_to_dir = config['path_to_data']
+        path_to_dir
     output:
         "data/general/bins.tsv",
         "data/general/nodes.csv"

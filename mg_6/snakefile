@@ -1,19 +1,104 @@
-# Data parameters are set in ../simulation_config.yaml
+#-----------------------------
+#
+# configfile with:
+#   paths, bin_size, 
+#   reference_genomes, reference_database,
+#   threads
+#
+#-----------------------------
 configfile: "config.yaml"
 
-# creating some wildcards
+
+#-----------------------------
+#
+# function for creating bins
+#
+#-----------------------------
+import os
+import csv
+from pathlib import Path
+
+def create_bins_file(path_to_dir, bin_size):
+    path_to_dir = Path(path_to_dir)
+
+    fasta_file_endings = [".fa", ".fna", ".fasta", "fastqc"]
+
+    is_fasta_file = lambda f: any(f.endswith(end) for end in fasta_file_endings)
+    fasta_filenames = filter(lambda f: is_fasta_file(f), os.listdir(path_to_dir))
+
+    to_path = lambda filename: path_to_dir / filename  
+    fasta_paths = map(to_path, fasta_filenames)
+
+    with open("data/general/bins.tsv", "w+") as f:
+        writer = csv.writer(f, delimiter='\t')
+        for i, fasta_path in enumerate(fasta_paths):
+            writer.writerow( [fasta_path , (i//bin_size)] )
+
+
+#-----------------------------
+#
+# wildcards
+#
+#-----------------------------
+path_to_dir = config['path_to_data']
+
 bin_size = int(config['files_per_bin'])
 bin_list = list(range(bin_size))
 bin_pathlist = [f"data/bin_{i}" for i in bin_list]
 
+filepaths_bins = defaultdict(lambda: [])
+
+
+#-----------------------------
+#
+# invokes all
+#
+#-----------------------------
 rule make_all:
 	input:
-		"data/SNPs_all.vcf.gz"
+		"data/Haplotypes/Annotation.vcf"
 	shell:
 		"echo 'Done'"
 
-include: "rules/preparation.smk"
-include: "rules/bwa_mem2.smk"
-include: "rules/samtools.smk"
-include: "rules/gatk.smk"
-include: "rules/bcftools.smk"
+
+#-----------------------------
+#
+# help files for later rules
+#
+#-----------------------------
+rule create_general_files:
+    input:
+        path_to_dir,
+		bin_size
+    output:
+        "data/general/bins.tsv",
+        "data/general/nodes.csv"
+    run:
+        create_bins_file({input.path_to_dir}, {input.bin_size})
+        shell("bash sinfo --long --Node | grep -P 'mix|idle' | grep -P big | awk '{print $1}' > data/general/nodes.csv")
+
+
+rule filepaths:
+    input:
+        "data/general/bins.tsv"
+    output:
+        directory({bin_pathlist})
+    run:
+        with open("data/bins.tsv", "r") as f:
+            reader = csv.reader(f, delimiter='\t')
+
+            for row in reader:
+                filename = row[0]
+                bin_id = int(row[1])
+                filepaths_bins[bin_id].append(filename)
+
+#-----------------------------
+#
+# the three mayor steps
+#
+#-----------------------------
+# include: "rules/preparation.smk"
+include: "rules/readmapping.smk"
+include: "rules/collecting.smk"
+include: "rules/annotating.smk"
+# include: "rules/bcftools.smk"
