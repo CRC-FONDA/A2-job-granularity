@@ -68,8 +68,8 @@ rule make_all:
 #
 #-----------------------------
 rule create_general_files:
-    input:
-        path_to_dir, bin_size
+    # input:
+    #     path_to_dir, bin_size
     output:
         "data/general/bins.tsv",
         "data/general/nodes.csv"
