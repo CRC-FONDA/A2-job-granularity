@@ -13,3 +13,6 @@ database_SNPs: "/data/scratch/manuez42/ideas/data/dbSNP/dbSNP.vcf.gz"
 # path_to_nodelist: 
 
 threads: 8
+
+# execution
+# snakemake --dryrun --use-conda -s Snakefile --slurm "sbatch -t 80  --nodes=2 --mem=100G --partition='big'" -j 1000 --latency-wait 10
