@@ -8,6 +8,12 @@
 #-----------------------------
 configfile: "config.yaml"
 
+path_to_dir = config['path_to_data']
+bin_size = int(config['files_per_bin'])
+bin_list = list(range(bin_size))
+bin_pathlist = [f"data/bin_{i}" for i in bin_list]
+filepaths_bins = defaultdict(lambda: [])
+
 
 #-----------------------------
 #
@@ -36,18 +42,6 @@ def create_bins_file(path_to_dir, size):
             writer.writerow( [fasta_path , (i//size)] )
 
 
-#-----------------------------
-#
-# wildcards
-#
-#-----------------------------
-path_to_dir = config['path_to_data']
-
-bin_size = int(config['files_per_bin'])
-bin_list = list(range(bin_size))
-bin_pathlist = [f"data/bin_{i}" for i in bin_list]
-
-filepaths_bins = defaultdict(lambda: [])
 
 
 #-----------------------------

@@ -15,13 +15,13 @@ rule bwa_mem2_index:
     threads: 
         config['threads']
     shell:
-        # the touch output is as a marker for snakemake that the rule is completed
-        "bwa-mem2 index "
-        "-t {threads}"
-        "-p {output} "
-        "{input.ref} "
-        "> {log} 2>&1 "
-        "&& touch {output}"
+        """
+        bwa-mem2 index \
+        -t {threads} \
+        -p {output} \
+        {input.ref} \
+        > {log} 2>&1
+        """
 
 #-----------------------------
 #
