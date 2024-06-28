@@ -12,7 +12,7 @@ rule list_of_chr:
         "samtools coverage {input} | awk '{print $1}' > {output}"
 
 
-
+list_of_chromosomes = []
 
 rule making_list:
     input:
@@ -23,7 +23,7 @@ rule making_list:
         import subprocess
         import csv
 
-        list_of_chromosomes = []
+        # list_of_chromosomes = []
 
         with open({input}, "r") as f:
             reader = csv.reader(f, delimiter=',')
