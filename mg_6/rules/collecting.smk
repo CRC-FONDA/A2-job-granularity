@@ -6,13 +6,13 @@
 
 rule samtools_convert:
     input:
-        "data/mapped_reads/sam_{bin_id}.sam"
+        expand("data/mapped_reads/sam_{i}.sam", i=bin_list)
     output:
-        temp("data/mapped_reads/bam_{bin_id}.bam")
+        temp("data/mapped_reads/bam_{i}.bam")
     log:
-        "logs/samtools_view/bin_{bin_id}.log"
+        "logs/samtools_view/bin_{i}.log"
     benchmark:
-        "benchmarks/samtools_view/bin_{bin_id}.txt"
+        "benchmarks/samtools_view/bin_{i}.txt"
     conda:
         "../../envs/samtools.yaml"
     shell:
@@ -21,13 +21,13 @@ rule samtools_convert:
 
 rule samtools_sort:
     input: 
-        "data/mapped_reads/bam_{bin_id}.bam"
+        expand("data/mapped_reads/bam_{i}.bam", i=bin_list)
     output:
-        temp("data/mapped_reads/sortedbam_{bin_id}.sorted.bam")
+        temp("data/mapped_reads/sortedbam_{i}.sorted.bam")
     log:
-        "logs/samtools_sort/bin_{bin_id}.log"
+        "logs/samtools_sort/bin_{i}.log"
     benchmark:
-        "benchmarks/samtools_sort/bin_{bin_id}.txt"
+        "benchmarks/samtools_sort/bin_{i}.txt"
     shell:
         "samtools sort {input} -o {output} 2> {log}"
 
@@ -38,9 +38,9 @@ rule samtools_sort:
 #-----------------------------
 rule add_groups:
     input:
-        "data/mapped_reads/sortedbam_{bin_id}.sorted.bam"
+        expand("data/mapped_reads/sortedbam_{i}.sorted.bam", i=bin_list)
     output:
-        temp("data/mapped_reads/with_groups_{bin_id}.sorted.bam")
+        temp("data/mapped_reads/with_groups_{i}.sorted.bam")
     shell:
         "java -jar /software/picard.jar AddOrReplaceReadGroups" 
         "I={input.sortedfiles} O={output.with_groups}"
@@ -54,7 +54,7 @@ rule add_groups:
 #-----------------------------
 rule samtools_merge:
     input:
-        expand("data/mapped_reads/with_groups_{bin_id}.sorted.bam")
+        expand("data/mapped_reads/with_groups_{i}.sorted.bam", i=bin_list)
     output:
         temp("data/mapped_reads/all.bam")
     threads:
