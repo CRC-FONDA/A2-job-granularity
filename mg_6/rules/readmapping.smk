@@ -54,16 +54,18 @@ rule bwa_mem2_index:
 #         done
 #         """
 
+
 rule copying_data_to_nodes:
     input:
-        lambda wildcards: filepaths_bins[int(wildcards.bins)]
+        "data/general/bins.tsv",
+        expand("data/bin_{i}", i=bin_list),
+
     output:
-        directory("data/bin_{bins}"),
-        expand("data/bin_{bins}/{reads}", bins="{bins}", reads=lambda wildcards: filepaths_bins[int(wildcards.bins)])
+        expand("data/bin_{i}/{reads}.fastqc", i=bin_list, reads=filepaths_bins[i])
     shell:
         """
         mkdir -p {output[0]}
-        for file in {input}; do
+        for file in {config['path_to_data']}/*; do
             cp $file {output[0]}/
         done
         """
