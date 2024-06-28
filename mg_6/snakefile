@@ -17,6 +17,7 @@ configfile: "config.yaml"
 import os
 import csv
 from pathlib import Path
+from collections import defaultdict
 
 def create_bins_file(path_to_dir, size):
     path_to_dir = Path(path_to_dir)
