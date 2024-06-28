@@ -72,21 +72,6 @@ rule create_general_files:
         shell("sinfo --long --Node | grep -P 'mix|idle' | grep -P big | awk '{print $1}' > data/general/nodes.csv")
 
 
-
-# rule filepaths:
-#     input:
-#         "data/general/bins.tsv"
-#     output:
-#         expand("data/bin_{i}", i=bin_list)
-#     run:
-#         with open("data/bins.tsv", "r") as f:
-#             reader = csv.reader(f, delimiter='\t')
-
-#             for row in reader:
-#                 filename = row[0]
-#                 bin_id = int(row[1])
-#                 filepaths_bins[bin_id].append(filename)
-
 #-----------------------------
 #
 # the three mayor steps
