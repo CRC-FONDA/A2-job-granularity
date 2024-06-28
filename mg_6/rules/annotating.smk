@@ -13,6 +13,7 @@ rule list_of_chr:
 
 
 list_of_chromosomes = []
+
 rule making_list:
     input:
         "data/mapped_reads/chr.csv"
@@ -24,8 +25,9 @@ rule making_list:
 
             for row in reader:
                 list_of_chromosomes.append row[0]
-    shell:
-        "echo 'dummy' > {output}"
+
+		shell("echo 'dummy' > {output}")
+
 
 #-----------------------------
 #
