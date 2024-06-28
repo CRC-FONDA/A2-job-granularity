@@ -29,7 +29,7 @@ rule making_list:
             reader = csv.reader(f, delimiter=',')
 
             for row in reader:
-                list_of_chromosomes.append row[0]
+                list_of_chromosomes.append(row[0])
 
         cmd = ["echo 'dummy' > {output}"]
         subprocess.run(cmd, shell=True)
