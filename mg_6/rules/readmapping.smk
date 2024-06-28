@@ -29,10 +29,10 @@ rule bwa_mem2_index:
 #-----------------------------
 rule copying_data_to_nodes:
     input:
-        expand("{data}", data={wildcard.bin_list}, reads={wildcards.filepaths_bins[{bins}]})
+        expand("{data}", data=bin_list)
     output:
         directory("data/bin_{bins}"),
-        "dara/bin_{bins}/{reads}"
+        expand("data/bin_{bins}/{reads}", reads=filepaths_bins[int(bins)])
     shell:
         "mkdir -p {output[0]} && cp {input} {output[0]}/"
         " && ln -s {output[0]}/{wildcards.read} {output[1]}"  
