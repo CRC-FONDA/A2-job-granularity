@@ -5,7 +5,7 @@
 #-----------------------------
 rule bwa_mem2_index:
     input:
-		ref = config['path_to_ref']
+		ref = config['path_to_data']
     output:
         "data/readmapping/index"
     log:
