@@ -73,19 +73,19 @@ rule create_general_files:
 
 
 
-rule filepaths:
-    input:
-        "data/general/bins.tsv"
-    output:
-        expand("data/bin_{i}", i=bin_list)
-    run:
-        with open("data/bins.tsv", "r") as f:
-            reader = csv.reader(f, delimiter='\t')
+# rule filepaths:
+#     input:
+#         "data/general/bins.tsv"
+#     output:
+#         expand("data/bin_{i}", i=bin_list)
+#     run:
+#         with open("data/bins.tsv", "r") as f:
+#             reader = csv.reader(f, delimiter='\t')
 
-            for row in reader:
-                filename = row[0]
-                bin_id = int(row[1])
-                filepaths_bins[bin_id].append(filename)
+#             for row in reader:
+#                 filename = row[0]
+#                 bin_id = int(row[1])
+#                 filepaths_bins[bin_id].append(filename)
 
 #-----------------------------
 #
