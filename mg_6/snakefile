@@ -67,15 +67,26 @@ rule make_all:
 # help files for later rules
 #
 #-----------------------------
+# rule create_general_files:
+#     # input:
+#     #     path_to_dir, bin_size
+#     output:
+#         "data/general/bins.tsv",
+#         "data/general/nodes.csv"
+#     run:
+#         create_bins_file({input.path_to_dir}, {input.bin_size})
+#         shell("bash sinfo --long --Node | grep -P 'mix|idle' | grep -P big | awk '{print $1}' > data/general/nodes.csv")
+
 rule create_general_files:
-    # input:
-    #     path_to_dir, bin_size
     output:
         "data/general/bins.tsv",
-        "data/general/nodes.csv"
+        "data/general/nodes.csv",
+        expand("data/bin_{i}", i=bin_list)
     run:
-        create_bins_file({input.path_to_dir}, {input.bin_size})
-        shell("bash sinfo --long --Node | grep -P 'mix|idle' | grep -P big | awk '{print $1}' > data/general/nodes.csv")
+        create_bins_file(path_to_dir, bin_size)
+        shell("sinfo --long --Node | grep -P 'mix|idle' | grep -P big | awk '{print $1}' > data/general/nodes.csv")
+        for path in bin_pathlist:
+            shell(f"mkdir -p {path}")
 
 
 rule filepaths:
