@@ -12,10 +12,12 @@ rule bwa_mem2_index:
         "logs/readmapping/bwa_mem2_index.log"
     conda:
         "../envs/bwa-mem2.yaml"
+    threads:
+        config['threads']
     shell:
         # the touch output is as a marker for snakemake that the rule is completed
         "bwa-mem2 index "
-        "-t {config['threads']}"
+        "-t {threads}"
         "-p {output} "
         "{input} "
         "> {log} 2>&1 "

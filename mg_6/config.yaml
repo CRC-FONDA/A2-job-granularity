@@ -3,13 +3,13 @@
 # configdata, for the workflow
 #
 #-----------------------------
-path_to_data: 
-files_per_bin: 
-size: 
+path_to_data: "/data/scratch/manuez42/ideas/data/1000-Genome-Project/gruppe6"
+files_per_bin: 1
+size: 0
 
-reference_genome: 
-database_SNPs: 
-SNPs:
+reference_genome: "/data/scratch/manuez42/ideas/data/NCBI-reference/GRCh38.fna"
+database_SNPs: "/data/scratch/manuez42/ideas/data/dbSNP/dbSNP.vcf.gz"
+# SNPs: 
 # path_to_nodelist: 
 
-threads:
+threads: 8
