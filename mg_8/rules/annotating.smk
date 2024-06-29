@@ -1,31 +1,151 @@
+
+rule samtools_index_fasta:
+    input: 
+        expand("data/bin_{i}/all_{i}.fasta")
+    output:
+        expand("data/bin_{i}/all_{i}.fasta.fai", i=range(config['number_of_bins']))
+    resources:
+        nodes = config['number_of_nodes']
+        threds = config['number_of_threads']
+    shell:
+        "samtools faidx {input} {output}"
+
+
+rule annotate_pileup:
+    input: 
+        fasta = expand("data/bin_{i}/all_{i}.fasta")
+        fasta_index = expand("data/bin_{i}/all_{i}.fasta.fai")
+        bam = "data/mapped_reads/all.bam"
+        bam_index = "data/mapped_reads/all.sorted.bam.bai"
+    output:
+        expand("data/bin_{i}/Annotations/mpileup.vcf", i=range(config['number_of_bins']))
+    resources:
+        nodes = config['number_of_nodes']
+        threds = config['number_of_threads']
+    shell:
+        """
+        bfctools mpileup \
+        {input.fasta} {input.fasta_index}\
+        {input.bam} {input.bam_index}\
+        -o {output}         
+        """
+
+#-----------------------------
+#
+# gather and filter
+#
+#-----------------------------
+
+rule filter_Haplotypes_nodes:
+    input:
+        expand("data/bin_{i}/Annotations/mpileup.vcf")
+    output:
+        expand("data/bin_{i}/Annotations/filtered.vcf", i=range(config['number_of_bins']))
+    resources:
+        nodes = config['number_of_nodes']
+        threads = config['threads']
+    shell:
+        "bcftools view -v snps {input} -o {output}"
+
+
+rule concate_Haplotypes_nodes:
+    input:
+        expand("data/bin_{i}/Annotations/filtered.vcf", i=range(config['number_of_bins']))
+    output:
+        "data/Haplotypes/merged_nodes.vcf"
+    shell:
+        "bcftools concat --threads 10 {input} -o merged.vcf"
+
+
+
+rule concate_Haplotypes_single:
+    input:
+        expand("data/bin_{i}/Annotations/mpileup.vcf", i=range(config['number_of_bins']))
+    output:
+        "data/Haplotypes/merged_singles.vcf"
+    shell:
+        "bcftools concat --threads 10 {input} -o merged.vcf"
+
+
+rule filter_Haplotypes_single:
+    input:
+        "data/Haplotypes/merged.vcf"
+    output:
+        "data/Haplotypes/filtered_singles.vcf"
+    shell:
+        "bcftools view -v snps {input} -o {output}"
+
+rule compare_vcf:
+    input:
+        "data/Haplotypes/filtered_singles.vcf",
+        "data/Haplotypes/merged_nodes.vcf"
+    output:
+        "data/Haplotypes/output"
+    shell:
+        """
+        bcftools isec {input[0]} {input[1]} \
+        -p {output}
+        """
+
+# #-----------------------------
+# #
+# # annotate with database
+# #
+# #-----------------------------
+# rule SNP_Annotation:
+#     input:
+#         reference = expand("data/bin_{i}/all{i}.fasta"),
+#         bam_all = expand("data/bin_{i}/mapped_reads/with_groups_{i}.sorted.bam"),
+#         SNPs = expand("data/bin_{i}/Haplotypes/filtered.vcf"),
+#         dbsnp = config['database_SNPs']
+#     output:
+#         expand("data/bin_{i}/Haplotypes/Annotation.vcf", i=range(config['number_of_bins']))
+#     resources:
+#         nodes = config['number_of_nodes']
+#         threads = config['threads']
+#     shell:
+#         'gatk --java-options "-Xmx100G -XX:+UseParallelGC -XX:ParallelGCThreads=32"'
+#         'VariantAnnotator'
+#         ' -R {input.reference}'
+#         ' -I {input.bam_all}'
+#         ' -V {input.SNPs}'
+#         ' -O {output}'
+#         ' -A Coverage'
+#         ' --dbsnp {input.dbsnp}'
+
+
+
 #-----------------------------
 #
 # preparing the next scatter
 #
 #-----------------------------
-rule list_of_chr:
-    input:
-        "data/mapped_reads/all.bam"
-    output:
-        "data/mapped_reads/chr.csv"
-    shell:
-        "samtools coverage {input} | awk '{{print $1}}' > {output}"
+# rule list_of_chr:
+#     input:
+#         expand("data/bin_{i}/mapped_reads/with_groups_{i}.sorted.bam")
+#     output:
+#         expand("data/bin_{i}/mapped_reads/chr.csv", i=range(config['number_of_bins']))
+#     resources:
+#         nodes = config['number_of_nodes']
+#         threads = config['threads']
+#     shell:
+#         "samtools coverage {input} | awk '{{print $1}}' > {output}"
 
 
-rule making_list:
-    input:
-        "data/mapped_reads/chr.csv"
-    output:
-        "data/mapped_reads/dummy"
-    run:
-        with open({input}, "r") as f:
-            reader = csv.reader(f, delimiter=',')
+# rule making_list:
+#     input:
+#         expand("data/bin_{i}/mapped_reads/chr.csv")
+#     output:
+#         expand("data/bin_{i}/mapped_reads/dummy", i=range(config['number_of_bins']))
+#     run:
+#         with open({input}, "r") as f:
+#             reader = csv.reader(f, delimiter=',')
 
-            for row in reader:
-                list_of_chromosomes.append(row[0])
+#             for row in reader:
+#                 list_of_chromosomes[].append(row[0])
 
-        cmd = ["echo 'dummy' > {output}"]
-        subprocess.run(cmd, shell=True)
+#         cmd = ["echo 'dummy' > {output}"]
+#         subprocess.run(cmd, shell=True)
 
 
 
@@ -36,61 +156,24 @@ rule making_list:
 #
 #-----------------------------
 
-rule Haplotypes:
-    input:
-        dummy = "data/mapped_reads/dummy",
-        reference = config['reference_genome'],
-        bam_all = "data/mapped_reads/all.bam"
-    output:
-        expand("data/Haplotypes/{chr}.vcf", chr=list_of_chromosomes)
-    shell:
-        "gatk --java-options '-Xmx10G' HaplotypeCaller"
-        " -R {input.reference}"
-        " -I {input.bam_all}"
-        " -O {output}"
-        " -L {wildcards.chr}"
 
-#-----------------------------
-#
-# gather and filter
-#
-#-----------------------------
-rule concate_Haplotypes:
-    input:
-        expand("data/Haplotypes/{chr}.vcf", chr=list_of_chromosomes)
-    output:
-        "data/Haplotypes/merged.vcf"
-    shell:
-        "bcftools concat --threads 10 {input} -o merged.vcf"
+# rule Haplotypes:
+#     input:
+#         reference = expand("data/bin_{i}/all{i}.fasta"),
+#         bam_all = expand("data/bin_{i}/mapped_reads/with_groups_{i}.sorted.bam", i=range(config['number_of_bins']))
+#     output:
+#         expand("data/bin_{i}/Haplotypes/merged.vcf", i=range(config['number_of_bins']))
+#     resources:
+#         nodes = config['number_of_nodes']
+#         threads = config['threads']
+#     run:
+#         """
+#         samtools coverage alignment.bam | \
+#         awk '{{print $1}}' | \
+#         parallel gatk --java-options '-Xmx10G' HaplotypeCaller \
+#          -R {input.reference} \
+#         -I {input.bam_all} -O \
+#         {.}.vcf -L {}
 
-rule filter_Haplotypes:
-    input:
-        "data/Haplotypes/merged.vcf"
-    output:
-        "data/Haplotypes/filtered.vcf"
-    shell:
-        "bcftools view -v snps {input} -o {output}"
-
-
-#-----------------------------
-#
-# annotate with database
-#
-#-----------------------------
-rule SNP_Annotation:
-    input:
-        reference = config['reference_genome'],
-        bam_all = "data/mapped_reads/all.bam",
-        SNPs = "data/Haplotypes/filtered.vcf",
-        dbsnp = config['database_SNPs']
-    output:
-        "data/Haplotypes/Annotation.vcf"
-    shell:
-        'gatk --java-options "-Xmx100G -XX:+UseParallelGC -XX:ParallelGCThreads=32"'
-        'VariantAnnotator'
-        ' -R {input.reference}'
-        ' -I {input.bam_all}'
-        ' -V {input.SNPs}'
-        ' -O {output}'
-        ' -A Coverage'
-        ' --dbsnp {input.dbsnp}'
+#         bcftools concat --threads {resources.threads} *.vcf -o {output}
+#         """

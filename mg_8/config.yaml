@@ -7,10 +7,12 @@
 number_of_bins: 2
 number_of_nodes: 2
 
+path_to_ref: "/data/scratch/manuez42/data/genom/bacteria_30G/files/"
 path_to_reads: "/data/scratch/manuez42/ideas/data/1000-Genome-Project/gruppe6"
-path_to_index: "/data/scratch/manuez42/ideas/data//NCBI-reference/"
-path_to_reference: "/data/scratch/manuez42/ideas/data/NCBI-reference/GRCh38.fna"
-database_SNPs: "/data/scratch/manuez42/ideas/data/dbSNP/dbSNP.vcf.gz"
+
+# path_to_index: "/data/scratch/manuez42/ideas/data//NCBI-reference/"
+# path_to_reference: "/data/scratch/manuez42/ideas/data/NCBI-reference/GRCh38.fna"
+# database_SNPs: "/data/scratch/manuez42/ideas/data/dbSNP/dbSNP.vcf.gz"
 
 working_dir: "/data/scratch/manuez42/A2-jobgranularity/mg_6/data/"
 

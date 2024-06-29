@@ -14,7 +14,6 @@ configfile: "config.yaml"
 bin_nodes_dic = defaultdict(lambda: [])
 filepaths_binsn = defaultdict(lambda: [])
 nodelist = []
-list_of_chromosomes = []
 
 #-----------------------------
 
@@ -28,7 +27,6 @@ from collections import defaultdict
 
 def create_bins_file(path_to_data, nr_bins, path_to_working_dir):
 
-
     fasta_file_endings = [".fa", ".fna", ".fasta", "fastqc"]
 
     is_fasta_file = lambda f: any(f.endswith(end) for end in fasta_file_endings)
@@ -37,7 +35,8 @@ def create_bins_file(path_to_data, nr_bins, path_to_working_dir):
     to_path = lambda filename: os.path.join(path_to_data, filename)
     fasta_paths = map(to_path, fasta_filenames)
 
-    with open(os.join.path(path_to_working_dir,"bins.tsv"), "w+") as f:
+    binstsv = os.join.path(path_to_working_dir,"bins.tsv")
+    with open(binstsv, "w+") as f:
         writer = csv.writer(f, delimiter='\t')
         for i, fasta_path in enumerate(fasta_paths):
             writer.writerow( [fasta_path , (i % nr_bins)] )
@@ -47,7 +46,8 @@ def create_bins_file(path_to_data, nr_bins, path_to_working_dir):
 
 def filling_bins(path_to_working_dir, filepaths_bins):
 
-    with open(os.path.join(path_to_working_dir,"bins.tsv"), "r") as f:
+    binstsv = os.path.join(path_to_working_dir,"bins.tsv")
+    with open(binstsv, "r") as f:
             reader = csv.reader(f, delimiter='\t')
 
             for row in reader:
@@ -58,8 +58,11 @@ def filling_bins(path_to_working_dir, filepaths_bins):
         for bin_id in bin_list:
             bin_dir = os.path.join(path_to_working_dir,f"bin_{bin_id}")
             os.makedirs(bin_dir, exist_ok=True)  # Create directory if it doesn't exist
+            
+            joined_fasta = os.path.join(bin_dir, f'all_{bin_id}.fasta')
+            
             for file in filepaths_bins[bin_id]:
-                os.system(f"cp {file} {bin_dir}/")
+                os.system(f"cat {file} > {joined_fasta}")
 
     return filepaths_bins
 
@@ -72,10 +75,9 @@ def filling_bins(path_to_working_dir, filepaths_bins):
 
 rule make_all:
 	input:
-		"data/Haplotypes/Annotation.vcf"
+		"data/Haplotypes/output"
 	shell:
 		"echo 'Done'"
-
 
 
 #-----------------------------
@@ -91,7 +93,7 @@ rule create_general_files:
     # resources:
     #     nodes = config['number_of_nodes']
     params:
-        data = config['path_to_reads'],
+        data = config['path_to_ref'],
         bins = config['number_of_bins']
         work = config['working_dir']
     run:
@@ -103,9 +105,8 @@ rule copying_data_to_nodes:
     input:
         "data/general/bins.tsv",
     output:
-        expand("data/bin_{i}", i=range(bins))
+        expand("data/bin_{i}/all_{i}.fasta", i=range(config['number_of_bins']))
     params:
-        bins = config['number_of_bins']
         work = config['working_dir']
     resources:
         # nodes = bin_nodes_dic[i],

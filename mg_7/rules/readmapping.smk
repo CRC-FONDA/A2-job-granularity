@@ -37,7 +37,7 @@ rule bwa_mem2_mem:
         index = expand("data/bin_{i}/index{i}")
         reads = expand("data/bin_{i}/all{i}.fasta")
     output:
-        temp("data/bin_{i}/mapped_reads/sam_{i}.sam", i=range(config['number_of_bins']) )
+        temp("data/bin_{i}/mapped_reads/sam_{i}.sam", i=range(config['number_of_bins'],-1,-1) )
     resources:
         nodes = config['number_of_nodes']
         threads = config['threads']

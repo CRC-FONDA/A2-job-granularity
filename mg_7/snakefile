@@ -106,7 +106,7 @@ rule copying_data_to_nodes:
     input:
         "data/general/bins.tsv",
     output:
-        expand("data/bin_{i}", i=range({params.bins}))
+        expand("data/bin_{i}/all_{i}.fasta", i=range(config['number_of_bins']))
     params:
         bins = config['number_of_bins']
         work = config['working_dir']

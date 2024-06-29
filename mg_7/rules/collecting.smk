@@ -13,6 +13,9 @@ rule samtools_convert:
         expand("logs/samtools_view{i}.log")
     benchmark:
         expand("benchmarks/samtools_view{i}.txt", 2)
+    resources:
+        nodes = config['number_of_nodes']
+        threds = config['number_of_threads']
     conda:
         "../../envs/samtools.yaml"
     shell:
@@ -28,6 +31,9 @@ rule samtools_sort:
         expand("logs/samtools_sort/bin_{i}.log")
     benchmark:
         expand("benchmarks/samtools_sort/bin_{i}.txt")
+    resources:
+        nodes = config['number_of_nodes']
+        threds = config['number_of_threads']
     shell:
         "samtools sort {input} -o {output} 2> {log}"
 
@@ -44,6 +50,7 @@ rule add_groups:
         temp("data/bin_{i}/mapped_reads/with_groups_{i}.sorted.bam", i=range(config['number_of_bins']))
     resources:
         nodes = config['number_of_nodes']
+        threds = config['number_of_threads']
     shell:
         "java -jar /software/picard.jar AddOrReplaceReadGroups" 
         "I={input} O={output}"
@@ -57,6 +64,7 @@ rule samtools_index:
         temp("data/bin_{i}/mapped_reads/with_groups_{i}.sorted.bam.bai", i=range(config['number_of_bins']))
     resources:
         nodes = config['number_of_nodes']
+        threds = config['number_of_threads']
     shell:
         "samtools index {input} {output}"
 
