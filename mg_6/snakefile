@@ -1,49 +1,67 @@
+#-----------------------------
+#
+# configfile
+# & wildcards
+# & imports
+# & helpfunctions
+#
+#-----------------------------
+
+configfile: "config.yaml"
+
+#-----------------------------
+
+bin_nodes_dic = defaultdict(lambda: [])
+filepaths_binsn = defaultdict(lambda: [])
+nodelist = []
+list_of_chromosomes = []
+
+#-----------------------------
+
 import os
 import csv
+import subprocess
 from pathlib import Path
 from collections import defaultdict
 
 #-----------------------------
-#
-# configfile with:
-#   paths, bin_size, 
-#   reference_genomes, reference_database,
-#   threads
-#
-#-----------------------------
-configfile: "config.yaml"
 
-path_to_dir = config['path_to_data']
-bin_size = int(config['files_per_bin'])
-bin_list = list(range(bin_size))
-bin_pathlist = [f"data/bin_{i}" for i in bin_list]
-filepaths_bins = defaultdict(lambda: [])
+def create_bins_file(path_to_data, nr_bins, path_to_working_dir):
 
-
-#-----------------------------
-#
-# function for creating bins
-#
-#-----------------------------
-
-
-def create_bins_file(path_to_dir, size):
-    path_to_dir = Path(path_to_dir)
 
     fasta_file_endings = [".fa", ".fna", ".fasta", "fastqc"]
 
     is_fasta_file = lambda f: any(f.endswith(end) for end in fasta_file_endings)
-    fasta_filenames = filter(lambda f: is_fasta_file(f), os.listdir(path_to_dir))
+    fasta_filenames = filter(lambda f: is_fasta_file(f), os.listdir(path_to_data))
 
-    to_path = lambda filename: path_to_dir / filename  
+    to_path = lambda filename: os.path.join(path_to_data, filename)
     fasta_paths = map(to_path, fasta_filenames)
 
-    with open("data/general/bins.tsv", "w+") as f:
+    with open(os.join.path(path_to_working_dir,"bins.tsv"), "w+") as f:
         writer = csv.writer(f, delimiter='\t')
         for i, fasta_path in enumerate(fasta_paths):
-            writer.writerow( [fasta_path , (i//size)] )
+            writer.writerow( [fasta_path , (i % nr_bins)] )
+
+#-----------------------------
 
 
+def filling_bins(path_to_working_dir, filepaths_bins):
+
+    with open(os.path.join(path_to_working_dir,"bins.tsv"), "r") as f:
+            reader = csv.reader(f, delimiter='\t')
+
+            for row in reader:
+                filename = row[0]
+                bin_id = int(row[1])
+                filepaths_bins[bin_id].append(filename)
+        
+        for bin_id in bin_list:
+            bin_dir = os.path.join(path_to_working_dir,f"bin_{bin_id}")
+            os.makedirs(bin_dir, exist_ok=True)  # Create directory if it doesn't exist
+            for file in filepaths_bins[bin_id]:
+                os.system(f"cp {file} {bin_dir}/")
+
+    return filepaths_bins
 
 
 #-----------------------------
@@ -51,6 +69,7 @@ def create_bins_file(path_to_dir, size):
 # invokes all
 #
 #-----------------------------
+
 rule make_all:
 	input:
 		"data/Haplotypes/Annotation.vcf"
@@ -58,18 +77,43 @@ rule make_all:
 		"echo 'Done'"
 
 
+
 #-----------------------------
 #
-# help files for later rules
+# preparing the major steps
 #
 #-----------------------------
+
 rule create_general_files:
     output:
-        "data/general/bins.tsv",
-        "data/general/nodes.csv",
+        "data/bins.tsv",
+        "data/nodes.csv",
+    # resources:
+    #     nodes = config['number_of_nodes']
+    params:
+        data = config['path_to_reads'],
+        bins = config['number_of_bins']
+        work = config['working_dir']
     run:
-        create_bins_file(path_to_dir, bin_size)
-        shell("sinfo --long --Node | grep -P 'mix|idle' | grep -P big | awk '{print $1}' > data/general/nodes.csv")
+        create_bins({params.data}, {params.bins}, {params.work})
+        shell(f"sinfo --long --Node | grep -P 'mix|idle' | grep -P big | awk '{{print $1}}' > " + {params.work} + "/nodes.csv")
+
+
+rule copying_data_to_nodes:
+    input:
+        "data/general/bins.tsv",
+    output:
+        expand("data/bin_{i}", i=range(bins))
+    params:
+        bins = config['number_of_bins']
+        work = config['working_dir']
+    resources:
+        # nodes = bin_nodes_dic[i],
+        # or
+        nodes = config['number_of_nodes']
+        # nodelist = bin_nodes_dic[snakemake.job_id]
+    run:
+        filling_bins({params.work}, filepaths_bins)
 
 
 #-----------------------------
@@ -77,8 +121,6 @@ rule create_general_files:
 # the three mayor steps
 #
 #-----------------------------
-# include: "rules/preparation.smk"
 include: "rules/readmapping.smk"
 include: "rules/collecting.smk"
 include: "rules/annotating.smk"
-# include: "rules/bcftools.smk"
